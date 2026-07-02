@@ -1,17 +1,20 @@
 ---
 import { BRAND } from "../data/site.js";
 ---
-<header class="sticky top-0 z-50 border-b bg-[color:var(--color-bg)]/85 backdrop-blur-xl">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-    <a href="/" class="flex items-center gap-2 text-[15px] font-medium">
-      <span class="text-[color:var(--color-gold)]">◆</span><span class="display">{BRAND}</span>
+<header class="sticky top-0 z-50 border-b bg-[color:var(--color-bg)]/80 backdrop-blur-xl">
+  <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3.5">
+    <a href="/" class="flex items-center gap-2 text-sm font-semibold">
+      <span class="grid h-6 w-6 place-items-center rounded-md bg-[color:var(--color-ink)] text-[11px] text-white">EM</span>
+      <span>{BRAND}</span>
     </a>
-    <div class="hidden items-center gap-9 text-[13px] muted md:flex">
+    <div class="hidden items-center gap-7 text-[13px] muted md:flex">
       <a href="/#curriculum" class="transition hover:text-[color:var(--color-ink)]">Curriculum</a>
       <a href="/pricing" class="transition hover:text-[color:var(--color-ink)]">Pricing</a>
       <a href="/#instructor" class="transition hover:text-[color:var(--color-ink)]">Instructor</a>
-      <a href="/login" class="transition hover:text-[color:var(--color-ink)]">Login</a>
     </div>
-    <a href="/pricing" class="btn btn-primary !px-5 !py-2 !text-[13px]">Get Access</a>
+    <div class="flex items-center gap-2">
+      <a href="/login" class="hidden text-[13px] muted transition hover:text-[color:var(--color-ink)] sm:block">Log in</a>
+      <a href="/pricing" class="btn btn-primary btn-sm">Get access</a>
+    </div>
   </nav>
 </header>

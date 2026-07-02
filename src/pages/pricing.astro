@@ -3,51 +3,51 @@ import Base from "../layouts/Base.astro";
 import { CHAPTERS, TOTAL_CLASSES, PRICING, TELEGRAM } from "../data/site.js";
 ---
 <Base title="Pricing · Exclusive Mentorship">
-  <section class="mx-auto max-w-4xl px-6 py-24">
+  <section class="mx-auto max-w-3xl px-6 py-20">
     <div class="reveal text-center">
-      <p class="eyebrow">Access</p>
-      <h1 class="display mt-3 text-5xl sm:text-6xl">Choose your access.</h1>
-      <p class="mt-4 muted">The full bundle is the smart choice. Or start with a single chapter.</p>
+      <p class="eyebrow">Pricing</p>
+      <h1 class="mt-2 text-4xl font-semibold sm:text-5xl">Choose your access.</h1>
+      <p class="mt-3 muted">The full bundle is the smart choice. Or start with a single chapter.</p>
     </div>
 
-    <div class="reveal surface mx-auto mt-14 max-w-2xl p-10 sm:p-12">
+    <div class="reveal surface mx-auto mt-12 max-w-xl p-8">
       <p class="eyebrow">Full bundle · recommended</p>
-      <div class="mt-3 flex items-end gap-3">
-        <span class="display text-6xl">${PRICING.tier2Bundle}</span>
-        <span class="mb-2 text-lg muted line-through">${PRICING.tier1Total}</span>
-        <span class="mb-2 text-xs font-semibold text-[color:var(--color-gold)]">Save ${PRICING.save}</span>
+      <div class="mt-2 flex items-end gap-2">
+        <span class="text-5xl font-semibold">${PRICING.tier2Bundle}</span>
+        <span class="mb-1.5 text-base muted line-through">${PRICING.tier1Total}</span>
+        <span class="mb-1.5 text-xs font-semibold text-[color:var(--color-accent)]">Save ${PRICING.save}</span>
       </div>
-      <ul class="mt-8 grid gap-3 text-sm sm:grid-cols-2">
+      <ul class="mt-6 grid gap-2 text-sm sm:grid-cols-2">
         <li>✓ All {TOTAL_CLASSES} scripted classes</li>
         <li>✓ All 7 chapters unlocked</li>
         <li>✓ Priority support (free)</li>
-        <li>✓ Main private channel access</li>
-        <li>✓ 7-day refund guarantee</li>
-        <li>✓ Lifetime access to updates</li>
+        <li>✓ Main private channel</li>
+        <li>✓ 7-day refund</li>
+        <li>✓ Lifetime updates</li>
       </ul>
-      <a href="/signup" class="btn btn-primary mt-9 w-full">Get full access · ${PRICING.tier2Bundle}</a>
+      <a href="/signup" class="btn btn-accent mt-7 w-full">Get full access · ${PRICING.tier2Bundle}</a>
     </div>
 
-    <div class="reveal mx-auto my-12 flex max-w-2xl items-center gap-4 text-xs uppercase tracking-widest muted">
+    <div class="reveal mx-auto my-10 flex max-w-xl items-center gap-4 text-xs muted">
       <div class="h-px flex-1 bg-[color:var(--color-line)]"></div><span>or start chapter by chapter</span><div class="h-px flex-1 bg-[color:var(--color-line)]"></div>
     </div>
 
-    <div class="reveal surface mx-auto max-w-2xl p-8">
+    <div class="reveal surface mx-auto max-w-xl p-7">
       <div class="flex items-center justify-between">
-        <h2 class="display text-2xl">Chapter by chapter</h2>
-        <span class="text-sm muted">from <span class="text-[color:var(--color-gold)] font-semibold">${CHAPTERS[0].price}</span></span>
+        <h2 class="text-lg font-semibold">Chapter by chapter</h2>
+        <span class="text-sm muted">from <span class="font-semibold text-[color:var(--color-accent)]">${CHAPTERS[0].price}</span></span>
       </div>
-      <ul class="mt-6 divide-y">
+      <ul class="mt-5 divide-y">
         {CHAPTERS.map((c) => (
-          <li class="flex items-center justify-between py-3 text-sm">
-            <a href={`/chapters/${c.id}`} class="transition hover:text-[color:var(--color-gold)]">{String(c.id).padStart(2,'0')} · {c.name} <span class="muted">({c.classes})</span></a>
-            <span class="font-semibold text-[color:var(--color-gold)]">${c.price}</span>
+          <li class="flex items-center justify-between py-2.5 text-sm">
+            <a href={`/chapters/${c.id}`} class="transition hover:text-[color:var(--color-accent)]">{String(c.id).padStart(2,'0')} · {c.name} <span class="faint">({c.classes})</span></a>
+            <span class="font-semibold text-[color:var(--color-accent)]">${c.price}</span>
           </li>
         ))}
       </ul>
-      <p class="mt-6 rounded-xl border px-4 py-3 text-xs muted">Optional <span class="text-[color:var(--color-ink)] font-medium">Priority Support</span> add-on at checkout: <span class="text-[color:var(--color-gold)]">+${PRICING.prioritySupport}</span> (≈1000 BDT). Free with the bundle.</p>
+      <p class="mt-5 rounded-lg border px-4 py-3 text-xs muted">Optional <span class="font-medium text-[color:var(--color-ink)]">Priority Support</span> at checkout: <span class="text-[color:var(--color-accent)]">+${PRICING.prioritySupport}</span> (≈1000 BDT). Free with the bundle.</p>
     </div>
 
-    <div class="reveal mt-10 text-center text-sm muted">Crypto only (BTC · USDT · ETH). New to crypto? <a href={TELEGRAM} class="text-[color:var(--color-gold)]">Request support on Telegram →</a></div>
+    <p class="reveal mt-8 text-center text-sm muted">Crypto only (BTC · USDT · ETH). New to crypto? <a href={TELEGRAM} class="text-[color:var(--color-accent)]">Telegram support →</a></p>
   </section>
 </Base>

@@ -3,7 +3,6 @@ import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import RevealScript from "../components/RevealScript.astro";
-import JourneyScript from "../components/JourneyScript.astro";
 const { title = "Exclusive Mentorship", description = "Institutional-grade trading mentorship by NLT. 99 scripted classes across 7 chapters." } = Astro.props;
 ---
 <!doctype html>
@@ -14,7 +13,7 @@ const { title = "Exclusive Mentorship", description = "Institutional-grade tradi
     <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
   <body class="min-h-screen">
@@ -22,6 +21,5 @@ const { title = "Exclusive Mentorship", description = "Institutional-grade tradi
     <main><slot /></main>
     <Footer />
     <RevealScript />
-    <JourneyScript />
   </body>
 </html>

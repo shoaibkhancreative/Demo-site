@@ -1,15 +1,15 @@
 ---
 import Base from "../layouts/Base.astro";
 ---
-<Base title="Login · Exclusive Mentorship">
-  <section class="mx-auto flex max-w-md flex-col px-6 py-24">
-    <h1 class="display text-3xl">Welcome back</h1>
-    <p class="mt-2 text-sm muted">Log in to access your dashboard and chapters.</p>
-    <form class="mt-8 space-y-3" onsubmit="event.preventDefault()">
-      <input type="email" placeholder="Email" required class="w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none focus:border-[color:var(--color-gold)]" />
-      <input type="password" placeholder="Password" required class="w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none focus:border-[color:var(--color-gold)]" />
-      <button class="btn btn-primary w-full">Log in</button>
+<Base title="Log in · Exclusive Mentorship">
+  <section class="mx-auto flex max-w-sm flex-col px-6 py-24">
+    <h1 class="text-2xl font-semibold">Welcome back</h1>
+    <p class="mt-1.5 text-sm muted">Log in to access your dashboard.</p>
+    <form class="mt-7 space-y-2.5" onsubmit="event.preventDefault()">
+      <input type="email" placeholder="Email" required class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--color-accent)]" />
+      <input type="password" placeholder="Password" required class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--color-accent)]" />
+      <button class="btn btn-accent w-full">Log in</button>
     </form>
-    <p class="mt-6 text-center text-sm muted">No account? <a href="/signup" class="text-[color:var(--color-gold)]">Sign up</a></p>
+    <p class="mt-5 text-center text-sm muted">No account? <a href="/signup" class="text-[color:var(--color-accent)]">Sign up</a></p>
   </section>
 </Base>

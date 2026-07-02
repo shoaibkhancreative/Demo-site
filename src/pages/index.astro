@@ -1,111 +1,101 @@
 ---
 import Base from "../layouts/Base.astro";
 import Journey from "../components/Journey.astro";
-import { CHAPTERS, TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID } from "../data/site.js";
+import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID, CHAPTERS } from "../data/site.js";
 ---
 <Base>
   <!-- HERO -->
-  <section class="mx-auto max-w-3xl px-6 pt-28 pb-16 text-center">
-    <p class="reveal eyebrow">By {INSTRUCTOR} · {TOTAL_CLASSES} scripted classes</p>
-    <h1 class="reveal display mt-6 text-5xl sm:text-7xl">Trade like the<br/>institutions.</h1>
-    <p class="reveal mx-auto mt-7 max-w-xl text-lg leading-relaxed muted">A complete, step-by-step mentorship. No noise, no filler. Only the framework, mindset, and plan used to trade the markets professionally.</p>
-    <div class="reveal mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-      <a href="/pricing" class="btn btn-primary">Get full access · ${PRICING.tier2Bundle}</a>
+  <section class="mx-auto max-w-3xl px-6 pt-24 pb-14 text-center">
+    <span class="reveal chip mx-auto">By {INSTRUCTOR} · {TOTAL_CLASSES} scripted classes</span>
+    <h1 class="reveal mt-6 text-[2.7rem] font-semibold leading-[1.05] sm:text-6xl">Trade like the institutions.</h1>
+    <p class="reveal mx-auto mt-5 max-w-lg text-[17px] leading-relaxed muted">A complete, step-by-step mentorship. No noise, no filler. Only the framework, mindset, and plan used to trade the markets professionally.</p>
+    <div class="reveal mt-8 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
+      <a href="/pricing" class="btn btn-accent">Get full access · ${PRICING.tier2Bundle}</a>
       <a href="#intro" class="btn btn-ghost">Watch the intro</a>
     </div>
   </section>
 
   <!-- INTRO VIDEO -->
-  <section id="intro" class="mx-auto max-w-4xl px-6 pb-28">
-    <div class="reveal mb-8 text-center">
-      <p class="eyebrow">Start here</p>
-      <h2 class="display mt-3 text-3xl sm:text-4xl">What it is. Why it matters. How it works.</h2>
-    </div>
+  <section id="intro" class="mx-auto max-w-3xl px-6 pb-24">
     <div class="reveal video-frame">
       <iframe src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}`} title="Introduction" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </section>
 
-  <!-- CURRICULUM -->
-  <section id="curriculum" class="mx-auto max-w-5xl px-6 pb-28">
-    <div class="reveal mb-12 text-center">
-      <p class="eyebrow">The curriculum</p>
-      <h2 class="display mt-3 text-4xl sm:text-5xl">Seven chapters. One clear path.</h2>
-      <p class="mx-auto mt-4 max-w-lg text-sm muted">From raw market structure to a live, personal trading plan. Every class is listed below.</p>
+  <!-- CURRICULUM (compact) -->
+  <section id="curriculum" class="mx-auto max-w-5xl px-6 pb-24">
+    <div class="reveal mb-8 text-center">
+      <p class="eyebrow">Curriculum</p>
+      <h2 class="mt-2 text-3xl font-semibold sm:text-4xl">Seven chapters. One clear path.</h2>
+      <p class="mx-auto mt-3 max-w-md text-sm muted">Click any chapter to see all its lessons.</p>
     </div>
-    <div class="reveal"><Journey chapters={CHAPTERS} /></div>
-  </section>
-
-  <!-- REFUND -->
-  <section class="mx-auto max-w-4xl px-6 pb-28">
-    <div class="reveal surface p-10 text-center sm:p-14">
-      <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full border text-2xl">🛡</div>
-      <h2 class="display text-3xl sm:text-4xl">7-day money-back guarantee</h2>
-      <p class="mx-auto mt-4 max-w-lg text-[15px] leading-relaxed muted">Get the full bundle risk-free. If it's not for you within 7 days, request a refund and your access is removed. No hassle.</p>
-      <a href="/refund" class="mt-6 inline-block text-sm font-semibold text-[color:var(--color-gold)] transition hover:opacity-75">Read the refund policy →</a>
-    </div>
+    <div class="reveal"><Journey /></div>
   </section>
 
   <!-- PRICING -->
-  <section class="mx-auto max-w-5xl px-6 pb-28">
-    <div class="reveal mb-12 text-center">
+  <section class="mx-auto max-w-5xl px-6 pb-24">
+    <div class="reveal mb-8 text-center">
       <p class="eyebrow">Pricing</p>
-      <h2 class="display mt-3 text-4xl sm:text-5xl">Simple and honest.</h2>
+      <h2 class="mt-2 text-3xl font-semibold sm:text-4xl">Simple and honest.</h2>
     </div>
-    <div class="reveal surface mx-auto max-w-3xl overflow-hidden p-10 sm:p-12">
-      <div class="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
-        <div>
-          <p class="eyebrow">Full bundle · recommended</p>
-          <h3 class="display mt-3 text-3xl">Everything, unlocked.</h3>
-          <p class="mt-3 max-w-md text-sm muted">All {TOTAL_CLASSES} classes across 7 chapters. Priority support included. 7-day refund.</p>
+    <div class="mx-auto grid max-w-3xl gap-4 sm:grid-cols-[1.4fr_1fr]">
+      <div class="reveal surface p-7">
+        <p class="eyebrow">Full bundle · recommended</p>
+        <div class="mt-2 flex items-end gap-2">
+          <span class="text-4xl font-semibold">${PRICING.tier2Bundle}</span>
+          <span class="mb-1 text-sm muted line-through">${PRICING.tier1Total}</span>
+          <span class="mb-1 text-xs font-semibold text-[color:var(--color-accent)]">Save ${PRICING.save}</span>
         </div>
-        <div class="text-right">
-          <p class="text-sm muted line-through">${PRICING.tier1Total}</p>
-          <p class="display text-5xl">${PRICING.tier2Bundle}</p>
-          <p class="text-xs text-[color:var(--color-gold)] font-semibold">Save ${PRICING.save}</p>
-        </div>
+        <ul class="mt-5 space-y-2 text-[13px] muted">
+          <li>✓ All {TOTAL_CLASSES} scripted classes</li>
+          <li>✓ Priority support included free</li>
+          <li>✓ Main private channel access</li>
+          <li>✓ 7-day refund guarantee</li>
+        </ul>
+        <a href="/pricing" class="btn btn-accent mt-6 w-full">Get full access</a>
       </div>
-      <a href="/pricing" class="btn btn-primary mt-8 w-full">Get full access</a>
-    </div>
-    <div class="reveal mx-auto mt-4 flex max-w-3xl flex-col items-center justify-between gap-3 rounded-2xl border px-8 py-5 sm:flex-row">
-      <p class="text-sm muted">Prefer to start small? Buy chapter by chapter, from ${CHAPTERS[0].price}.</p>
-      <a href="/pricing" class="text-sm font-semibold text-[color:var(--color-gold)] transition hover:opacity-75">View chapters →</a>
+      <div class="reveal surface p-7">
+        <p class="eyebrow">Start small</p>
+        <p class="mt-2 text-sm muted">Buy chapter by chapter, from <span class="font-semibold text-[color:var(--color-ink)]">${CHAPTERS[0].price}</span>.</p>
+        <p class="mt-4 text-[13px] muted">Priority Support optional at checkout (+${PRICING.prioritySupport}).</p>
+        <a href="/pricing" class="btn btn-ghost mt-6 w-full">View chapters</a>
+        <div class="my-5 rule"></div>
+        <p class="text-[12px] faint">🛡 7-day money-back guarantee on the bundle.</p>
+      </div>
     </div>
   </section>
 
   <!-- INSTRUCTOR -->
-  <section id="instructor" class="reveal mx-auto max-w-2xl px-6 pb-28 text-center">
-    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border text-lg font-semibold text-[color:var(--color-gold)]">NLT</div>
-    <p class="mt-7 eyebrow">Your instructor</p>
-    <h2 class="display mt-3 text-4xl">Taught by {INSTRUCTOR}.</h2>
-    <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed muted">Every class is scripted and structured, so nothing is left to chance. The same institutional logic, mindset, and personal trading plan, distilled into a clear step-by-step path.</p>
+  <section id="instructor" class="reveal mx-auto max-w-xl px-6 pb-24 text-center">
+    <div class="mx-auto grid h-14 w-14 place-items-center rounded-full border text-sm font-semibold text-[color:var(--color-accent)]">NLT</div>
+    <p class="mt-5 eyebrow">Your instructor</p>
+    <h2 class="mt-2 text-3xl font-semibold">Taught by {INSTRUCTOR}.</h2>
+    <p class="mx-auto mt-4 max-w-lg text-[15px] leading-relaxed muted">Every class is scripted and structured, so nothing is left to chance. The same institutional logic, mindset, and personal trading plan, distilled into a clear step-by-step path.</p>
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="mx-auto max-w-5xl px-6 pb-28">
-    <h2 class="reveal display mb-12 text-center text-4xl">Trusted by traders.</h2>
-    <div class="grid gap-5 md:grid-cols-3">
+  <section class="mx-auto max-w-5xl px-6 pb-24">
+    <h2 class="reveal mb-8 text-center text-3xl font-semibold">Trusted by traders.</h2>
+    <div class="grid gap-3 md:grid-cols-3">
       {TESTIMONIALS.map((t) => (
-        <figure class="reveal surface hoverable p-7">
-          <div class="text-sm text-[color:var(--color-gold)]">★★★★★</div>
-          <blockquote class="mt-4 text-[15px] leading-relaxed">“{t.text}”</blockquote>
-          <figcaption class="mt-5 text-sm muted">{t.name}</figcaption>
+        <figure class="reveal surface hoverable p-5">
+          <div class="text-[13px] text-[color:var(--color-accent)]">★★★★★</div>
+          <blockquote class="mt-3 text-[14px] leading-relaxed">“{t.text}”</blockquote>
+          <figcaption class="mt-4 text-[13px] muted">{t.name}</figcaption>
         </figure>
       ))}
     </div>
   </section>
 
   <!-- CRYPTO -->
-  <section class="reveal mx-auto max-w-2xl px-6 pb-10 text-center">
+  <section class="reveal mx-auto max-w-xl px-6 text-center">
     <p class="eyebrow">Payment</p>
-    <h2 class="display mt-3 text-4xl">Secure crypto payment.</h2>
-    <p class="mt-4 text-[15px] muted">Pay with Bitcoin, USDT, or ETH. Instant, private, and secure.</p>
-    <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm muted">
-      <span class="rounded-full border px-4 py-1.5">₿ Bitcoin</span>
-      <span class="rounded-full border px-4 py-1.5">₮ USDT</span>
-      <span class="rounded-full border px-4 py-1.5">Ξ ETH</span>
+    <h2 class="mt-2 text-3xl font-semibold">Secure crypto payment.</h2>
+    <p class="mt-3 text-[15px] muted">Pay with Bitcoin, USDT, or ETH. Instant, private, secure.</p>
+    <div class="mt-5 flex flex-wrap items-center justify-center gap-2">
+      <span class="chip">₿ Bitcoin</span><span class="chip">₮ USDT</span><span class="chip">Ξ ETH</span>
     </div>
-    <p class="mt-8 text-sm muted">New to crypto? We'll walk you through it.</p>
-    <a href={TELEGRAM} class="btn btn-ghost mt-4">Request support on Telegram</a>
+    <p class="mt-6 text-[13px] muted">New to crypto? We'll walk you through it.</p>
+    <a href={TELEGRAM} class="btn btn-ghost mt-3">Request support on Telegram</a>
   </section>
 </Base>

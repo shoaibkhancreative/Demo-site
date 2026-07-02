@@ -1,16 +1,16 @@
 ---
 import Base from "../layouts/Base.astro";
 ---
-<Base title="Sign Up · Exclusive Mentorship">
-  <section class="mx-auto flex max-w-md flex-col px-6 py-24">
-    <h1 class="display text-3xl">Create your account</h1>
-    <p class="mt-2 text-sm muted">Sign up to purchase and access your classes.</p>
-    <form class="mt-8 space-y-3" onsubmit="event.preventDefault()">
-      <input type="text" placeholder="Full name" required class="w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none focus:border-[color:var(--color-gold)]" />
-      <input type="email" placeholder="Email" required class="w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none focus:border-[color:var(--color-gold)]" />
-      <input type="password" placeholder="Password" required class="w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none focus:border-[color:var(--color-gold)]" />
-      <button class="btn btn-primary w-full">Create account</button>
+<Base title="Sign up · Exclusive Mentorship">
+  <section class="mx-auto flex max-w-sm flex-col px-6 py-24">
+    <h1 class="text-2xl font-semibold">Create your account</h1>
+    <p class="mt-1.5 text-sm muted">Sign up to purchase and access your classes.</p>
+    <form class="mt-7 space-y-2.5" onsubmit="event.preventDefault()">
+      <input type="text" placeholder="Full name" required class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--color-accent)]" />
+      <input type="email" placeholder="Email" required class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--color-accent)]" />
+      <input type="password" placeholder="Password" required class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--color-accent)]" />
+      <button class="btn btn-accent w-full">Create account</button>
     </form>
-    <p class="mt-6 text-center text-sm muted">Already a member? <a href="/login" class="text-[color:var(--color-gold)]">Log in</a></p>
+    <p class="mt-5 text-center text-sm muted">Already a member? <a href="/login" class="text-[color:var(--color-accent)]">Log in</a></p>
   </section>
 </Base>
