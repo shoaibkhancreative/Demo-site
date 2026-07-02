@@ -74,3 +74,12 @@ h1,h2,h3,h4 { letter-spacing: -0.03em; }
   animation: pop .22s cubic-bezier(.16,1,.3,1); }
 @keyframes pop { from{opacity:0; transform:translate(-50%,-48%) scale(.98)} to{opacity:1; transform:translate(-50%,-50%) scale(1)} }
 .lesson-dot { margin-top:.5rem; height:.34rem; width:.34rem; flex-shrink:0; border-radius:999px; background: var(--color-accent); }
+
+
+/* ===== testimonial marquee ===== */
+.marquee { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee-track { display: flex; gap: .75rem; width: max-content; animation: scrollx 38s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes scrollx { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } .marquee { -webkit-mask-image:none; mask-image:none; overflow-x:auto; } }
+.t-card { width: 340px; flex-shrink: 0; }
