@@ -1,32 +1,41 @@
 <script is:inline>
   (function () {
     const bind = () => {
-      document.querySelectorAll('[data-journey]').forEach((journey) => {
-        if (journey.dataset.bound) return;
-        journey.dataset.bound = "1";
-        const steps = Array.from(journey.querySelectorAll('[data-step]'));
+      document.querySelectorAll('[data-explorer]').forEach((ex) => {
+        if (ex.dataset.bound) return;
+        ex.dataset.bound = "1";
+        const items = Array.from(ex.querySelectorAll('[data-select]'));
+        const panels = Array.from(ex.querySelectorAll('[data-panel]'));
 
-        steps.forEach((step) => {
-          const head = step.querySelector('[data-head]');
-          if (head) {
-            head.addEventListener('click', (e) => {
-              if (e.target.closest('[data-stop]') || e.target.closest('a') || e.target.closest('button')) return;
-              const willOpen = !step.classList.contains('open');
-              steps.forEach((s) => { s.classList.remove('open'); s.setAttribute('aria-expanded','false'); });
-              if (willOpen) { step.classList.add('open'); step.setAttribute('aria-expanded','true'); }
+        items.forEach((item) => {
+          item.addEventListener('click', () => {
+            const id = item.getAttribute('data-select');
+            items.forEach((x) => x.classList.remove('active'));
+            item.classList.add('active');
+            panels.forEach((p) => {
+              const on = p.getAttribute('data-panel') === id;
+              p.classList.toggle('active', on);
+              if (on) {
+                // reset load-more state when switching
+                const btn = p.querySelector('[data-loadmore]');
+                const extras = p.querySelectorAll('[data-extra]');
+                extras.forEach((el) => el.classList.add('hidden'));
+                if (btn) btn.textContent = 'Load more (' + btn.getAttribute('data-loadmore') + ')';
+              }
             });
-          }
+          });
+        });
 
-          const btn = step.querySelector('[data-loadmore]');
-          if (btn) {
-            const total = btn.getAttribute('data-loadmore');
-            btn.addEventListener('click', () => {
-              const extras = step.querySelectorAll('[data-extra]');
-              const isHidden = extras.length && extras[0].classList.contains('hidden');
-              extras.forEach((el) => el.classList.toggle('hidden'));
-              btn.textContent = isHidden ? 'Show less' : ('Load more (' + total + ')');
-            });
-          }
+        panels.forEach((p) => {
+          const btn = p.querySelector('[data-loadmore]');
+          if (!btn) return;
+          const total = btn.getAttribute('data-loadmore');
+          btn.addEventListener('click', () => {
+            const extras = p.querySelectorAll('[data-extra]');
+            const hidden = extras.length && extras[0].classList.contains('hidden');
+            extras.forEach((el) => el.classList.toggle('hidden'));
+            btn.textContent = hidden ? 'Show less' : ('Load more (' + total + ')');
+          });
         });
       });
     };

@@ -2,78 +2,75 @@
 import Thumb from "./Thumb.astro";
 const { chapters } = Astro.props;
 ---
-<div class="journey space-y-8" data-journey>
-  {chapters.map((c, i) => {
-    const preview = c.lessons.slice(0, 3);
-    const rest = c.lessons.slice(3);
-    return (
-      <section class:list={["step", { open: i === 0 }]} data-step aria-expanded={i === 0 ? "true" : "false"}>
-        <div class="node">{String(c.id).padStart(2,'0')}</div>
+<div class="explorer" data-explorer>
+  <!-- LEFT: chapter selector list -->
+  <aside class="ex-list">
+    {chapters.map((c, i) => (
+      <button type="button" class:list={["ex-item", { active: i === 0 }]} data-select={c.id}>
+        <span class="ex-num">{String(c.id).padStart(2,'0')}</span>
+        <span class="ex-item-body">
+          <span class="ex-item-title">{c.name}</span>
+          <span class="ex-item-meta">{c.classes} classes · from ${c.price}</span>
+        </span>
+        <span class="ex-arrow">→</span>
+      </button>
+    ))}
+  </aside>
 
-        <div class="head flex items-start justify-between gap-4" data-head>
-          <div class="min-w-0">
-            <div class="flex items-center gap-3 text-xs uppercase tracking-widest text-neutral-500">
-              <span>Chapter {c.id}</span><span class="text-neutral-700">·</span><span>{c.classes} classes</span>
-              <span class="text-neutral-700">·</span><span class="text-gold">from ${c.price}</span>
-            </div>
-            <h3 class="title display mt-1.5 text-2xl leading-tight sm:text-3xl">{c.name}</h3>
-            <p class="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-400">{c.hook}</p>
+  <!-- RIGHT: detail panels -->
+  <div class="ex-detail">
+    {chapters.map((c, i) => {
+      const preview = c.lessons.slice(0, 3);
+      const rest = c.lessons.slice(3);
+      return (
+        <article class:list={["ex-panel", { active: i === 0 }]} data-panel={c.id}>
+          <div class="relative">
+            <Thumb src={c.thumb} label={`Chapter ${c.id}`} />
+            <span class="price-badge absolute right-4 top-4"><span class="text-xs opacity-70">$</span>{c.price}</span>
           </div>
-          <span class="chev mt-2 shrink-0 text-lg" aria-hidden="true">▾</span>
-        </div>
 
-        <div class="panel">
-          <div class="panel-inner">
-            <div class="grid gap-6 md:grid-cols-[300px_1fr]">
-              <!-- Left: thumbnail -->
-              <div class="flex flex-col">
-                <div class="relative">
-                  <Thumb src={c.thumb} label={`Chapter ${c.id}`} />
-                  <span class="price-badge absolute right-3 top-3"><span class="text-xs opacity-70">$</span>{c.price}</span>
-                </div>
-              </div>
-
-              <!-- Right: class list -->
-              <div class="flex flex-col">
-                <div class="flex items-baseline justify-between">
-                  <p class="text-xs uppercase tracking-[0.25em] text-gold">What's inside</p>
-                  <span class="text-xs text-neutral-600">{c.classes} lessons</span>
-                </div>
-                <ol class="mt-3 space-y-1" data-lessons>
-                  {preview.map((l) => (
-                    <li class="flex items-baseline gap-3 rounded-lg px-3 py-2.5 transition hover:bg-ink-3">
-                      <span class="lesson-num">{String(l.n).padStart(2,'0')}</span>
-                      <div class="min-w-0">
-                        <p class="text-sm font-medium text-neutral-100">{l.title}</p>
-                        <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
-                      </div>
-                    </li>
-                  ))}
-                  {rest.map((l) => (
-                    <li class="hidden items-baseline gap-3 rounded-lg px-3 py-2.5 transition hover:bg-ink-3" data-extra>
-                      <span class="lesson-num">{String(l.n).padStart(2,'0')}</span>
-                      <div class="min-w-0">
-                        <p class="text-sm font-medium text-neutral-100">{l.title}</p>
-                        <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-
-            <!-- Bottom action row: Join + Load more on the SAME line -->
-            <div class="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-              <a href={`/chapters/${c.id}`} data-stop class="flex-1 rounded-full bg-gold py-3 text-center text-sm font-semibold text-black transition hover:bg-gold-soft">Join this chapter · ${c.price}</a>
-              {rest.length > 0 && (
-                <button type="button" data-stop data-loadmore={`${rest.length}`} class="flex-1 rounded-full border border-line py-3 text-center text-sm font-medium text-neutral-300 transition hover:border-gold hover:text-gold">
-                  Load more ({rest.length})
-                </button>
-              )}
-            </div>
+          <div class="mt-6 flex items-center gap-3 text-xs uppercase tracking-widest text-neutral-500">
+            <span class="display text-2xl normal-case tracking-normal text-gold/70">{String(c.id).padStart(2,'0')}</span>
+            <span>Chapter {c.id}</span><span class="text-neutral-700">·</span><span>{c.classes} classes</span>
           </div>
-        </div>
-      </section>
-    );
-  })}
+          <h3 class="display mt-2 text-3xl leading-tight">{c.name}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-neutral-400">{c.hook}</p>
+
+          <div class="mt-7 flex items-baseline justify-between">
+            <p class="text-xs uppercase tracking-[0.25em] text-gold">What's inside</p>
+            <span class="text-xs text-neutral-600">{c.classes} lessons</span>
+          </div>
+          <ol class="mt-3 space-y-1">
+            {preview.map((l) => (
+              <li class="flex items-baseline gap-3 rounded-lg px-3 py-2.5 transition hover:bg-ink-3">
+                <span class="lesson-num">{String(l.n).padStart(2,'0')}</span>
+                <div class="min-w-0">
+                  <p class="text-sm font-medium text-neutral-100">{l.title}</p>
+                  <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
+                </div>
+              </li>
+            ))}
+            {rest.map((l) => (
+              <li class="hidden items-baseline gap-3 rounded-lg px-3 py-2.5 transition hover:bg-ink-3" data-extra>
+                <span class="lesson-num">{String(l.n).padStart(2,'0')}</span>
+                <div class="min-w-0">
+                  <p class="text-sm font-medium text-neutral-100">{l.title}</p>
+                  <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a href={`/chapters/${c.id}`} class="flex-1 rounded-full bg-gold py-3 text-center text-sm font-semibold text-black transition hover:bg-gold-soft">Join this chapter · ${c.price}</a>
+            {rest.length > 0 && (
+              <button type="button" data-loadmore={`${rest.length}`} class="flex-1 rounded-full border border-line py-3 text-center text-sm font-medium text-neutral-300 transition hover:border-gold hover:text-gold">
+                Load more ({rest.length})
+              </button>
+            )}
+          </div>
+        </article>
+      );
+    })}
+  </div>
 </div>
