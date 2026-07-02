@@ -8,28 +8,30 @@ export function getStaticPaths() {
 const { chapter } = Astro.props;
 ---
 <Base title={`${chapter.name} · Exclusive Mentorship`}>
-  <section class="mx-auto max-w-3xl px-6 py-16">
+  <section class="mx-auto max-w-2xl px-6 py-16">
     <a href="/#curriculum" class="text-sm muted transition hover:text-[color:var(--color-ink)]">← Back to curriculum</a>
     <div class="reveal mt-6 relative">
       <Thumb src={chapter.thumb} label={`Chapter ${chapter.id}`} />
       <span class="chip absolute right-3 top-3 !bg-white/90">${chapter.price}</span>
     </div>
     <p class="reveal mt-6 eyebrow">Chapter {chapter.id} · {chapter.classes} classes</p>
-    <h1 class="reveal page-title mt-2">{chapter.name}</h1>
-    <p class="reveal lead mt-3 muted">{chapter.hook}</p>
+    <h1 class="reveal mt-2 text-3xl font-semibold sm:text-4xl">{chapter.name}</h1>
+    <p class="reveal mt-3 text-[15px] leading-relaxed muted">{chapter.hook}</p>
     <div class="reveal mt-6 flex flex-wrap items-center gap-3">
       <a href="/checkout" class="btn btn-accent">Join this chapter · ${chapter.price}</a>
       <a href="/checkout" class="text-sm font-medium text-[color:var(--color-accent)] transition hover:opacity-75">or get all {TOTAL_CLASSES} in the bundle →</a>
     </div>
+
     <ol class="mt-10 space-y-1.5">
       {chapter.lessons.map((l) => (
-        <li class="surface hoverable flex items-baseline gap-3 p-4">
+        <li class="surface hoverable flex items-baseline gap-3 p-3.5">
           <span class="w-6 shrink-0 text-xs font-semibold text-[color:var(--color-accent)]">{String(l.n).padStart(2,'0')}</span>
           <div><p class="text-[14px] font-medium">{l.title}</p><p class="mt-0.5 text-[12px] muted">{l.tagline}</p></div>
         </li>
       ))}
     </ol>
-    <div class="reveal surface card-pad mt-12 text-center">
+
+    <div class="reveal surface mt-12 p-7 text-center">
       <p class="text-lg font-semibold">Get all {TOTAL_CLASSES} classes.</p>
       <p class="mt-1.5 text-sm muted">Unlock every chapter and save ${PRICING.save} with the full bundle.</p>
       <a href="/checkout" class="btn btn-accent mt-5">Get the full bundle · ${PRICING.tier2Bundle}</a>
