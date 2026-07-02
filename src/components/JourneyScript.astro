@@ -1,0 +1,23 @@
+<script is:inline>
+  (function () {
+    const bind = () => {
+      document.querySelectorAll('[data-journey]').forEach((journey) => {
+        if (journey.dataset.bound) return;
+        journey.dataset.bound = "1";
+        const steps = Array.from(journey.querySelectorAll('[data-step]'));
+        steps.forEach((step) => {
+          const head = step.querySelector('[data-head]');
+          if (!head) return;
+          head.addEventListener('click', (e) => {
+            if (e.target.closest('[data-stop]') || e.target.closest('a') || e.target.closest('button')) return;
+            const willOpen = !step.classList.contains('open');
+            steps.forEach((s) => { s.classList.remove('open'); s.setAttribute('aria-expanded','false'); });
+            if (willOpen) { step.classList.add('open'); step.setAttribute('aria-expanded','true'); }
+          });
+        });
+      });
+    };
+    document.addEventListener('DOMContentLoaded', bind);
+    document.addEventListener('astro:page-load', bind);
+  })();
+</script>

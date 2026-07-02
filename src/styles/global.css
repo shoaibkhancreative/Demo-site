@@ -25,21 +25,13 @@ body::before {
 
 .rule { height: 1px; background: linear-gradient(90deg, transparent, rgba(200,162,74,.4), transparent); }
 
-.card {
-  border: 1px solid var(--color-line);
-  transition: border-color .4s ease, box-shadow .4s ease, background-color .4s ease;
-}
-.card:hover {
-  border-color: rgba(200,162,74,.45);
-  box-shadow: 0 0 42px -14px rgba(200,162,74,.4);
-}
+.card { border: 1px solid var(--color-line); transition: border-color .4s ease, box-shadow .4s ease, background-color .4s ease; }
+.card:hover { border-color: rgba(200,162,74,.45); box-shadow: 0 0 42px -14px rgba(200,162,74,.4); }
 
 .price-badge {
-  display: inline-flex; align-items: baseline; gap: .15rem;
-  border-radius: 999px; padding: .3rem .8rem;
+  display: inline-flex; align-items: baseline; gap: .15rem; border-radius: 999px; padding: .3rem .8rem;
   background: linear-gradient(135deg, rgba(200,162,74,.18), rgba(200,162,74,.06));
-  border: 1px solid rgba(200,162,74,.4); color: var(--color-gold-soft);
-  font-weight: 600; font-size: .85rem;
+  border: 1px solid rgba(200,162,74,.4); color: var(--color-gold-soft); font-weight: 600; font-size: .85rem;
 }
 
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
@@ -58,23 +50,48 @@ body::before {
 .video-frame { position: relative; aspect-ratio: 16/9; border-radius: 1rem; overflow: hidden; border: 1px solid var(--color-line); }
 .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-/* ============ CURRICULUM LIST ROW ============ */
-.chapter { cursor: pointer; }
-.chapter .chev { transition: transform .35s cubic-bezier(.16,1,.3,1); color: var(--color-gold); }
-.chapter.open .chev { transform: rotate(180deg); }
+/* ================= JOURNEY (curriculum) ================= */
+.journey { position: relative; }
+/* the vertical spine line */
+.journey::before {
+  content: ""; position: absolute; left: 27px; top: 12px; bottom: 12px; width: 2px;
+  background: linear-gradient(180deg, rgba(200,162,74,.5), rgba(200,162,74,.08));
+}
+@media (max-width: 640px) { .journey::before { left: 19px; } }
 
-/* Thumbnail grows a bit when open */
-.chapter .thumb { aspect-ratio: 16/10; transition: box-shadow .45s ease; }
-.chapter.open .thumb { box-shadow: 0 0 50px -18px rgba(200,162,74,.5); }
-.chapter.open .thumb img { transform: scale(1.03); }
+.step { position: relative; padding-left: 72px; }
+@media (max-width: 640px) { .step { padding-left: 56px; } }
 
-/* Smooth expand of the class list */
-.chapter .panel {
+/* the node circle with chapter number */
+.step .node {
+  position: absolute; left: 0; top: 6px; z-index: 2;
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 1.15rem; color: var(--color-gold);
+  background: var(--color-ink); border: 2px solid var(--color-line);
+  transition: border-color .4s ease, box-shadow .4s ease, color .4s ease, transform .4s ease;
+}
+@media (max-width: 640px) { .step .node { width: 40px; height: 40px; font-size: .95rem; } }
+.step.open .node, .step:hover .node {
+  border-color: var(--color-gold); color: var(--color-gold-soft);
+  box-shadow: 0 0 26px -6px rgba(200,162,74,.6);
+}
+.step.open .node { transform: scale(1.05); }
+
+/* clickable header row */
+.step .head { cursor: pointer; user-select: none; }
+.step .chev { transition: transform .35s cubic-bezier(.16,1,.3,1); color: var(--color-gold); }
+.step.open .chev { transform: rotate(180deg); }
+.step .title { transition: color .3s ease; }
+.step.open .title, .step:hover .title { color: var(--color-gold-soft); }
+
+/* smooth expand */
+.step .panel {
   display: grid; grid-template-rows: 0fr;
   transition: grid-template-rows .5s cubic-bezier(.16,1,.3,1), opacity .5s ease, margin-top .5s ease;
   opacity: 0; margin-top: 0;
 }
-.chapter.open .panel { grid-template-rows: 1fr; opacity: 1; margin-top: 1.5rem; }
-.chapter .panel > .panel-inner { overflow: hidden; }
+.step.open .panel { grid-template-rows: 1fr; opacity: 1; margin-top: 1.25rem; }
+.step .panel > .panel-inner { overflow: hidden; }
 
-.chapter a, .chapter button { cursor: pointer; }
+.step a, .step button { cursor: pointer; }
