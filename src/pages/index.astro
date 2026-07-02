@@ -32,8 +32,8 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
     <div class="reveal"><Journey /></div>
   </section>
 
-  <!-- PRICING (effective) -->
-  <section id="pricing" class="mx-auto max-w-5xl px-6 pb-24">
+  <!-- PRICING -->
+  <section id="pricing" class="mx-auto max-w-5xl px-6 pb-16">
     <div class="reveal mb-8 text-center">
       <p class="eyebrow">Pricing</p>
       <h2 class="mt-2 text-3xl font-semibold sm:text-4xl">One price. Everything included.</h2>
@@ -41,7 +41,6 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
     </div>
 
     <div class="mx-auto grid max-w-3xl gap-4 sm:grid-cols-[1.35fr_1fr]">
-      <!-- Bundle (highlight) -->
       <div class="reveal surface relative overflow-hidden p-7 ring-1 ring-[color:var(--color-accent)]">
         <span class="absolute right-4 top-4 chip !border-[color:var(--color-accent)] !text-[color:var(--color-accent)]">Save ${PRICING.save}</span>
         <p class="eyebrow">Full bundle</p>
@@ -59,7 +58,6 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
         <a href="/checkout" class="btn btn-accent mt-6 w-full">Get full access</a>
       </div>
 
-      <!-- Chapter by chapter -->
       <div class="reveal surface p-7">
         <p class="eyebrow">Chapter by chapter</p>
         <div class="mt-2 flex items-end gap-1.5">
@@ -68,17 +66,37 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
         <p class="mt-4 text-[13px] muted">Prefer to start small? Buy any chapter individually. All 7 separately total <span class="font-semibold text-[color:var(--color-ink)]">${PRICING.tier1Total}</span>.</p>
         <p class="mt-3 text-[13px] muted">Optional Priority Support add-on: <span class="font-medium text-[color:var(--color-ink)]">+${PRICING.prioritySupport}</span>.</p>
         <a href="/checkout" class="btn btn-ghost mt-6 w-full">Choose chapters</a>
-        <p class="mt-4 text-[12px] faint">🛡 7-day money-back guarantee on the bundle.</p>
+      </div>
+    </div>
+
+    <!-- Effective guarantee strip -->
+    <div class="reveal mx-auto mt-4 flex max-w-3xl items-center gap-4 rounded-xl border border-[color:var(--color-accent)]/30 bg-[color:var(--color-accent)]/[.04] px-6 py-4">
+      <div class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[color:var(--color-accent)]/10 text-lg">🛡</div>
+      <div>
+        <p class="text-sm font-semibold">7-day money-back guarantee</p>
+        <p class="text-[13px] muted">Try the full bundle risk-free. Not for you within 7 days? Get a full refund, no hassle.</p>
       </div>
     </div>
   </section>
 
-  <!-- INSTRUCTOR -->
-  <section id="instructor" class="reveal mx-auto max-w-xl px-6 pb-24 text-center">
-    <div class="mx-auto grid h-14 w-14 place-items-center rounded-full border text-sm font-semibold text-[color:var(--color-accent)]">NLT</div>
-    <p class="mt-5 eyebrow">Your instructor</p>
-    <h2 class="mt-2 text-3xl font-semibold">Taught by {INSTRUCTOR}.</h2>
-    <p class="mx-auto mt-4 max-w-lg text-[15px] leading-relaxed muted">Every class is scripted and structured, so nothing is left to chance. The same institutional logic, mindset, and personal trading plan, distilled into a clear step-by-step path.</p>
+  <!-- INSTRUCTOR (motivational) -->
+  <section id="instructor" class="mx-auto max-w-3xl px-6 py-24">
+    <div class="reveal surface overflow-hidden p-8 sm:p-12">
+      <div class="text-center">
+        <div class="mx-auto grid h-16 w-16 place-items-center rounded-full bg-[color:var(--color-ink)] text-lg font-semibold text-white">NLT</div>
+        <p class="mt-5 eyebrow">Your instructor</p>
+        <h2 class="mt-2 text-3xl font-semibold sm:text-[2.5rem]">Stop guessing.<br/>Start trading with a plan.</h2>
+      </div>
+      <div class="mx-auto mt-7 max-w-xl space-y-4 text-center text-[15px] leading-relaxed muted">
+        <p>Most traders lose not because they aren't smart, but because they never had a real system. They chase, they hope, they blow accounts, and they blame the market.</p>
+        <p><span class="font-medium text-[color:var(--color-ink)]">It doesn't have to be you.</span> This mentorship is the exact framework, mindset, and personal trading plan {INSTRUCTOR} uses, distilled into {TOTAL_CLASSES} scripted classes with nothing left to chance.</p>
+        <p>You don't need luck. You need structure, discipline, and a path you can actually follow. That's what's waiting inside.</p>
+      </div>
+      <div class="mt-8 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
+        <a href="/checkout" class="btn btn-accent">Begin your journey · ${PRICING.tier2Bundle}</a>
+        <a href="#curriculum" class="btn btn-ghost">See what you'll learn</a>
+      </div>
+    </div>
   </section>
 
   <!-- TESTIMONIALS -->
@@ -92,32 +110,6 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
           <figcaption class="mt-4 text-[13px] muted">{t.name}</figcaption>
         </figure>
       ))}
-    </div>
-  </section>
-
-  <!-- PAYMENT METHOD (effective) -->
-  <section class="mx-auto max-w-3xl px-6 pb-8">
-    <div class="reveal surface p-8 sm:p-10">
-      <div class="text-center">
-        <p class="eyebrow">Payment</p>
-        <h2 class="mt-2 text-3xl font-semibold">Pay securely with crypto.</h2>
-        <p class="mx-auto mt-3 max-w-md text-sm muted">Fast, private, and secure. No cards, no banks. Access is delivered instantly to your private Telegram channel after payment.</p>
-      </div>
-      <div class="mt-8 grid gap-3 sm:grid-cols-3">
-        <div class="rounded-xl border p-4 text-center">
-          <div class="text-2xl">₿</div><p class="mt-1.5 text-sm font-medium">Bitcoin</p><p class="text-[12px] faint">BTC</p>
-        </div>
-        <div class="rounded-xl border p-4 text-center">
-          <div class="text-2xl">₮</div><p class="mt-1.5 text-sm font-medium">Tether</p><p class="text-[12px] faint">USDT</p>
-        </div>
-        <div class="rounded-xl border p-4 text-center">
-          <div class="text-2xl">Ξ</div><p class="mt-1.5 text-sm font-medium">Ethereum</p><p class="text-[12px] faint">ETH</p>
-        </div>
-      </div>
-      <div class="mt-8 flex flex-col items-center justify-between gap-3 rounded-xl bg-[color:var(--color-bg)] px-5 py-4 sm:flex-row">
-        <p class="text-[13px] muted">New to crypto? We'll guide you through every step.</p>
-        <a href={TELEGRAM} class="btn btn-ghost btn-sm shrink-0">Request support on Telegram</a>
-      </div>
     </div>
   </section>
 </Base>
