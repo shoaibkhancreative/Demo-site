@@ -14,13 +14,15 @@ const { title = "Exclusive Mentorship", description = "Institutional-grade tradi
     <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen antialiased">
-    <Nav />
-    <main><slot /></main>
-    <Footer />
+  <body class="min-h-screen">
+    <div class="relative z-10">
+      <Nav />
+      <main><slot /></main>
+      <Footer />
+    </div>
     <RevealScript />
     <LoadMoreScript />
   </body>

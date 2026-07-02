@@ -1,79 +1,133 @@
 ---
 import Base from "../layouts/Base.astro";
-import ChapterCard from "../components/ChapterCard.astro";
+import Thumb from "../components/Thumb.astro";
 import { CHAPTERS, TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM } from "../data/site.js";
 ---
 <Base>
+  <!-- HERO -->
   <section class="relative overflow-hidden">
     <div class="pointer-events-none absolute inset-0 -z-10">
-      <div class="absolute left-1/2 top-[-10rem] h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-gold/10 blur-[120px]"></div>
+      <div class="absolute left-1/2 top-[-12rem] h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-gold/[.07] blur-[130px]"></div>
     </div>
-    <div class="mx-auto max-w-4xl px-6 py-28 text-center">
-      <span class="reveal inline-block rounded-full border border-line px-4 py-1 text-xs uppercase tracking-widest text-gold">7 Chapters · {TOTAL_CLASSES} Scripted Classes</span>
-      <h1 class="reveal mt-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">Trade Like the <span class="text-gold">Institutions</span>,<br/> Not Against Them.</h1>
-      <p class="reveal mx-auto mt-6 max-w-2xl text-lg text-neutral-300">A complete, structured mentorship built by {INSTRUCTOR}. No noise, no filler. Just the exact framework, mindset, and plan used to trade the markets professionally.</p>
-      <div class="reveal mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/pricing" class="rounded-full bg-gold px-8 py-3 font-semibold text-black transition hover:bg-gold-soft">Get Full Access · ${PRICING.tier2Bundle}</a>
-        <a href="#curriculum" class="rounded-full border border-line px-8 py-3 font-semibold text-neutral-200 transition hover:border-gold hover:text-gold">Explore Curriculum</a>
+    <div class="mx-auto max-w-3xl px-6 pt-32 pb-24 text-center">
+      <span class="reveal inline-block text-xs uppercase tracking-[0.3em] text-gold">By {INSTRUCTOR} · {TOTAL_CLASSES} Scripted Classes</span>
+      <h1 class="reveal display mt-8 text-5xl leading-[1.05] sm:text-7xl">Trade like the<br/><span class="italic text-gold">institutions.</span></h1>
+      <p class="reveal mx-auto mt-8 max-w-xl text-lg leading-relaxed text-neutral-400">A complete, structured mentorship. No noise, no filler. Only the framework, mindset, and plan used to trade the markets professionally.</p>
+      <div class="reveal mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/pricing" class="rounded-full bg-gold px-8 py-3.5 text-sm font-semibold text-black transition hover:bg-gold-soft">Get Full Access · ${PRICING.tier2Bundle}</a>
+        <a href="#curriculum" class="text-sm font-medium text-neutral-300 transition hover:text-gold">Explore the curriculum →</a>
       </div>
     </div>
   </section>
 
-  <section id="curriculum" class="mx-auto max-w-6xl px-6 py-24">
+  <!-- CURRICULUM (editorial list) -->
+  <section id="curriculum" class="mx-auto max-w-5xl px-6 py-28">
+    <div class="reveal mb-16 flex items-end justify-between">
+      <div>
+        <p class="text-xs uppercase tracking-[0.3em] text-gold">The Curriculum</p>
+        <h2 class="display mt-4 text-4xl sm:text-5xl">Seven chapters.<br/>One complete path.</h2>
+      </div>
+      <p class="hidden max-w-xs text-sm text-neutral-500 md:block">From raw market structure to a live, personal trading plan including prop firm execution.</p>
+    </div>
+
+    <div class="space-y-5">
+      {CHAPTERS.map((c) => (
+        <a href={`/chapters/${c.id}`} class="reveal group block rounded-2xl border border-line bg-ink-2 p-5 transition duration-500 hover:border-gold/40 hover:bg-ink-3 sm:p-6">
+          <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+            <div class="w-full shrink-0 sm:w-56"><Thumb src={c.thumb} label={`Chapter ${c.id}`} /></div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-4 text-xs text-neutral-500">
+                <span class="display text-2xl text-gold/70">{String(c.id).padStart(2,'0')}</span>
+                <span>{c.classes} classes</span>
+                <span class="text-neutral-700">·</span>
+                <span>from ${c.price}</span>
+              </div>
+              <h3 class="display mt-2 text-2xl transition group-hover:text-gold">{c.name}</h3>
+              <p class="mt-2 max-w-xl text-sm leading-relaxed text-neutral-400">{c.hook}</p>
+              <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-xs text-neutral-500">
+                {c.lessons.slice(0,3).map((l) => (<li>· {l.title}</li>))}
+                {c.lessons.length > 3 && (<li class="text-gold/70">+{c.lessons.length - 3} more</li>)}
+              </ul>
+            </div>
+            <span class="hidden text-neutral-600 transition group-hover:translate-x-1 group-hover:text-gold sm:block">→</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
+
+  <!-- PRICING PREVIEW: bundle primary, chapter-by-chapter as clear secondary -->
+  <section class="mx-auto max-w-5xl px-6 py-28">
     <div class="reveal mb-14 text-center">
-      <h2 class="text-3xl font-bold sm:text-4xl">The Curriculum</h2>
-      <p class="mt-3 text-neutral-400">Seven chapters. A complete path from market structure to a live trading plan.</p>
+      <p class="text-xs uppercase tracking-[0.3em] text-gold">Access</p>
+      <h2 class="display mt-4 text-4xl sm:text-5xl">Simple, honest pricing.</h2>
     </div>
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {CHAPTERS.map((c) => <ChapterCard chapter={c} />)}
-    </div>
-  </section>
 
-  <section class="mx-auto max-w-5xl px-6 py-16">
-    <div class="grid gap-6 md:grid-cols-2">
-      <div class="reveal rounded-2xl border border-line bg-ink-2 p-8 opacity-80">
-        <p class="text-sm text-neutral-400">Chapter by chapter</p>
-        <p class="mt-2 text-4xl font-bold text-neutral-300 line-through decoration-neutral-600">${PRICING.tier1Total}</p>
-        <p class="mt-4 text-sm text-neutral-500">Buy each chapter separately. Priority Support add-on available at checkout.</p>
+    <!-- Primary: bundle -->
+    <div class="reveal relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-gold/50 bg-gradient-to-b from-gold/[.08] to-transparent p-10">
+      <div class="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
+        <div>
+          <p class="text-xs uppercase tracking-[0.25em] text-gold">Full Bundle · Recommended</p>
+          <h3 class="display mt-3 text-3xl">Everything, unlocked.</h3>
+          <p class="mt-3 max-w-md text-sm text-neutral-400">All {TOTAL_CLASSES} classes across 7 chapters. Priority Support included free. 7-day refund.</p>
+        </div>
+        <div class="text-right">
+          <p class="text-sm text-neutral-500 line-through">${PRICING.tier1Total}</p>
+          <p class="display text-5xl">${PRICING.tier2Bundle}</p>
+          <p class="text-xs text-gold">Save ${PRICING.save}</p>
+        </div>
       </div>
-      <div class="reveal relative rounded-2xl border border-gold bg-gradient-to-b from-gold/10 to-transparent p-8">
-        <span class="absolute right-6 top-6 rounded-full bg-gold px-3 py-1 text-xs font-semibold text-black">Save ${PRICING.save}</span>
-        <p class="text-sm text-gold">Full Bundle · Best Value</p>
-        <p class="mt-2 text-4xl font-extrabold">${PRICING.tier2Bundle}</p>
-        <p class="mt-4 text-sm text-neutral-300">All {TOTAL_CLASSES} classes. Priority Support included free. 7-day refund.</p>
-        <a href="/pricing" class="mt-6 inline-block rounded-full bg-gold px-6 py-2 font-semibold text-black transition hover:bg-gold-soft">Get the Bundle</a>
+      <a href="/pricing" class="mt-8 block rounded-full bg-gold py-3.5 text-center text-sm font-semibold text-black transition hover:bg-gold-soft sm:inline-block sm:px-10">Get Full Access</a>
+    </div>
+
+    <!-- Secondary: chapter by chapter -->
+    <div class="reveal mx-auto mt-6 flex max-w-3xl flex-col items-center justify-between gap-4 rounded-2xl border border-line bg-ink-2 px-8 py-6 sm:flex-row">
+      <div>
+        <p class="text-sm font-medium text-neutral-200">Prefer to start small?</p>
+        <p class="mt-1 text-sm text-neutral-500">Buy chapter by chapter, from ${CHAPTERS[0].price}. Priority Support optional at checkout.</p>
       </div>
+      <a href="/pricing" class="shrink-0 rounded-full border border-line px-6 py-2.5 text-sm font-medium text-neutral-300 transition hover:border-gold hover:text-gold">View chapters →</a>
     </div>
   </section>
 
-  <section id="instructor" class="reveal mx-auto max-w-4xl px-6 py-24 text-center">
-    <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-gold text-2xl font-bold text-gold">NLT</div>
-    <h2 class="mt-6 text-3xl font-bold">Taught by {INSTRUCTOR}</h2>
-    <p class="mx-auto mt-4 max-w-2xl text-neutral-300">Every class is scripted and structured, so nothing is left to chance. This is the same institutional logic, mindset, and personal trading plan that shapes real, disciplined trading, distilled into a clear step-by-step path.</p>
+  <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
+
+  <!-- INSTRUCTOR -->
+  <section id="instructor" class="reveal mx-auto max-w-3xl px-6 py-28 text-center">
+    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-gold/60 text-lg font-semibold text-gold">NLT</div>
+    <p class="mt-8 text-xs uppercase tracking-[0.3em] text-gold">Your Instructor</p>
+    <h2 class="display mt-4 text-4xl">Taught by {INSTRUCTOR}.</h2>
+    <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-neutral-400">Every class is scripted and structured, so nothing is left to chance. The same institutional logic, mindset, and personal trading plan, distilled into a clear step-by-step path.</p>
   </section>
 
-  <section class="mx-auto max-w-6xl px-6 py-16">
-    <h2 class="reveal mb-10 text-center text-3xl font-bold">What Members Say</h2>
+  <div class="mx-auto max-w-5xl px-6"><div class="rule"></div></div>
+
+  <!-- TESTIMONIALS -->
+  <section class="mx-auto max-w-5xl px-6 py-28">
+    <h2 class="reveal display mb-14 text-center text-4xl">Trusted by traders.</h2>
     <div class="grid gap-6 md:grid-cols-3">
       {TESTIMONIALS.map((t) => (
-        <figure class="reveal rounded-2xl border border-line bg-ink-2 p-6">
-          <div class="text-gold">★★★★★</div>
-          <blockquote class="mt-3 text-sm text-neutral-300">“{t.text}”</blockquote>
-          <figcaption class="mt-4 text-sm font-medium text-neutral-400">— {t.name}</figcaption>
+        <figure class="reveal rounded-2xl border border-line bg-ink-2 p-7">
+          <div class="text-sm text-gold">★★★★★</div>
+          <blockquote class="mt-4 text-[15px] leading-relaxed text-neutral-300">“{t.text}”</blockquote>
+          <figcaption class="mt-5 text-sm text-neutral-500">{t.name}</figcaption>
         </figure>
       ))}
     </div>
   </section>
 
-  <section class="reveal mx-auto max-w-4xl px-6 py-24 text-center">
-    <h2 class="text-3xl font-bold">Secure Crypto Payment</h2>
-    <p class="mt-4 text-neutral-300">Pay with Bitcoin, USDT, or ETH. Instant, private, and secure.</p>
-    <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-neutral-400">
-      <span class="rounded-full border border-line px-4 py-1">₿ Bitcoin</span>
-      <span class="rounded-full border border-line px-4 py-1">₮ USDT</span>
-      <span class="rounded-full border border-line px-4 py-1">Ξ ETH</span>
+  <!-- CRYPTO -->
+  <section class="reveal mx-auto max-w-3xl px-6 pb-32 text-center">
+    <h2 class="display text-4xl">Secure crypto payment.</h2>
+    <p class="mt-5 text-neutral-400">Pay with Bitcoin, USDT, or ETH. Instant, private, and secure.</p>
+    <div class="mt-7 flex flex-wrap items-center justify-center gap-3 text-sm text-neutral-400">
+      <span class="rounded-full border border-line px-4 py-1.5">₿ Bitcoin</span>
+      <span class="rounded-full border border-line px-4 py-1.5">₮ USDT</span>
+      <span class="rounded-full border border-line px-4 py-1.5">Ξ ETH</span>
     </div>
-    <p class="mt-8 text-sm text-neutral-400">New to crypto? We'll walk you through it.</p>
-    <a href={TELEGRAM} class="mt-3 inline-block rounded-full border border-gold px-6 py-2 font-semibold text-gold transition hover:bg-gold hover:text-black">Request a Support Call on Telegram</a>
+    <p class="mt-9 text-sm text-neutral-500">New to crypto? We'll walk you through it.</p>
+    <a href={TELEGRAM} class="mt-4 inline-block rounded-full border border-gold px-7 py-2.5 text-sm font-semibold text-gold transition hover:bg-gold hover:text-black">Request support on Telegram</a>
   </section>
 </Base>
