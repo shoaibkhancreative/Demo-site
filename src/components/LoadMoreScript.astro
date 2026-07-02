@@ -1,0 +1,20 @@
+<script is:inline>
+  (function () {
+    const bind = () => {
+      document.querySelectorAll('[data-loadmore]').forEach((btn) => {
+        if (btn.dataset.bound) return;
+        btn.dataset.bound = "1";
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-loadmore');
+          const rest = document.getElementById('ch-' + id + '-rest');
+          if (!rest) return;
+          const open = !rest.classList.contains('hidden');
+          rest.classList.toggle('hidden');
+          btn.textContent = open ? ('Load more (' + rest.children.length + ')') : 'Show less';
+        });
+      });
+    };
+    document.addEventListener('DOMContentLoaded', bind);
+    document.addEventListener('astro:page-load', bind);
+  })();
+</script>

@@ -1,0 +1,41 @@
+---
+import Base from "../../layouts/Base.astro";
+import Thumb from "../../components/Thumb.astro";
+import { CHAPTERS, PRICING } from "../../data/site.js";
+
+export function getStaticPaths() {
+  return CHAPTERS.map((c) => ({ params: { id: String(c.id) }, props: { chapter: c } }));
+}
+const { chapter } = Astro.props;
+---
+<Base title={`${chapter.name} · Exclusive Mentorship`}>
+  <section class="mx-auto max-w-4xl px-6 py-16">
+    <a href="/#curriculum" class="text-sm text-neutral-400 hover:text-gold">← Back to curriculum</a>
+    <div class="reveal mt-6">
+      <Thumb src={chapter.thumb} label={`Chapter ${chapter.id}`} />
+    </div>
+    <div class="reveal mt-8 flex items-center justify-between">
+      <span class="text-xs font-medium text-gold">Chapter {chapter.id}</span>
+      <span class="text-xs text-neutral-500">{chapter.classes} classes · ${chapter.price}</span>
+    </div>
+    <h1 class="reveal mt-2 text-3xl font-bold sm:text-4xl">{chapter.name}</h1>
+    <p class="reveal mt-3 text-neutral-300">{chapter.hook}</p>
+
+    <ul class="mt-10 space-y-4">
+      {chapter.lessons.map((l) => (
+        <li class="reveal flex gap-4 rounded-xl border border-line bg-ink-2 p-4">
+          <span class="mt-0.5 text-sm font-semibold text-gold">{String(l.n).padStart(2,'0')}</span>
+          <div>
+            <p class="font-medium text-neutral-100">{l.title}</p>
+            <p class="text-sm text-neutral-500">{l.tagline}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <div class="reveal mt-12 rounded-2xl border border-gold bg-gradient-to-b from-gold/10 to-transparent p-6 text-center">
+      <p class="text-sm text-neutral-300">Want all 99 classes and save ${PRICING.save}?</p>
+      <a href="/pricing" class="mt-3 inline-block rounded-full bg-gold px-6 py-2 font-semibold text-black transition hover:bg-gold-soft">Get the Full Bundle · ${PRICING.tier2Bundle}</a>
+    </div>
+  </section>
+</Base>
