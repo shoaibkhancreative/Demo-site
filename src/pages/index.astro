@@ -20,11 +20,11 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, Y
     </div>
   </section>
 
-  <!-- INTRO VIDEO: what, why, how -->
+  <!-- INTRO VIDEO -->
   <section id="intro" class="mx-auto max-w-4xl px-6 pb-24">
     <div class="reveal mb-8 text-center">
       <p class="text-xs uppercase tracking-[0.3em] text-gold">Watch First</p>
-      <h2 class="display mt-4 text-4xl">What this is, why it matters, how it works.</h2>
+      <h2 class="display mt-4 text-4xl">What it is. Why it matters. How it works.</h2>
     </div>
     <div class="reveal video-frame card">
       <iframe src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}`} title="Introduction" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -35,12 +35,13 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, Y
 
   <!-- CURRICULUM -->
   <section id="curriculum" class="mx-auto max-w-6xl px-6 py-28">
-    <div class="reveal mb-16 text-center">
+    <div class="reveal mb-4 text-center">
       <p class="text-xs uppercase tracking-[0.3em] text-gold">The Curriculum</p>
       <h2 class="display mt-4 text-4xl sm:text-5xl">Seven chapters. One complete path.</h2>
     </div>
+    <p class="reveal mb-14 text-center text-sm text-neutral-500">Click any chapter to see every class inside it.</p>
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {CHAPTERS.map((c) => <ChapterCard chapter={c} />)}
+      {CHAPTERS.map((c, i) => <ChapterCard chapter={c} open={i === 0} />)}
     </div>
   </section>
 

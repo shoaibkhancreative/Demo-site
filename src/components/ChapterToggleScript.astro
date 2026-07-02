@@ -1,0 +1,18 @@
+<script is:inline>
+  (function () {
+    const bind = () => {
+      document.querySelectorAll('[data-chapter]').forEach((card) => {
+        if (card.dataset.bound) return;
+        card.dataset.bound = "1";
+        card.addEventListener('click', (e) => {
+          // ignore clicks on links/buttons (Join, Read more) or anything marked data-stop
+          if (e.target.closest('[data-stop]') || e.target.closest('a') || e.target.closest('button')) return;
+          const isOpen = card.classList.toggle('open');
+          card.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+      });
+    };
+    document.addEventListener('DOMContentLoaded', bind);
+    document.addEventListener('astro:page-load', bind);
+  })();
+</script>
