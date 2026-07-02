@@ -2,75 +2,41 @@
 import Thumb from "./Thumb.astro";
 const { chapters } = Astro.props;
 ---
-<div class="explorer" data-explorer>
-  <!-- LEFT: chapter selector list -->
-  <aside class="ex-list">
-    {chapters.map((c, i) => (
-      <button type="button" class:list={["ex-item", { active: i === 0 }]} data-select={c.id}>
-        <span class="ex-num">{String(c.id).padStart(2,'0')}</span>
-        <span class="ex-item-body">
-          <span class="ex-item-title">{c.name}</span>
-          <span class="ex-item-meta">{c.classes} classes · from ${c.price}</span>
-        </span>
-        <span class="ex-arrow">→</span>
-      </button>
-    ))}
-  </aside>
+<div class="space-y-6">
+  {chapters.map((c) => (
+    <a href={`/chapters/${c.id}`} class="chapter-row card group block rounded-3xl bg-ink-2 p-6 sm:p-8">
+      <div class="grid gap-7 md:grid-cols-[minmax(0,340px)_1fr] md:items-center">
 
-  <!-- RIGHT: detail panels -->
-  <div class="ex-detail">
-    {chapters.map((c, i) => {
-      const preview = c.lessons.slice(0, 3);
-      const rest = c.lessons.slice(3);
-      return (
-        <article class:list={["ex-panel", { active: i === 0 }]} data-panel={c.id}>
+        <!-- Left: number + thumbnail -->
+        <div class="relative">
+          <span class="chapter-index display">{String(c.id).padStart(2,'0')}</span>
           <div class="relative">
             <Thumb src={c.thumb} label={`Chapter ${c.id}`} />
             <span class="price-badge absolute right-4 top-4"><span class="text-xs opacity-70">$</span>{c.price}</span>
           </div>
+        </div>
 
-          <div class="mt-6 flex items-center gap-3 text-xs uppercase tracking-widest text-neutral-500">
-            <span class="display text-2xl normal-case tracking-normal text-gold/70">{String(c.id).padStart(2,'0')}</span>
-            <span>Chapter {c.id}</span><span class="text-neutral-700">·</span><span>{c.classes} classes</span>
-          </div>
-          <h3 class="display mt-2 text-3xl leading-tight">{c.name}</h3>
-          <p class="mt-3 text-sm leading-relaxed text-neutral-400">{c.hook}</p>
+        <!-- Right: title, hook, first 3 classes, CTA -->
+        <div class="min-w-0">
+          <p class="text-xs uppercase tracking-[0.3em] text-neutral-500">Chapter {c.id} · {c.classes} classes</p>
+          <h3 class="display mt-2 text-2xl leading-tight transition group-hover:text-gold-soft sm:text-3xl">{c.name}</h3>
+          <p class="mt-3 max-w-xl text-sm leading-relaxed text-neutral-400">{c.hook}</p>
 
-          <div class="mt-7 flex items-baseline justify-between">
-            <p class="text-xs uppercase tracking-[0.25em] text-gold">What's inside</p>
-            <span class="text-xs text-neutral-600">{c.classes} lessons</span>
-          </div>
-          <ol class="mt-3 space-y-1">
-            {preview.map((l) => (
-              <li class="flex items-baseline gap-3 rounded-lg px-3 py-2.5 transition hover:bg-ink-3">
-                <span class="lesson-num">{String(l.n).padStart(2,'0')}</span>
-                <div class="min-w-0">
-                  <p class="text-sm font-medium text-neutral-100">{l.title}</p>
-                  <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
-                </div>
+          <ul class="mt-6 space-y-2.5">
+            {c.lessons.slice(0, 3).map((l) => (
+              <li class="flex items-baseline gap-3">
+                <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold/70"></span>
+                <span class="text-sm text-neutral-300">{l.title}<span class="text-neutral-600"> — {l.tagline}</span></span>
               </li>
             ))}
-            {rest.map((l) => (
-              <li class="hidden items-baseline gap-3 rounded-lg px-3 py-2.5 transition hover:bg-ink-3" data-extra>
-                <span class="lesson-num">{String(l.n).padStart(2,'0')}</span>
-                <div class="min-w-0">
-                  <p class="text-sm font-medium text-neutral-100">{l.title}</p>
-                  <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+          </ul>
 
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a href={`/chapters/${c.id}`} class="flex-1 rounded-full bg-gold py-3 text-center text-sm font-semibold text-black transition hover:bg-gold-soft">Join this chapter · ${c.price}</a>
-            {rest.length > 0 && (
-              <button type="button" data-loadmore={`${rest.length}`} class="flex-1 rounded-full border border-line py-3 text-center text-sm font-medium text-neutral-300 transition hover:border-gold hover:text-gold">
-                Load more ({rest.length})
-              </button>
-            )}
+          <div class="mt-7 flex items-center gap-5">
+            <span class="rounded-full bg-gold px-6 py-2.5 text-sm font-semibold text-black transition group-hover:bg-gold-soft">Join · ${c.price}</span>
+            <span class="text-sm font-medium text-neutral-400 transition group-hover:text-gold">View all {c.classes} classes →</span>
           </div>
-        </article>
-      );
-    })}
-  </div>
+        </div>
+      </div>
+    </a>
+  ))}
 </div>
