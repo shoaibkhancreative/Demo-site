@@ -1,8 +1,8 @@
 export const BRAND = "Exclusive Mentorship";
 export const INSTRUCTOR = "NLT";
 export const TELEGRAM = "https://t.me/YOUR_TELEGRAM";
+export const YOUTUBE_ID = "dQw4w9WgXcQ"; // <-- replace with your intro video ID
 
-// Helper: generate placeholder classes. Replace title/tagline anytime — site updates automatically.
 function makeClasses(count) {
   return Array.from({ length: count }, (_, i) => ({
     n: i + 1,
