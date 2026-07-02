@@ -50,7 +50,32 @@ export const ADDONS = [
   },
 ];
 export const TESTIMONIALS = [
-  { name: "Rakib H.", text: "The institutional framework chapter alone changed how I see every chart." },
-  { name: "Sadia K.", text: "Finally a mentorship with zero fluff. Every class is pure signal." },
-  { name: "Tanvir A.", text: "The trading plan chapter is worth the whole bundle. Prop section is gold." },
+  {
+    name: "Rakib Hasan",
+    role: "Full-time trader",
+    result: "Finally consistent",
+    featured: true,
+    text: "I spent two years jumping between strategies and losing. The institutional framework chapter alone rewired how I see every chart. For the first time, my results are consistent.",
+  },
+  {
+    name: "Sadia Karim",
+    role: "Swing trader",
+    result: "Zero fluff",
+    featured: false,
+    text: "Finally a mentorship with zero fluff. Every class is pure signal. The scripted format means nothing is wasted.",
+  },
+  {
+    name: "Tanvir Ahmed",
+    role: "Prop firm funded",
+    result: "Passed my challenge",
+    featured: false,
+    text: "The trading plan chapter is worth the whole bundle. I followed the prop section step by step and passed my funded challenge.",
+  },
+  {
+    name: "Nabil Rahman",
+    role: "New trader",
+    result: "Went from lost to structured",
+    featured: false,
+    text: "I started knowing nothing. The step-by-step path gave me structure and discipline I never had. This is the real thing.",
+  },
 ];
