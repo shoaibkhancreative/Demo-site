@@ -1,0 +1,91 @@
+---
+import Base from "../layouts/Base.astro";
+import { CHAPTERS, TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM } from "../data/site.js";
+---
+<Base>
+  <section class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute left-1/2 top-[-10rem] h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-gold/10 blur-[120px]"></div>
+    </div>
+    <div class="mx-auto max-w-4xl px-6 py-28 text-center">
+      <span class="inline-block rounded-full border border-line px-4 py-1 text-xs uppercase tracking-widest text-gold">7 Chapters · {TOTAL_CLASSES} Scripted Classes</span>
+      <h1 class="mt-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">Trade Like the <span class="text-gold">Institutions</span>,<br/> Not Against Them.</h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-neutral-300">A complete, structured mentorship built by {INSTRUCTOR}. No noise, no filler. Just the exact framework, mindset, and plan used to trade the markets professionally.</p>
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/pricing" class="rounded-full bg-gold px-8 py-3 font-semibold text-black transition hover:bg-gold-soft">Get Full Access · ${PRICING.tier2Bundle}</a>
+        <a href="#curriculum" class="rounded-full border border-line px-8 py-3 font-semibold text-neutral-200 transition hover:border-gold hover:text-gold">Explore Curriculum</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="curriculum" class="mx-auto max-w-6xl px-6 py-24">
+    <div class="mb-14 text-center">
+      <h2 class="text-3xl font-bold sm:text-4xl">The Curriculum</h2>
+      <p class="mt-3 text-neutral-400">Seven chapters. A complete path from market structure to a live trading plan.</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {CHAPTERS.map((c) => (
+        <article class="group rounded-2xl border border-line bg-ink-2 p-6 transition hover:border-gold/50">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-gold">Chapter {c.id}</span>
+            <span class="text-xs text-neutral-500">{c.classes} classes</span>
+          </div>
+          <h3 class="mt-3 text-lg font-semibold">{c.name}</h3>
+          <p class="mt-2 text-sm text-neutral-400">{c.hook}</p>
+          <div class="mt-5 flex items-center justify-between border-t border-line pt-4">
+            <span class="text-sm text-neutral-500">Individual</span>
+            <span class="font-semibold text-gold">${c.price}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="rounded-2xl border border-line bg-ink-2 p-8 opacity-80">
+        <p class="text-sm text-neutral-400">Chapter by chapter</p>
+        <p class="mt-2 text-4xl font-bold text-neutral-300 line-through decoration-neutral-600">${PRICING.tier1Total}</p>
+        <p class="mt-4 text-sm text-neutral-500">Buy each chapter separately. Priority Support add-on available at checkout.</p>
+      </div>
+      <div class="relative rounded-2xl border border-gold bg-gradient-to-b from-gold/10 to-transparent p-8">
+        <span class="absolute right-6 top-6 rounded-full bg-gold px-3 py-1 text-xs font-semibold text-black">Save ${PRICING.save}</span>
+        <p class="text-sm text-gold">Full Bundle · Best Value</p>
+        <p class="mt-2 text-4xl font-extrabold">${PRICING.tier2Bundle}</p>
+        <p class="mt-4 text-sm text-neutral-300">All {TOTAL_CLASSES} classes. Priority Support included free. 7-day refund.</p>
+        <a href="/pricing" class="mt-6 inline-block rounded-full bg-gold px-6 py-2 font-semibold text-black transition hover:bg-gold-soft">Get the Bundle</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="instructor" class="mx-auto max-w-4xl px-6 py-24 text-center">
+    <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-gold text-2xl font-bold text-gold">NLT</div>
+    <h2 class="mt-6 text-3xl font-bold">Taught by {INSTRUCTOR}</h2>
+    <p class="mx-auto mt-4 max-w-2xl text-neutral-300">Every class is scripted and structured, so nothing is left to chance. This is the same institutional logic, mindset, and personal trading plan that shapes real, disciplined trading, distilled into a clear step-by-step path.</p>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16">
+    <h2 class="mb-10 text-center text-3xl font-bold">What Members Say</h2>
+    <div class="grid gap-6 md:grid-cols-3">
+      {TESTIMONIALS.map((t) => (
+        <figure class="rounded-2xl border border-line bg-ink-2 p-6">
+          <div class="text-gold">★★★★★</div>
+          <blockquote class="mt-3 text-sm text-neutral-300">“{t.text}”</blockquote>
+          <figcaption class="mt-4 text-sm font-medium text-neutral-400">— {t.name}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 py-24 text-center">
+    <h2 class="text-3xl font-bold">Secure Crypto Payment</h2>
+    <p class="mt-4 text-neutral-300">Pay with Bitcoin, USDT, or ETH. Instant, private, and secure.</p>
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-neutral-400">
+      <span class="rounded-full border border-line px-4 py-1">₿ Bitcoin</span>
+      <span class="rounded-full border border-line px-4 py-1">₮ USDT</span>
+      <span class="rounded-full border border-line px-4 py-1">Ξ ETH</span>
+    </div>
+    <p class="mt-8 text-sm text-neutral-400">New to crypto? We'll walk you through it.</p>
+    <a href={TELEGRAM} class="mt-3 inline-block rounded-full border border-gold px-6 py-2 font-semibold text-gold transition hover:bg-gold hover:text-black">Request a Support Call on Telegram</a>
+  </section>
+</Base>

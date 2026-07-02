@@ -1,0 +1,15 @@
+---
+import Base from "../layouts/Base.astro";
+---
+<Base title="Login · Exclusive Mentorship">
+  <section class="mx-auto flex max-w-md flex-col px-6 py-24">
+    <h1 class="text-3xl font-bold">Welcome back</h1>
+    <p class="mt-2 text-sm text-neutral-400">Log in to access your dashboard and chapters.</p>
+    <form class="mt-8 space-y-4" onsubmit="event.preventDefault()">
+      <input type="email" placeholder="Email" required class="w-full rounded-xl border border-line bg-ink-2 px-4 py-3 text-sm outline-none focus:border-gold" />
+      <input type="password" placeholder="Password" required class="w-full rounded-xl border border-line bg-ink-2 px-4 py-3 text-sm outline-none focus:border-gold" />
+      <button class="w-full rounded-full bg-gold py-3 font-semibold text-black transition hover:bg-gold-soft">Log In</button>
+    </form>
+    <p class="mt-6 text-center text-sm text-neutral-400">No account? <a href="/signup" class="text-gold">Sign up</a></p>
+  </section>
+</Base>

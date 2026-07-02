@@ -1,0 +1,44 @@
+---
+import Base from "../layouts/Base.astro";
+import { CHAPTERS, TOTAL_CLASSES, PRICING, TELEGRAM } from "../data/site.js";
+---
+<Base title="Pricing · Exclusive Mentorship">
+  <section class="mx-auto max-w-6xl px-6 py-20">
+    <div class="text-center">
+      <h1 class="text-4xl font-extrabold sm:text-5xl">Choose Your Access</h1>
+      <p class="mt-4 text-neutral-400">Two ways in. One is clearly the smarter choice.</p>
+    </div>
+    <div class="mt-14 grid gap-8 lg:grid-cols-2">
+      <div class="rounded-3xl border border-line bg-ink-2 p-8">
+        <h2 class="text-xl font-semibold">Chapter by Chapter</h2>
+        <p class="mt-2 text-sm text-neutral-400">Pick individual chapters. Great to start small.</p>
+        <p class="mt-6 text-4xl font-bold text-neutral-300">${PRICING.tier1Total}<span class="text-base font-normal text-neutral-500"> if bought all</span></p>
+        <ul class="mt-6 space-y-3 text-sm">
+          {CHAPTERS.map((c) => (
+            <li class="flex items-center justify-between border-b border-line pb-2">
+              <span class="text-neutral-300">{c.name} <span class="text-neutral-500">({c.classes})</span></span>
+              <span class="font-semibold text-gold">${c.price}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-6 rounded-xl border border-line p-4 text-sm text-neutral-400">Optional <strong class="text-neutral-200">Priority Support</strong> add-on at checkout: <span class="text-gold">+${PRICING.prioritySupport}</span> (≈1000 BDT)</p>
+        <a href="/signup" class="mt-6 block rounded-full border border-line py-3 text-center font-semibold text-neutral-200 transition hover:border-gold hover:text-gold">Start with a Chapter</a>
+      </div>
+      <div class="relative rounded-3xl border-2 border-gold bg-gradient-to-b from-gold/10 to-transparent p-8">
+        <span class="absolute right-8 top-8 rounded-full bg-gold px-3 py-1 text-xs font-bold text-black">SAVE ${PRICING.save}</span>
+        <h2 class="text-xl font-semibold text-gold">Full Bundle</h2>
+        <p class="mt-2 text-sm text-neutral-300">Everything. The complete mentorship.</p>
+        <p class="mt-6 text-5xl font-extrabold">${PRICING.tier2Bundle}<span class="ml-2 align-middle text-lg font-normal text-neutral-500 line-through">${PRICING.tier1Total}</span></p>
+        <ul class="mt-6 space-y-3 text-sm text-neutral-200">
+          <li class="flex gap-2"><span class="text-gold">✓</span> All {TOTAL_CLASSES} scripted classes</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> All 7 chapters unlocked</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> Priority Support included <span class="text-gold">(free)</span></li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> Access to the main private channel</li>
+          <li class="flex gap-2"><span class="text-gold">✓</span> 7-day refund guarantee</li>
+        </ul>
+        <a href="/signup" class="mt-8 block rounded-full bg-gold py-3 text-center font-bold text-black transition hover:bg-gold-soft">Get Full Access · ${PRICING.tier2Bundle}</a>
+      </div>
+    </div>
+    <div class="mt-12 text-center text-sm text-neutral-400">Payment in crypto only (BTC · USDT · ETH). New to crypto? <a href={TELEGRAM} class="text-gold hover:text-gold-soft">Request support on Telegram →</a></div>
+  </section>
+</Base>

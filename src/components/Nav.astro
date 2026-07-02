@@ -1,0 +1,17 @@
+---
+import { BRAND } from "../data/site.js";
+---
+<header class="sticky top-0 z-50 border-b border-line/60 bg-ink/80 backdrop-blur-xl">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a href="/" class="flex items-center gap-2 font-semibold tracking-tight">
+      <span class="text-gold">◆</span><span>{BRAND}</span>
+    </a>
+    <div class="hidden items-center gap-8 text-sm text-neutral-300 md:flex">
+      <a href="/#curriculum" class="hover:text-white transition">Curriculum</a>
+      <a href="/pricing" class="hover:text-white transition">Pricing</a>
+      <a href="/#instructor" class="hover:text-white transition">Instructor</a>
+      <a href="/login" class="hover:text-white transition">Login</a>
+    </div>
+    <a href="/pricing" class="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-black transition hover:bg-gold-soft">Get Access</a>
+  </nav>
+</header>

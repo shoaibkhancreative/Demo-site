@@ -1,0 +1,24 @@
+---
+import Base from "../layouts/Base.astro";
+import { CHAPTERS } from "../data/site.js";
+---
+<Base title="Dashboard · Exclusive Mentorship">
+  <section class="mx-auto max-w-5xl px-6 py-20">
+    <h1 class="text-3xl font-bold">Your Dashboard</h1>
+    <p class="mt-2 text-sm text-neutral-400">Manage your access and purchase history.</p>
+    <h2 class="mt-12 text-lg font-semibold">Your Chapters</h2>
+    <div class="mt-4 grid gap-4 md:grid-cols-2">
+      {CHAPTERS.map((c) => (
+        <div class="flex items-center justify-between rounded-xl border border-line bg-ink-2 p-4">
+          <div>
+            <p class="text-sm font-medium">{c.name}</p>
+            <p class="text-xs text-neutral-500">{c.classes} classes</p>
+          </div>
+          <span class="rounded-full border border-line px-3 py-1 text-xs text-neutral-500">Locked</span>
+        </div>
+      ))}
+    </div>
+    <h2 class="mt-12 text-lg font-semibold">Purchase History</h2>
+    <div class="mt-4 rounded-xl border border-line bg-ink-2 p-6 text-sm text-neutral-500">No purchases yet.</div>
+  </section>
+</Base>
