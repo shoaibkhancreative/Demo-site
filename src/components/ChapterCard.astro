@@ -3,46 +3,52 @@ import Thumb from "./Thumb.astro";
 const { chapter, open = false } = Astro.props;
 ---
 <article
-  class:list={["reveal card chapter rounded-2xl bg-ink-2 p-5", { open }]}
+  class:list={["reveal card chapter rounded-2xl bg-ink-2 p-5 sm:p-6", { open }]}
   data-chapter
   aria-expanded={open ? "true" : "false"}
 >
-  <div class="relative">
-    <Thumb src={chapter.thumb} label={`Chapter ${chapter.id}`} />
-    <span class="price-badge absolute right-3 top-3 backdrop-blur"><span class="text-xs opacity-70">$</span>{chapter.price}</span>
-  </div>
+  <!-- TOP: thumbnail left, title/info right -->
+  <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-7">
+    <!-- Thumbnail (left) -->
+    <div class="relative w-full shrink-0 sm:w-64 lg:w-72">
+      <Thumb src={chapter.thumb} label={`Chapter ${chapter.id}`} />
+      <span class="price-badge absolute right-3 top-3 backdrop-blur"><span class="text-xs opacity-70">$</span>{chapter.price}</span>
+    </div>
 
-  <div class="mt-5 flex items-start justify-between gap-3">
-    <div>
-      <div class="flex items-center gap-3 text-xs text-neutral-500">
-        <span class="display text-xl text-gold/70">{String(chapter.id).padStart(2,'0')}</span>
+    <!-- Title / info (right, large) -->
+    <div class="min-w-0 flex-1">
+      <div class="flex items-center gap-3 text-xs uppercase tracking-widest text-neutral-500">
+        <span class="display text-2xl normal-case tracking-normal text-gold/70">{String(chapter.id).padStart(2,'0')}</span>
+        <span>Chapter {chapter.id}</span>
+        <span class="text-neutral-700">·</span>
         <span>{chapter.classes} classes</span>
       </div>
-      <h3 class="display mt-1.5 text-xl">{chapter.name}</h3>
+      <h3 class="display mt-2 text-2xl leading-tight sm:text-3xl">{chapter.name}</h3>
+      <p class="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-400">{chapter.hook}</p>
+      <div class="mt-4 flex items-center gap-4">
+        <a href="/signup" data-stop class="rounded-full bg-gold px-6 py-2 text-sm font-semibold text-black transition hover:bg-gold-soft">Join · ${chapter.price}</a>
+        <a href={`/chapters/${chapter.id}`} data-stop class="text-sm font-medium text-neutral-300 transition hover:text-gold">Read more →</a>
+        <span class="ml-auto chev hidden text-lg sm:block" aria-hidden="true">▾</span>
+      </div>
     </div>
-    <span class="chev mt-1 shrink-0 text-lg" aria-hidden="true">▾</span>
   </div>
-  <p class="mt-2 text-sm leading-relaxed text-neutral-400">{chapter.hook}</p>
 
-  <!-- Expandable panel: full class list -->
+  <!-- EXPAND: class list (title + tagline) under the title -->
   <div class="panel">
-    <div>
-      <ol class="divide-y divide-line border-t border-line">
+    <div class="panel-inner">
+      <div class="rule mb-5"></div>
+      <p class="mb-4 text-xs uppercase tracking-[0.25em] text-gold">What's inside</p>
+      <ol class="space-y-1">
         {chapter.lessons.map((l) => (
-          <li class="flex items-baseline gap-3 py-2.5">
-            <span class="w-6 shrink-0 text-xs font-semibold text-gold">{String(l.n).padStart(2,'0')}</span>
+          <li class="group flex items-baseline gap-4 rounded-lg px-3 py-2.5 transition hover:bg-ink-3">
+            <span class="w-7 shrink-0 text-sm font-semibold text-gold/80">{String(l.n).padStart(2,'0')}</span>
             <div class="min-w-0">
-              <p class="text-sm font-medium text-neutral-200">{l.title}</p>
-              <p class="text-xs text-neutral-500">{l.tagline}</p>
+              <p class="text-sm font-medium text-neutral-100">{l.title}</p>
+              <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
             </div>
           </li>
         ))}
       </ol>
     </div>
-  </div>
-
-  <div class="mt-5 flex items-center gap-3">
-    <a href="/signup" data-stop class="flex-1 rounded-full bg-gold py-2.5 text-center text-sm font-semibold text-black transition hover:bg-gold-soft">Join · ${chapter.price}</a>
-    <a href={`/chapters/${chapter.id}`} data-stop class="rounded-full border border-line px-5 py-2.5 text-sm font-medium text-neutral-300 transition hover:border-gold hover:text-gold">Read more →</a>
   </div>
 </article>

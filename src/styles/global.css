@@ -47,31 +47,34 @@ body::before {
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
 .thumb {
-  position: relative; aspect-ratio: 16/10; overflow: hidden; border-radius: .9rem;
+  position: relative; overflow: hidden; border-radius: .9rem;
   background: radial-gradient(130% 130% at 15% 0%, rgba(200,162,74,.16), transparent 55%), linear-gradient(150deg, #17171c, #0b0b0d);
   border: 1px solid var(--color-line);
 }
 .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.16,1,.3,1); }
-.chapter.open .thumb img { transform: scale(1.03); }
 .thumb .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   color: rgba(200,162,74,.4); font-weight: 600; letter-spacing: .28em; font-size: .62rem; text-transform: uppercase; }
 
 .video-frame { position: relative; aspect-ratio: 16/9; border-radius: 1rem; overflow: hidden; border: 1px solid var(--color-line); }
 .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-/* ---- Click-to-expand chapter (whole card clickable) ---- */
+/* ============ CURRICULUM LIST ROW ============ */
 .chapter { cursor: pointer; }
 .chapter .chev { transition: transform .35s cubic-bezier(.16,1,.3,1); color: var(--color-gold); }
 .chapter.open .chev { transform: rotate(180deg); }
 
-/* Smooth height expand */
+/* Thumbnail grows a bit when open */
+.chapter .thumb { aspect-ratio: 16/10; transition: box-shadow .45s ease; }
+.chapter.open .thumb { box-shadow: 0 0 50px -18px rgba(200,162,74,.5); }
+.chapter.open .thumb img { transform: scale(1.03); }
+
+/* Smooth expand of the class list */
 .chapter .panel {
   display: grid; grid-template-rows: 0fr;
-  transition: grid-template-rows .45s cubic-bezier(.16,1,.3,1), opacity .45s ease, margin-top .45s ease;
+  transition: grid-template-rows .5s cubic-bezier(.16,1,.3,1), opacity .5s ease, margin-top .5s ease;
   opacity: 0; margin-top: 0;
 }
-.chapter.open .panel { grid-template-rows: 1fr; opacity: 1; margin-top: 1.25rem; }
-.chapter .panel > div { overflow: hidden; }
+.chapter.open .panel { grid-template-rows: 1fr; opacity: 1; margin-top: 1.5rem; }
+.chapter .panel > .panel-inner { overflow: hidden; }
 
-/* Interactive elements inside a clickable card should not feel like the card */
 .chapter a, .chapter button { cursor: pointer; }
