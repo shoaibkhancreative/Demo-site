@@ -25,20 +25,24 @@ const { chapters } = Astro.props;
         <div class="panel">
           <div class="panel-inner">
             <div class="grid gap-6 md:grid-cols-[300px_1fr]">
-              <div>
+              <!-- Left: thumbnail -->
+              <div class="flex flex-col">
                 <div class="relative">
                   <Thumb src={c.thumb} label={`Chapter ${c.id}`} />
                   <span class="price-badge absolute right-3 top-3"><span class="text-xs opacity-70">$</span>{c.price}</span>
                 </div>
-                <a href={`/chapters/${c.id}`} data-stop class="mt-4 block rounded-full bg-gold py-2.5 text-center text-sm font-semibold text-black transition hover:bg-gold-soft">Join this chapter · ${c.price}</a>
               </div>
 
-              <div>
-                <p class="mb-3 text-xs uppercase tracking-[0.25em] text-gold">What's inside</p>
-                <ol class="space-y-1" data-lessons>
+              <!-- Right: class list -->
+              <div class="flex flex-col">
+                <div class="flex items-baseline justify-between">
+                  <p class="text-xs uppercase tracking-[0.25em] text-gold">What's inside</p>
+                  <span class="text-xs text-neutral-600">{c.classes} lessons</span>
+                </div>
+                <ol class="mt-3 space-y-1" data-lessons>
                   {preview.map((l) => (
-                    <li class="flex items-baseline gap-4 rounded-lg px-3 py-2.5 transition hover:bg-ink-3">
-                      <span class="w-7 shrink-0 text-sm font-semibold text-gold/80">{String(l.n).padStart(2,'0')}</span>
+                    <li class="flex items-baseline gap-3 rounded-lg px-3 py-2.5 transition hover:bg-ink-3">
+                      <span class="lesson-num">{String(l.n).padStart(2,'0')}</span>
                       <div class="min-w-0">
                         <p class="text-sm font-medium text-neutral-100">{l.title}</p>
                         <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
@@ -46,8 +50,8 @@ const { chapters } = Astro.props;
                     </li>
                   ))}
                   {rest.map((l) => (
-                    <li class="hidden flex items-baseline gap-4 rounded-lg px-3 py-2.5 transition hover:bg-ink-3" data-extra>
-                      <span class="w-7 shrink-0 text-sm font-semibold text-gold/80">{String(l.n).padStart(2,'0')}</span>
+                    <li class="hidden items-baseline gap-3 rounded-lg px-3 py-2.5 transition hover:bg-ink-3" data-extra>
+                      <span class="lesson-num">{String(l.n).padStart(2,'0')}</span>
                       <div class="min-w-0">
                         <p class="text-sm font-medium text-neutral-100">{l.title}</p>
                         <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
@@ -55,12 +59,17 @@ const { chapters } = Astro.props;
                     </li>
                   ))}
                 </ol>
-                {rest.length > 0 && (
-                  <button type="button" data-stop data-loadmore={`${rest.length}`} class="mt-4 w-full rounded-full border border-line py-2.5 text-sm font-medium text-neutral-300 transition hover:border-gold hover:text-gold">
-                    Load more ({rest.length})
-                  </button>
-                )}
               </div>
+            </div>
+
+            <!-- Bottom action row: Join + Load more on the SAME line -->
+            <div class="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+              <a href={`/chapters/${c.id}`} data-stop class="flex-1 rounded-full bg-gold py-3 text-center text-sm font-semibold text-black transition hover:bg-gold-soft">Join this chapter · ${c.price}</a>
+              {rest.length > 0 && (
+                <button type="button" data-stop data-loadmore={`${rest.length}`} class="flex-1 rounded-full border border-line py-3 text-center text-sm font-medium text-neutral-300 transition hover:border-gold hover:text-gold">
+                  Load more ({rest.length})
+                </button>
+              )}
             </div>
           </div>
         </div>
