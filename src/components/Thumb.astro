@@ -3,5 +3,5 @@ const { src, label = "Exclusive Mentorship" } = Astro.props;
 ---
 <div class="thumb">
   <span class="ph">{label}</span>
-  <img src={src} alt={label} loading="lazy" onerror="this.style.display='none'" />
+  <img src={src} alt={label} loading="lazy" onerror="this.remove()" />
 </div>
