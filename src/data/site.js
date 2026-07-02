@@ -21,7 +21,7 @@ export const CHAPTERS = [
   { id: 7, name: "Our Personal Trading Plan (Inc. Prop)", classes: 22, price: 22, thumb: "/thumbnails/chapter-7.jpg", hook: "The exact plan we trade, including prop firm execution.", lessons: makeClasses(22) },
 ];
 export const TOTAL_CLASSES = CHAPTERS.reduce((s, c) => s + c.classes, 0);
-export const PRICING = { tier1Total: 99, tier2Bundle: 79, save: 20, prioritySupport: 8 };
+export const PRICING = { tier1Total: 99, tier2Bundle: 79, save: 20, prioritySupport: 8, consultation: 149 };
 export const TESTIMONIALS = [
   { name: "Rakib H.", text: "The institutional framework chapter alone changed how I see every chart." },
   { name: "Sadia K.", text: "Finally a mentorship with zero fluff. Every class is pure signal." },
