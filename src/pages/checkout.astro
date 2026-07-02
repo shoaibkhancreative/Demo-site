@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { CHAPTERS, TOTAL_CLASSES, PRICING, TELEGRAM, INSTRUCTOR } from "../data/site.js";
+import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM } from "../data/site.js";
 ---
 <Base title="Checkout · Exclusive Mentorship">
   <section class="mx-auto max-w-3xl px-6 py-16">
@@ -11,7 +11,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, TELEGRAM, INSTRUCTOR } from "../data/
     </div>
 
     <div class="mt-12 grid gap-6 md:grid-cols-[1fr_360px] md:items-start">
-      <!-- LEFT: choices -->
+      <!-- LEFT -->
       <div class="space-y-4">
         <!-- Plan toggle -->
         <div class="surface p-1.5">
@@ -58,33 +58,25 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, TELEGRAM, INSTRUCTOR } from "../data/
           </div>
         </div>
 
-        <!-- Add-ons -->
+        <!-- Add-ons (data-driven) -->
         <div class="space-y-2.5">
           <p class="px-1 text-xs font-medium muted">Add-ons</p>
-
-          <!-- Priority support -->
-          <label class="surface flex cursor-pointer items-start justify-between gap-4 p-5" data-addon-row>
-            <span class="flex items-start gap-3">
-              <input type="checkbox" data-addon class="mt-0.5 h-4 w-4 accent-[color:var(--color-accent)]" checked disabled />
-              <span>
-                <span class="text-sm font-medium">Priority Support</span>
-                <span class="mt-0.5 block text-[13px] muted" data-addon-note>Included free with the bundle.</span>
+          {ADDONS.map((a) => (
+            <label class="surface flex cursor-pointer items-start justify-between gap-4 p-5"
+                   data-addon-item data-id={a.id} data-price={a.price} data-free-bundle={a.freeWithBundle ? "1" : "0"}>
+              <span class="flex items-start gap-3">
+                <input type="checkbox" data-addon-check class="mt-0.5 h-4 w-4 accent-[color:var(--color-accent)]" checked={a.freeWithBundle} disabled={a.freeWithBundle} />
+                <span>
+                  <span class="flex items-center gap-2 text-sm font-medium">
+                    {a.name}
+                    {a.badge && <span class="chip !py-0.5 !px-2 !border-[color:var(--color-accent)] !text-[color:var(--color-accent)]">{a.badge}</span>}
+                  </span>
+                  <span class="mt-0.5 block text-[13px] muted" data-addon-note>{a.desc}</span>
+                </span>
               </span>
-            </span>
-            <span class="text-sm font-semibold" data-addon-price>Free</span>
-          </label>
-
-          <!-- Weekly 1-on-1 consultation (premium) -->
-          <label class="surface flex cursor-pointer items-start justify-between gap-4 p-5">
-            <span class="flex items-start gap-3">
-              <input type="checkbox" data-consult class="mt-0.5 h-4 w-4 accent-[color:var(--color-accent)]" />
-              <span>
-                <span class="flex items-center gap-2 text-sm font-medium">Weekly 1-on-1 Consultation <span class="chip !py-0.5 !px-2 !text-[color:var(--color-accent)] !border-[color:var(--color-accent)]">Premium</span></span>
-                <span class="mt-0.5 block text-[13px] muted">A private weekly call with {INSTRUCTOR} to review your trades, plan, and progress. Limited seats.</span>
-              </span>
-            </span>
-            <span class="whitespace-nowrap text-sm font-semibold">+${PRICING.consultation}</span>
-          </label>
+              <span class="whitespace-nowrap text-sm font-semibold" data-addon-tag>{a.freeWithBundle ? "Free" : `+$${a.price}`}</span>
+            </label>
+          ))}
         </div>
       </div>
 
@@ -93,8 +85,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, TELEGRAM, INSTRUCTOR } from "../data/
         <p class="eyebrow">Order summary</p>
         <div class="mt-4 space-y-2.5 text-sm">
           <div class="flex justify-between"><span class="muted" data-sum-label>Full bundle</span><span class="font-medium" data-sum-base>${PRICING.tier2Bundle}</span></div>
-          <div class="flex justify-between"><span class="muted">Priority Support</span><span class="font-medium" data-sum-addon>Free</span></div>
-          <div class="flex justify-between" data-consult-line hidden><span class="muted">Weekly 1-on-1 Consultation</span><span class="font-medium" data-sum-consult>+${PRICING.consultation}</span></div>
+          <div data-sum-addons class="space-y-2.5"></div>
           <div class="my-3 rule"></div>
           <div class="flex justify-between text-base"><span class="font-semibold">Total</span><span class="font-semibold" data-sum-total>${PRICING.tier2Bundle}</span></div>
         </div>
@@ -108,7 +99,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, TELEGRAM, INSTRUCTOR } from "../data/
     </div>
   </section>
 
-  <script is:inline define:vars={{ BUNDLE: PRICING.tier2Bundle, TIER1: PRICING.tier1Total, ADDON: PRICING.prioritySupport, CONSULT: PRICING.consultation, SAVE: PRICING.save }}>
+  <script is:inline define:vars={{ BUNDLE: PRICING.tier2Bundle, TIER1: PRICING.tier1Total, SAVE: PRICING.save }}>
     (function(){
       const bind = () => {
         const $ = (s) => document.querySelector(s);
@@ -117,56 +108,69 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, TELEGRAM, INSTRUCTOR } from "../data/
 
         let plan = 'bundle';
         const money = (n) => (n === 0 ? 'Free' : '$' + n);
+        const chapters = () => $$('[data-chapter]');
+        const addonItems = () => $$('[data-addon-item]');
 
         const els = {
           toggle: $$('[data-plan-toggle] [data-plan]'),
           viewBundle: $('[data-view="bundle"]'),
           viewChapters: $('[data-view="chapters"]'),
-          addon: $('[data-addon]'),
-          addonNote: $('[data-addon-note]'),
-          addonPrice: $('[data-addon-price]'),
-          consult: $('[data-consult]'),
-          consultLine: $('[data-consult-line]'),
-          sumConsult: $('[data-sum-consult]'),
           sumLabel: $('[data-sum-label]'),
           sumBase: $('[data-sum-base]'),
-          sumAddon: $('[data-sum-addon]'),
+          sumAddons: $('[data-sum-addons]'),
           sumTotal: $('[data-sum-total]'),
           sumHint: $('[data-sum-hint]'),
           selectAll: $('[data-select-all]'),
         };
-        const chapters = () => $$('[data-chapter]');
 
         function render(){
-          let base = 0, addonCost = 0;
+          let base = 0;
           if (plan === 'bundle') {
             base = BUNDLE;
-            els.addon.checked = true; els.addon.disabled = true;
-            els.addonNote.textContent = 'Included free with the bundle.';
-            els.addonPrice.textContent = 'Free';
-            addonCost = 0;
             els.sumLabel.textContent = 'Full bundle';
-            els.sumAddon.textContent = 'Free';
             els.sumHint.textContent = 'You save $' + SAVE + ' vs buying every chapter.';
           } else {
             base = chapters().filter(c=>c.checked).reduce((s,c)=>s+Number(c.value),0);
-            els.addon.disabled = false;
-            els.addonNote.textContent = 'Add priority support for +$' + ADDON + '.';
-            addonCost = els.addon.checked ? ADDON : 0;
-            els.addonPrice.textContent = '+$' + ADDON;
             const count = chapters().filter(c=>c.checked).length;
             els.sumLabel.textContent = count ? (count + (count>1?' chapters':' chapter')) : 'No chapters selected';
-            els.sumAddon.textContent = addonCost ? ('$'+addonCost) : 'Not added';
             els.sumHint.textContent = 'All 7 chapters separately = $' + TIER1 + '. Bundle is $' + BUNDLE + '.';
           }
 
-          // consultation add-on (applies to both plans)
-          const consultCost = els.consult.checked ? CONSULT : 0;
-          els.consultLine.hidden = !els.consult.checked;
-          els.sumConsult.textContent = '+$' + CONSULT;
+          let addonsCost = 0;
+          const lines = [];
+          addonItems().forEach(item => {
+            const price = Number(item.getAttribute('data-price'));
+            const freeBundle = item.getAttribute('data-free-bundle') === '1';
+            const check = item.querySelector('[data-addon-check]');
+            const note = item.querySelector('[data-addon-note]');
+            const tag = item.querySelector('[data-addon-tag]');
+            const name = item.querySelector('.text-sm.font-medium').childNodes[0].textContent.trim();
 
+            let included = false, cost = 0, tagText = '+$' + price;
+
+            if (freeBundle && plan === 'bundle') {
+              check.checked = true; check.disabled = true;
+              included = true; cost = 0; tagText = 'Free';
+            } else {
+              check.disabled = false;
+              included = check.checked;
+              cost = included ? price : 0;
+              tagText = '+$' + price;
+            }
+            tag.textContent = tagText;
+
+            // summary line
+            if (freeBundle && plan === 'bundle') {
+              lines.push('<div class="flex justify-between"><span class="muted">'+name+'</span><span class="font-medium">Free</span></div>');
+            } else if (included) {
+              lines.push('<div class="flex justify-between"><span class="muted">'+name+'</span><span class="font-medium">$'+price+'</span></div>');
+            }
+            addonsCost += cost;
+          });
+
+          els.sumAddons.innerHTML = lines.join('');
           els.sumBase.textContent = money(base);
-          els.sumTotal.textContent = money(base + addonCost + consultCost);
+          els.sumTotal.textContent = money(base + addonsCost);
         }
 
         els.toggle.forEach(btn=>{
@@ -179,8 +183,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, TELEGRAM, INSTRUCTOR } from "../data/
           });
         });
         chapters().forEach(c=> c.addEventListener('change', render));
-        els.addon.addEventListener('change', render);
-        els.consult.addEventListener('change', render);
+        addonItems().forEach(item => item.querySelector('[data-addon-check]').addEventListener('change', render));
         if (els.selectAll) els.selectAll.addEventListener('click', ()=>{ chapters().forEach(c=>c.checked=true); render(); });
 
         render();

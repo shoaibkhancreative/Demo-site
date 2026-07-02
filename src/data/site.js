@@ -22,6 +22,33 @@ export const CHAPTERS = [
 ];
 export const TOTAL_CLASSES = CHAPTERS.reduce((s, c) => s + c.classes, 0);
 export const PRICING = { tier1Total: 99, tier2Bundle: 79, save: 20, prioritySupport: 8, consultation: 149 };
+
+export const ADDONS = [
+  {
+    id: "priority",
+    name: "Priority Support",
+    price: 8,
+    freeWithBundle: true,
+    badge: null,
+    desc: "Faster, front-of-line support for all your questions.",
+  },
+  {
+    id: "market_review",
+    name: "Weekly Market Review",
+    price: 29,
+    freeWithBundle: false,
+    badge: "Popular",
+    desc: "Weekly forecasts across major markets, shared in a private group.",
+  },
+  {
+    id: "consultation",
+    name: "Weekly 1-on-1 Consultation",
+    price: 149,
+    freeWithBundle: false,
+    badge: "Premium",
+    desc: "A private weekly call with NLT to review your trades, plan, and progress. Limited seats.",
+  },
+];
 export const TESTIMONIALS = [
   { name: "Rakib H.", text: "The institutional framework chapter alone changed how I see every chart." },
   { name: "Sadia K.", text: "Finally a mentorship with zero fluff. Every class is pure signal." },
