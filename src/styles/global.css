@@ -76,10 +76,13 @@ h1,h2,h3,h4 { letter-spacing: -0.03em; }
 .lesson-dot { margin-top:.5rem; height:.34rem; width:.34rem; flex-shrink:0; border-radius:999px; background: var(--color-accent); }
 
 
-/* ===== testimonial marquee ===== */
-.marquee { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.marquee-track { display: flex; gap: .75rem; width: max-content; animation: scrollx 38s linear infinite; }
+
+/* ===== testimonial marquee (two rows) ===== */
+.marquee { position: relative; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.marquee-track { display: flex; gap: .7rem; width: max-content; }
+.marquee-track.left { animation: scrollx 44s linear infinite; }
+.marquee-track.right { animation: scrollx 44s linear infinite reverse; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 @keyframes scrollx { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } .marquee { -webkit-mask-image:none; mask-image:none; overflow-x:auto; } }
-.t-card { width: 340px; flex-shrink: 0; }
+.t-card { width: 300px; flex-shrink: 0; }
