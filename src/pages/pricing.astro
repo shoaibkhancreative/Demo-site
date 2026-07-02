@@ -3,59 +3,51 @@ import Base from "../layouts/Base.astro";
 import { CHAPTERS, TOTAL_CLASSES, PRICING, TELEGRAM } from "../data/site.js";
 ---
 <Base title="Pricing · Exclusive Mentorship">
-  <section class="mx-auto max-w-5xl px-6 py-24">
+  <section class="mx-auto max-w-4xl px-6 py-24">
     <div class="reveal text-center">
-      <p class="text-xs uppercase tracking-[0.3em] text-gold">Access</p>
-      <h1 class="display mt-4 text-5xl sm:text-6xl">Choose your access.</h1>
-      <p class="mt-5 text-neutral-400">The full bundle is the smart choice. Or start with a single chapter.</p>
+      <p class="eyebrow">Access</p>
+      <h1 class="display mt-3 text-5xl sm:text-6xl">Choose your access.</h1>
+      <p class="mt-4 muted">The full bundle is the smart choice. Or start with a single chapter.</p>
     </div>
 
-    <!-- PRIMARY: Bundle -->
-    <div class="reveal relative mx-auto mt-16 max-w-3xl overflow-hidden rounded-3xl border border-gold/50 bg-gradient-to-b from-gold/[.09] to-transparent p-10">
-      <span class="absolute right-8 top-8 rounded-full bg-gold px-3 py-1 text-xs font-semibold text-black">Save ${PRICING.save}</span>
-      <p class="text-xs uppercase tracking-[0.25em] text-gold">Full Bundle · Recommended</p>
-      <div class="mt-4 flex items-end gap-3">
+    <div class="reveal surface mx-auto mt-14 max-w-2xl p-10 sm:p-12">
+      <p class="eyebrow">Full bundle · recommended</p>
+      <div class="mt-3 flex items-end gap-3">
         <span class="display text-6xl">${PRICING.tier2Bundle}</span>
-        <span class="mb-2 text-lg text-neutral-500 line-through">${PRICING.tier1Total}</span>
+        <span class="mb-2 text-lg muted line-through">${PRICING.tier1Total}</span>
+        <span class="mb-2 text-xs font-semibold text-[color:var(--color-gold)]">Save ${PRICING.save}</span>
       </div>
-      <ul class="mt-8 grid gap-3 text-sm text-neutral-200 sm:grid-cols-2">
-        <li class="flex gap-2"><span class="text-gold">✓</span> All {TOTAL_CLASSES} scripted classes</li>
-        <li class="flex gap-2"><span class="text-gold">✓</span> All 7 chapters unlocked</li>
-        <li class="flex gap-2"><span class="text-gold">✓</span> Priority Support <span class="text-gold">(free)</span></li>
-        <li class="flex gap-2"><span class="text-gold">✓</span> Main private channel access</li>
-        <li class="flex gap-2"><span class="text-gold">✓</span> 7-day refund guarantee</li>
-        <li class="flex gap-2"><span class="text-gold">✓</span> Lifetime access to updates</li>
+      <ul class="mt-8 grid gap-3 text-sm sm:grid-cols-2">
+        <li>✓ All {TOTAL_CLASSES} scripted classes</li>
+        <li>✓ All 7 chapters unlocked</li>
+        <li>✓ Priority support (free)</li>
+        <li>✓ Main private channel access</li>
+        <li>✓ 7-day refund guarantee</li>
+        <li>✓ Lifetime access to updates</li>
       </ul>
-      <a href="/signup" class="mt-9 block rounded-full bg-gold py-3.5 text-center text-sm font-semibold text-black transition hover:bg-gold-soft">Get Full Access · ${PRICING.tier2Bundle}</a>
+      <a href="/signup" class="btn btn-primary mt-9 w-full">Get full access · ${PRICING.tier2Bundle}</a>
     </div>
 
-    <div class="reveal mx-auto my-14 flex max-w-3xl items-center gap-4 text-xs uppercase tracking-widest text-neutral-600">
-      <div class="h-px flex-1 bg-line"></div><span>or start chapter by chapter</span><div class="h-px flex-1 bg-line"></div>
+    <div class="reveal mx-auto my-12 flex max-w-2xl items-center gap-4 text-xs uppercase tracking-widest muted">
+      <div class="h-px flex-1 bg-[color:var(--color-line)]"></div><span>or start chapter by chapter</span><div class="h-px flex-1 bg-[color:var(--color-line)]"></div>
     </div>
 
-    <!-- SECONDARY: Chapter by chapter -->
-    <div class="reveal mx-auto max-w-3xl rounded-3xl border border-line bg-ink-2 p-8">
+    <div class="reveal surface mx-auto max-w-2xl p-8">
       <div class="flex items-center justify-between">
-        <div>
-          <h2 class="display text-2xl">Chapter by chapter</h2>
-          <p class="mt-2 text-sm text-neutral-500">Pick individual chapters. Access is granted instantly.</p>
-        </div>
-        <span class="text-sm text-neutral-500">from <span class="text-gold">${CHAPTERS[0].price}</span></span>
+        <h2 class="display text-2xl">Chapter by chapter</h2>
+        <span class="text-sm muted">from <span class="text-[color:var(--color-gold)] font-semibold">${CHAPTERS[0].price}</span></span>
       </div>
-      <ul class="mt-7 divide-y divide-line">
+      <ul class="mt-6 divide-y">
         {CHAPTERS.map((c) => (
           <li class="flex items-center justify-between py-3 text-sm">
-            <a href={`/chapters/${c.id}`} class="text-neutral-300 transition hover:text-gold">{String(c.id).padStart(2,'0')} · {c.name} <span class="text-neutral-600">({c.classes})</span></a>
-            <span class="font-medium text-gold">${c.price}</span>
+            <a href={`/chapters/${c.id}`} class="transition hover:text-[color:var(--color-gold)]">{String(c.id).padStart(2,'0')} · {c.name} <span class="muted">({c.classes})</span></a>
+            <span class="font-semibold text-[color:var(--color-gold)]">${c.price}</span>
           </li>
         ))}
       </ul>
-      <p class="mt-6 rounded-xl border border-line bg-ink px-4 py-3 text-xs text-neutral-500">Optional <span class="text-neutral-300">Priority Support</span> add-on at checkout: <span class="text-gold">+${PRICING.prioritySupport}</span> (≈1000 BDT). Included free with the bundle.</p>
-      <a href="/signup" class="mt-6 block rounded-full border border-line py-3 text-center text-sm font-medium text-neutral-300 transition hover:border-gold hover:text-gold">Start with a chapter</a>
+      <p class="mt-6 rounded-xl border px-4 py-3 text-xs muted">Optional <span class="text-[color:var(--color-ink)] font-medium">Priority Support</span> add-on at checkout: <span class="text-[color:var(--color-gold)]">+${PRICING.prioritySupport}</span> (≈1000 BDT). Free with the bundle.</p>
     </div>
 
-    <div class="reveal mt-12 text-center text-sm text-neutral-500">
-      Crypto only (BTC · USDT · ETH). New to crypto? <a href={TELEGRAM} class="text-gold hover:text-gold-soft">Request support on Telegram →</a>
-    </div>
+    <div class="reveal mt-10 text-center text-sm muted">Crypto only (BTC · USDT · ETH). New to crypto? <a href={TELEGRAM} class="text-[color:var(--color-gold)]">Request support on Telegram →</a></div>
   </section>
 </Base>

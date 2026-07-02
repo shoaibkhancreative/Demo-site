@@ -2,16 +2,14 @@
   (function () {
     const bind = () => {
       document.querySelectorAll('[data-curriculum] [data-toggle]').forEach((btn) => {
-        if (btn.dataset.bound) return;
-        btn.dataset.bound = "1";
+        if (btn.dataset.bound) return; btn.dataset.bound = "1";
         btn.addEventListener('click', () => {
-          const card = btn.closest('.chapter-card');
+          const card = btn.closest('.chapter');
           const extra = card && card.querySelector('[data-extra]');
           if (!extra) return;
           const open = extra.classList.toggle('show');
-          const total = card.querySelector('p.text-xs')?.textContent?.match(/(\d+)\s+classes/);
-          const n = total ? total[1] : '';
-          btn.textContent = open ? ('Show less ↑') : ('Show all ' + n + ' classes ↓');
+          const n = btn.getAttribute('data-count') || '';
+          btn.textContent = open ? 'Show less ↑' : ('Show all ' + n + ' classes ↓');
         });
       });
     };

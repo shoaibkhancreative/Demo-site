@@ -9,36 +9,33 @@ const { chapter } = Astro.props;
 ---
 <Base title={`${chapter.name} · Exclusive Mentorship`}>
   <section class="mx-auto max-w-3xl px-6 py-20">
-    <a href="/#curriculum" class="text-sm text-neutral-500 transition hover:text-gold">← Back to curriculum</a>
+    <a href="/#curriculum" class="text-sm muted transition hover:text-[color:var(--color-gold)]">← Back to curriculum</a>
     <div class="reveal mt-8 relative">
       <Thumb src={chapter.thumb} label={`Chapter ${chapter.id}`} />
-      <span class="price-badge absolute right-4 top-4 text-base backdrop-blur"><span class="text-sm opacity-70">$</span>{chapter.price}</span>
+      <span class="price-badge absolute right-4 top-4 text-base"><span class="text-sm opacity-70">$</span>{chapter.price}</span>
     </div>
-    <div class="reveal mt-8 flex items-center gap-4 text-xs text-neutral-500">
-      <span class="display text-2xl text-gold/70">{String(chapter.id).padStart(2,'0')}</span>
-      <span>{chapter.classes} classes</span>
-    </div>
+    <p class="reveal mt-8 eyebrow">Chapter {chapter.id} · {chapter.classes} classes</p>
     <h1 class="reveal display mt-3 text-4xl sm:text-5xl">{chapter.name}</h1>
-    <p class="reveal mt-4 text-lg leading-relaxed text-neutral-400">{chapter.hook}</p>
+    <p class="reveal mt-4 text-lg leading-relaxed muted">{chapter.hook}</p>
 
-    <div class="reveal mt-8 flex flex-wrap items-center gap-4">
-      <a href="/signup" class="rounded-full bg-gold px-8 py-3 text-sm font-semibold text-black transition hover:bg-gold-soft">Join this chapter · ${chapter.price}</a>
-      <a href="/pricing" class="text-sm font-medium text-neutral-300 transition hover:text-gold">or get all {TOTAL_CLASSES} in the bundle →</a>
+    <div class="reveal mt-7 flex flex-wrap items-center gap-4">
+      <a href="/signup" class="btn btn-primary">Join this chapter · ${chapter.price}</a>
+      <a href="/pricing" class="text-sm font-semibold text-[color:var(--color-gold)] transition hover:opacity-75">or get all {TOTAL_CLASSES} in the bundle →</a>
     </div>
 
-    <ul class="mt-14 space-y-3">
+    <ol class="mt-12 space-y-2">
       {chapter.lessons.map((l) => (
-        <li class="reveal card flex gap-4 rounded-xl bg-ink-2 p-4">
-          <span class="display text-lg text-gold/70">{String(l.n).padStart(2,'0')}</span>
-          <div><p class="font-medium text-neutral-100">{l.title}</p><p class="mt-0.5 text-sm text-neutral-500">{l.tagline}</p></div>
+        <li class="surface hoverable flex items-baseline gap-4 p-4">
+          <span class="display text-lg text-[color:var(--color-gold)]">{String(l.n).padStart(2,'0')}</span>
+          <div><p class="font-medium">{l.title}</p><p class="mt-0.5 text-sm muted">{l.tagline}</p></div>
         </li>
       ))}
-    </ul>
+    </ol>
 
-    <div class="reveal card mt-14 rounded-2xl border-gold/50 bg-gradient-to-b from-gold/[.08] to-transparent p-8 text-center">
+    <div class="reveal surface mt-14 p-8 text-center sm:p-10">
       <p class="display text-2xl">Get all {TOTAL_CLASSES} classes.</p>
-      <p class="mt-2 text-sm text-neutral-400">Unlock every chapter and save ${PRICING.save} with the full bundle.</p>
-      <a href="/pricing" class="mt-6 inline-block rounded-full bg-gold px-8 py-3 text-sm font-semibold text-black transition hover:bg-gold-soft">Get the Full Bundle · ${PRICING.tier2Bundle}</a>
+      <p class="mt-2 text-sm muted">Unlock every chapter and save ${PRICING.save} with the full bundle.</p>
+      <a href="/pricing" class="btn btn-primary mt-6">Get the full bundle · ${PRICING.tier2Bundle}</a>
     </div>
   </section>
 </Base>

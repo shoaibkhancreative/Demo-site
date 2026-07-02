@@ -18,11 +18,9 @@ const { title = "Exclusive Mentorship", description = "Institutional-grade tradi
     <title>{title}</title>
   </head>
   <body class="min-h-screen">
-    <div class="relative z-10">
-      <Nav />
-      <main><slot /></main>
-      <Footer />
-    </div>
+    <Nav />
+    <main><slot /></main>
+    <Footer />
     <RevealScript />
     <JourneyScript />
   </body>
