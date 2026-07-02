@@ -18,8 +18,8 @@ const { chapter } = Astro.props;
     <h1 class="reveal mt-2 text-3xl font-semibold sm:text-4xl">{chapter.name}</h1>
     <p class="reveal mt-3 text-[15px] leading-relaxed muted">{chapter.hook}</p>
     <div class="reveal mt-6 flex flex-wrap items-center gap-3">
-      <a href="/signup" class="btn btn-accent">Join this chapter · ${chapter.price}</a>
-      <a href="/pricing" class="text-sm font-medium text-[color:var(--color-accent)] transition hover:opacity-75">or get all {TOTAL_CLASSES} in the bundle →</a>
+      <a href="/checkout" class="btn btn-accent">Join this chapter · ${chapter.price}</a>
+      <a href="/checkout" class="text-sm font-medium text-[color:var(--color-accent)] transition hover:opacity-75">or get all {TOTAL_CLASSES} in the bundle →</a>
     </div>
 
     <ol class="mt-10 space-y-1.5">
@@ -34,7 +34,7 @@ const { chapter } = Astro.props;
     <div class="reveal surface mt-12 p-7 text-center">
       <p class="text-lg font-semibold">Get all {TOTAL_CLASSES} classes.</p>
       <p class="mt-1.5 text-sm muted">Unlock every chapter and save ${PRICING.save} with the full bundle.</p>
-      <a href="/pricing" class="btn btn-accent mt-5">Get the full bundle · ${PRICING.tier2Bundle}</a>
+      <a href="/checkout" class="btn btn-accent mt-5">Get the full bundle · ${PRICING.tier2Bundle}</a>
     </div>
   </section>
 </Base>
