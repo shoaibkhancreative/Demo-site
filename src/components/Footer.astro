@@ -2,29 +2,29 @@
 import { BRAND, TELEGRAM } from "../data/site.js";
 const year = new Date().getFullYear();
 ---
-<footer class="border-t border-line/50 bg-ink-2">
+<footer class="border-t border-[color:var(--color-line)] bg-[color:var(--color-ink-2)]">
   <div class="mx-auto max-w-6xl px-6 py-16">
     <div class="grid gap-12 md:grid-cols-3">
       <div>
         <div class="flex items-center gap-2 text-[15px] font-medium"><span class="text-gold">◆</span> <span class="display">{BRAND}</span></div>
-        <p class="mt-4 max-w-xs text-sm leading-relaxed text-neutral-500">Institutional-grade trading mentorship. Scripted, structured, and built for serious traders.</p>
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-[color:var(--color-muted)]">Institutional-grade trading mentorship. Scripted, structured, and built for serious traders.</p>
       </div>
       <div class="text-sm">
-        <p class="mb-4 text-xs uppercase tracking-widest text-neutral-500">Legal</p>
-        <ul class="space-y-3 text-neutral-400">
-          <li><a href="/privacy" class="hover:text-gold transition">Privacy Policy</a></li>
-          <li><a href="/terms" class="hover:text-gold transition">Terms of Service</a></li>
-          <li><a href="/refund" class="hover:text-gold transition">Refund Policy</a></li>
+        <p class="mb-4 text-xs uppercase tracking-widest text-[color:var(--color-muted)]">Legal</p>
+        <ul class="space-y-3 text-[color:var(--color-muted)]">
+          <li><a href="/privacy" class="transition hover:text-gold">Privacy Policy</a></li>
+          <li><a href="/terms" class="transition hover:text-gold">Terms of Service</a></li>
+          <li><a href="/refund" class="transition hover:text-gold">Refund Policy</a></li>
         </ul>
       </div>
       <div class="text-sm">
-        <p class="mb-4 text-xs uppercase tracking-widest text-neutral-500">Support</p>
-        <a href={TELEGRAM} class="text-gold hover:text-gold-soft transition">Contact on Telegram →</a>
+        <p class="mb-4 text-xs uppercase tracking-widest text-[color:var(--color-muted)]">Support</p>
+        <a href={TELEGRAM} class="text-gold transition hover:brightness-110">Contact on Telegram →</a>
       </div>
     </div>
     <div class="my-12 rule"></div>
-    <div class="text-xs leading-relaxed text-neutral-600">
-      <p><span class="text-neutral-400">Risk Disclaimer.</span> Trading financial markets involves substantial risk of loss and is not suitable for every investor. All content is educational only and does not constitute financial advice. Past performance does not guarantee future results. You are solely responsible for your own trading decisions.</p>
+    <div class="text-xs leading-relaxed text-[color:var(--color-muted)]">
+      <p><span class="text-[color:var(--color-text)]">Risk Disclaimer.</span> Trading financial markets involves substantial risk of loss and is not suitable for every investor. All content is educational only and does not constitute financial advice. Past performance does not guarantee future results. You are solely responsible for your own trading decisions.</p>
       <p class="mt-5">© {year} {BRAND}. All rights reserved.</p>
     </div>
   </div>
