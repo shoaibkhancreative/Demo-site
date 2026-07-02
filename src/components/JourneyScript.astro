@@ -5,15 +5,28 @@
         if (journey.dataset.bound) return;
         journey.dataset.bound = "1";
         const steps = Array.from(journey.querySelectorAll('[data-step]'));
+
         steps.forEach((step) => {
           const head = step.querySelector('[data-head]');
-          if (!head) return;
-          head.addEventListener('click', (e) => {
-            if (e.target.closest('[data-stop]') || e.target.closest('a') || e.target.closest('button')) return;
-            const willOpen = !step.classList.contains('open');
-            steps.forEach((s) => { s.classList.remove('open'); s.setAttribute('aria-expanded','false'); });
-            if (willOpen) { step.classList.add('open'); step.setAttribute('aria-expanded','true'); }
-          });
+          if (head) {
+            head.addEventListener('click', (e) => {
+              if (e.target.closest('[data-stop]') || e.target.closest('a') || e.target.closest('button')) return;
+              const willOpen = !step.classList.contains('open');
+              steps.forEach((s) => { s.classList.remove('open'); s.setAttribute('aria-expanded','false'); });
+              if (willOpen) { step.classList.add('open'); step.setAttribute('aria-expanded','true'); }
+            });
+          }
+
+          const btn = step.querySelector('[data-loadmore]');
+          if (btn) {
+            const total = btn.getAttribute('data-loadmore');
+            btn.addEventListener('click', () => {
+              const extras = step.querySelectorAll('[data-extra]');
+              const isHidden = extras.length && extras[0].classList.contains('hidden');
+              extras.forEach((el) => el.classList.toggle('hidden'));
+              btn.textContent = isHidden ? 'Show less' : ('Load more (' + total + ')');
+            });
+          }
         });
       });
     };

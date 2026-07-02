@@ -3,55 +3,68 @@ import Thumb from "./Thumb.astro";
 const { chapters } = Astro.props;
 ---
 <div class="journey space-y-8" data-journey>
-  {chapters.map((c, i) => (
-    <section class:list={["step", { open: i === 0 }]} data-step aria-expanded={i === 0 ? "true" : "false"}>
-      <div class="node">{String(c.id).padStart(2,'0')}</div>
+  {chapters.map((c, i) => {
+    const preview = c.lessons.slice(0, 3);
+    const rest = c.lessons.slice(3);
+    return (
+      <section class:list={["step", { open: i === 0 }]} data-step aria-expanded={i === 0 ? "true" : "false"}>
+        <div class="node">{String(c.id).padStart(2,'0')}</div>
 
-      <!-- clickable header -->
-      <div class="head flex items-start justify-between gap-4" data-head>
-        <div class="min-w-0">
-          <div class="flex items-center gap-3 text-xs uppercase tracking-widest text-neutral-500">
-            <span>Chapter {c.id}</span><span class="text-neutral-700">·</span><span>{c.classes} classes</span>
-            <span class="text-neutral-700">·</span><span class="text-gold">from ${c.price}</span>
+        <div class="head flex items-start justify-between gap-4" data-head>
+          <div class="min-w-0">
+            <div class="flex items-center gap-3 text-xs uppercase tracking-widest text-neutral-500">
+              <span>Chapter {c.id}</span><span class="text-neutral-700">·</span><span>{c.classes} classes</span>
+              <span class="text-neutral-700">·</span><span class="text-gold">from ${c.price}</span>
+            </div>
+            <h3 class="title display mt-1.5 text-2xl leading-tight sm:text-3xl">{c.name}</h3>
+            <p class="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-400">{c.hook}</p>
           </div>
-          <h3 class="title display mt-1.5 text-2xl leading-tight sm:text-3xl">{c.name}</h3>
-          <p class="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-400">{c.hook}</p>
+          <span class="chev mt-2 shrink-0 text-lg" aria-hidden="true">▾</span>
         </div>
-        <span class="chev mt-2 shrink-0 text-lg" aria-hidden="true">▾</span>
-      </div>
 
-      <!-- expandable content: thumbnail + class list -->
-      <div class="panel">
-        <div class="panel-inner">
-          <div class="grid gap-6 md:grid-cols-[300px_1fr]">
-            <!-- thumbnail + CTAs -->
-            <div>
-              <div class="relative">
-                <Thumb src={c.thumb} label={`Chapter ${c.id}`} />
-                <span class="price-badge absolute right-3 top-3 backdrop-blur"><span class="text-xs opacity-70">$</span>{c.price}</span>
+        <div class="panel">
+          <div class="panel-inner">
+            <div class="grid gap-6 md:grid-cols-[300px_1fr]">
+              <div>
+                <div class="relative">
+                  <Thumb src={c.thumb} label={`Chapter ${c.id}`} />
+                  <span class="price-badge absolute right-3 top-3"><span class="text-xs opacity-70">$</span>{c.price}</span>
+                </div>
+                <a href={`/chapters/${c.id}`} data-stop class="mt-4 block rounded-full bg-gold py-2.5 text-center text-sm font-semibold text-black transition hover:bg-gold-soft">Join this chapter · ${c.price}</a>
               </div>
-              <a href="/signup" data-stop class="mt-4 block rounded-full bg-gold py-2.5 text-center text-sm font-semibold text-black transition hover:bg-gold-soft">Join this chapter · ${c.price}</a>
-              <a href={`/chapters/${c.id}`} data-stop class="mt-2 block text-center text-sm font-medium text-neutral-400 transition hover:text-gold">Open chapter page →</a>
-            </div>
 
-            <!-- class list -->
-            <div>
-              <p class="mb-3 text-xs uppercase tracking-[0.25em] text-gold">What's inside</p>
-              <ol class="space-y-1">
-                {c.lessons.map((l) => (
-                  <li class="flex items-baseline gap-4 rounded-lg px-3 py-2.5 transition hover:bg-ink-3">
-                    <span class="w-7 shrink-0 text-sm font-semibold text-gold/80">{String(l.n).padStart(2,'0')}</span>
-                    <div class="min-w-0">
-                      <p class="text-sm font-medium text-neutral-100">{l.title}</p>
-                      <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+              <div>
+                <p class="mb-3 text-xs uppercase tracking-[0.25em] text-gold">What's inside</p>
+                <ol class="space-y-1" data-lessons>
+                  {preview.map((l) => (
+                    <li class="flex items-baseline gap-4 rounded-lg px-3 py-2.5 transition hover:bg-ink-3">
+                      <span class="w-7 shrink-0 text-sm font-semibold text-gold/80">{String(l.n).padStart(2,'0')}</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-medium text-neutral-100">{l.title}</p>
+                        <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
+                      </div>
+                    </li>
+                  ))}
+                  {rest.map((l) => (
+                    <li class="hidden flex items-baseline gap-4 rounded-lg px-3 py-2.5 transition hover:bg-ink-3" data-extra>
+                      <span class="w-7 shrink-0 text-sm font-semibold text-gold/80">{String(l.n).padStart(2,'0')}</span>
+                      <div class="min-w-0">
+                        <p class="text-sm font-medium text-neutral-100">{l.title}</p>
+                        <p class="mt-0.5 text-xs leading-relaxed text-neutral-500">{l.tagline}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                {rest.length > 0 && (
+                  <button type="button" data-stop data-loadmore={`${rest.length}`} class="mt-4 w-full rounded-full border border-line py-2.5 text-sm font-medium text-neutral-300 transition hover:border-gold hover:text-gold">
+                    Load more ({rest.length})
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  ))}
+      </section>
+    );
+  })}
 </div>
