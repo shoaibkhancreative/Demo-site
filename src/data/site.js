@@ -5,7 +5,7 @@ export const YOUTUBE_ID = "dQw4w9WgXcQ"; // <-- replace with your intro video ID
 
 // Your Telegram BOT's username (no @, no https://) — the bot the payment page deep-links into.
 // Create it with @BotFather first, then put its username here.
-export const TELEGRAM_BOT = "YOUR_BOT_USERNAME";
+export const TELEGRAM_BOT = "exclusive_mentorship_bot";
 
 // Manual crypto payment details shown on /payment. Replace every placeholder below.
 export const PAYMENT_METHODS = {
