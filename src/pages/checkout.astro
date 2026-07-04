@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM } from "../data/site.js";
+import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM, CHAPTER_BUNDLE_PRICING, PRIORITY_FREE_AT } from "../data/site.js";
 ---
 <Base title="Checkout · Exclusive Mentorship">
   <section class="mx-auto max-w-3xl px-6 py-16">
@@ -42,17 +42,20 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM } from "../data/site
         <div class="surface hidden p-6" data-view="chapters">
           <div class="flex items-center justify-between">
             <h2 class="text-lg font-semibold">Select chapters</h2>
-            <button type="button" class="text-xs font-medium text-[color:var(--color-accent)]" data-select-all>Select all (${PRICING.tier1Total})</button>
+            <button type="button" class="text-xs font-medium text-[color:var(--color-accent)]" data-select-all>Select all 7 · ${CHAPTER_BUNDLE_PRICING[7]}</button>
           </div>
-          <p class="mt-1 text-xs muted">Buying every chapter separately totals <span class="font-semibold text-[color:var(--color-ink)]">${PRICING.tier1Total}</span> — the bundle saves you ${PRICING.save}.</p>
+          <p class="mt-1 text-xs muted">Chapters build on each other, so picking one includes every chapter before it. Each chapter you add unlocks a bigger discount — <span class="font-semibold text-[color:var(--color-ink)]">all 7 together is ${CHAPTER_BUNDLE_PRICING[7]}</span>, the same as the full bundle.</p>
           <div class="mt-4 space-y-1.5">
             {CHAPTERS.map((c) => (
               <label class="flex cursor-pointer items-center justify-between rounded-lg border px-3.5 py-2.5 text-sm transition hover:border-[color:var(--color-accent)]">
                 <span class="flex items-center gap-3">
-                  <input type="checkbox" data-chapter value={c.price} class="h-4 w-4 accent-[color:var(--color-accent)]" />
+                  <input type="checkbox" data-chapter data-chapter-id={c.id} class="h-4 w-4 accent-[color:var(--color-accent)]" />
                   <span>{String(c.id).padStart(2,'0')} · {c.name} <span class="faint">({c.classes})</span></span>
                 </span>
-                <span class="font-semibold text-[color:var(--color-accent)]">${c.price}</span>
+                <span class="text-right leading-tight">
+                  <span class="block font-semibold text-[color:var(--color-accent)]">${CHAPTER_BUNDLE_PRICING[c.id]}</span>
+                  <span class="block text-[10px] faint">{c.id > 1 ? `for chapters 1–${c.id}` : "chapter 1 only"}</span>
+                </span>
               </label>
             ))}
           </div>
@@ -90,7 +93,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM } from "../data/site
           <div class="flex justify-between text-base"><span class="font-semibold">Total</span><span class="font-semibold" data-sum-total>${PRICING.tier2Bundle}</span></div>
         </div>
         <p class="mt-3 text-[12px] faint" data-sum-hint>You save ${PRICING.save} vs buying every chapter.</p>
-        <a href="/signup" class="btn btn-accent mt-5 w-full">Continue to payment</a>
+        <a href="/payment" id="continueLink" class="btn btn-accent mt-5 w-full">Continue to payment</a>
         <div class="mt-4 flex items-center justify-center gap-2 text-[11px] faint">
           <span class="chip !py-0.5 !px-2">₿ BTC</span><span class="chip !py-0.5 !px-2">₮ USDT</span><span class="chip !py-0.5 !px-2">Ξ ETH</span>
         </div>
@@ -110,7 +113,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM } from "../data/site
     </div>
   </section>
 
-  <script is:inline define:vars={{ BUNDLE: PRICING.tier2Bundle, TIER1: PRICING.tier1Total, SAVE: PRICING.save }}>
+  <script is:inline define:vars={{ BUNDLE: PRICING.tier2Bundle, TIER1: PRICING.tier1Total, SAVE: PRICING.save, PRICE_BY_COUNT: CHAPTER_BUNDLE_PRICING, PRIORITY_FREE_AT }}>
     (function(){
       const bind = () => {
         const $ = (s) => document.querySelector(s);
@@ -121,6 +124,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM } from "../data/site
         const money = (n) => (n === 0 ? 'Free' : '$' + n);
         const chapters = () => $$('[data-chapter]');
         const addonItems = () => $$('[data-addon-item]');
+        const selectedCount = () => chapters().filter(c => c.checked).length;
 
         const els = {
           toggle: $$('[data-plan-toggle] [data-plan]'),
@@ -132,19 +136,35 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM } from "../data/site
           sumTotal: $('[data-sum-total]'),
           sumHint: $('[data-sum-hint]'),
           selectAll: $('[data-select-all]'),
+          continueLink: $('#continueLink'),
         };
 
+        // Preselect the full prefix when arriving from a "Join" button, e.g. /checkout?chapter=3
+        // (which under the sequential rule means chapters 1, 2 and 3).
+        const preselect = Number(new URLSearchParams(location.search).get('chapter'));
+        if (preselect) {
+          plan = 'chapters';
+          els.toggle.forEach(b => b.setAttribute('data-active', String(b.getAttribute('data-plan') === 'chapters')));
+          els.viewBundle.classList.add('hidden');
+          els.viewChapters.classList.remove('hidden');
+          chapters().forEach(c => { c.checked = Number(c.getAttribute('data-chapter-id')) <= preselect; });
+        }
+
         function render(){
+          const chaptersCount = selectedCount();
           let base = 0;
           if (plan === 'bundle') {
             base = BUNDLE;
             els.sumLabel.textContent = 'Full bundle';
             els.sumHint.textContent = 'You save $' + SAVE + ' vs buying every chapter.';
           } else {
-            base = chapters().filter(c=>c.checked).reduce((s,c)=>s+Number(c.value),0);
-            const count = chapters().filter(c=>c.checked).length;
-            els.sumLabel.textContent = count ? (count + (count>1?' chapters':' chapter')) : 'No chapters selected';
-            els.sumHint.textContent = 'All 7 chapters separately = $' + TIER1 + '. Bundle is $' + BUNDLE + '.';
+            base = chaptersCount ? PRICE_BY_COUNT[chaptersCount] : 0;
+            els.sumLabel.textContent = chaptersCount ? ('Chapters 1–' + chaptersCount) : 'No chapters selected';
+            els.sumHint.textContent = chaptersCount === 7
+              ? 'All 7 chapters — same price as the full bundle.'
+              : chaptersCount
+                ? ('Add chapter ' + (chaptersCount + 1) + ' to unlock a bigger discount.')
+                : 'Start with Chapter 1 — each chapter you add unlocks a bigger discount.';
           }
 
           let addonsCost = 0;
@@ -153,13 +173,13 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM } from "../data/site
             const price = Number(item.getAttribute('data-price'));
             const freeBundle = item.getAttribute('data-free-bundle') === '1';
             const check = item.querySelector('[data-addon-check]');
-            const note = item.querySelector('[data-addon-note]');
             const tag = item.querySelector('[data-addon-tag]');
             const name = item.querySelector('.text-sm.font-medium').childNodes[0].textContent.trim();
 
-            let included = false, cost = 0, tagText = '+$' + price;
-
-            if (freeBundle && plan === 'bundle') {
+            // Same free treatment as the bundle, now also unlocked at PRIORITY_FREE_AT+ chapters.
+            const freeNow = freeBundle && (plan === 'bundle' || chaptersCount >= PRIORITY_FREE_AT);
+            let included, cost, tagText;
+            if (freeNow) {
               check.checked = true; check.disabled = true;
               included = true; cost = 0; tagText = 'Free';
             } else {
@@ -170,8 +190,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM } from "../data/site
             }
             tag.textContent = tagText;
 
-            // summary line
-            if (freeBundle && plan === 'bundle') {
+            if (freeNow) {
               lines.push('<div class="flex justify-between"><span class="muted">'+name+'</span><span class="font-medium">Free</span></div>');
             } else if (included) {
               lines.push('<div class="flex justify-between"><span class="muted">'+name+'</span><span class="font-medium">$'+price+'</span></div>');
@@ -182,6 +201,17 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM } from "../data/site
           els.sumAddons.innerHTML = lines.join('');
           els.sumBase.textContent = money(base);
           els.sumTotal.textContent = money(base + addonsCost);
+
+          // Carry the current selection over to the payment page as plain query params.
+          if (els.continueLink) {
+            const chosenAddons = addonItems()
+              .filter(item => item.querySelector('[data-addon-check]').checked)
+              .map(item => item.getAttribute('data-id'));
+            const q = plan === 'bundle'
+              ? new URLSearchParams({ plan: 'bundle', addons: chosenAddons.join(','), total: String(base + addonsCost) })
+              : new URLSearchParams({ plan: 'chapters', count: String(chaptersCount), addons: chosenAddons.join(','), total: String(base + addonsCost) });
+            els.continueLink.href = '/payment?' + q.toString();
+          }
         }
 
         els.toggle.forEach(btn=>{
@@ -193,7 +223,21 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM } from "../data/site
             render();
           });
         });
-        chapters().forEach(c=> c.addEventListener('change', render));
+
+        // Sequential unlock: checking chapter N pulls in every chapter before it;
+        // unchecking chapter N drops every chapter from N onward, since they depend on it.
+        chapters().forEach(cb => {
+          cb.addEventListener('change', () => {
+            const id = Number(cb.getAttribute('data-chapter-id'));
+            if (cb.checked) {
+              chapters().forEach(other => { if (Number(other.getAttribute('data-chapter-id')) <= id) other.checked = true; });
+            } else {
+              chapters().forEach(other => { if (Number(other.getAttribute('data-chapter-id')) >= id) other.checked = false; });
+            }
+            render();
+          });
+        });
+
         addonItems().forEach(item => item.querySelector('[data-addon-check]').addEventListener('change', render));
         if (els.selectAll) els.selectAll.addEventListener('click', ()=>{ chapters().forEach(c=>c.checked=true); render(); });
 

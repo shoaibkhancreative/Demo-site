@@ -1,26 +1,29 @@
 ---
 import Base from "../../layouts/Base.astro";
 import Thumb from "../../components/Thumb.astro";
-import { CHAPTERS, PRICING, TOTAL_CLASSES } from "../../data/site.js";
+import { CHAPTERS, PRICING, TOTAL_CLASSES, CHAPTER_BUNDLE_PRICING } from "../../data/site.js";
 export function getStaticPaths() {
   return CHAPTERS.map((c) => ({ params: { id: String(c.id) }, props: { chapter: c } }));
 }
 const { chapter } = Astro.props;
+const unlockPrice = CHAPTER_BUNDLE_PRICING[chapter.id];
+const joinLabel = chapter.id > 1 ? `Unlock chapters 1–${chapter.id} · $${unlockPrice}` : `Join Chapter 1 · $${unlockPrice}`;
 ---
 <Base title={`${chapter.name} · Exclusive Mentorship`}>
   <section class="mx-auto max-w-2xl px-6 py-16">
     <a href="/#curriculum" class="text-sm muted transition hover:text-[color:var(--color-ink)]">← Back to curriculum</a>
     <div class="reveal mt-6 relative">
       <Thumb src={chapter.thumb} label={`Chapter ${chapter.id}`} />
-      <span class="chip absolute right-3 top-3 !bg-white/90">${chapter.price}</span>
+      <span class="chip absolute right-3 top-3 !bg-white/90">${unlockPrice}</span>
     </div>
     <p class="reveal mt-6 eyebrow">Chapter {chapter.id} · {chapter.classes} classes</p>
     <h1 class="reveal mt-2 text-3xl font-semibold sm:text-4xl">{chapter.name}</h1>
     <p class="reveal mt-3 text-[15px] leading-relaxed muted">{chapter.hook}</p>
     <div class="reveal mt-6 flex flex-wrap items-center gap-3">
-      <a href="/checkout" class="btn btn-accent">Join this chapter · ${chapter.price}</a>
+      <a href={`/checkout?chapter=${chapter.id}`} class="btn btn-accent">{joinLabel}</a>
       <a href="/checkout" class="text-sm font-medium text-[color:var(--color-accent)] transition hover:opacity-75">or get all {TOTAL_CLASSES} in the bundle →</a>
     </div>
+    {chapter.id > 1 && <p class="reveal mt-2 text-[12px] faint">Chapters build on each other, so this unlocks chapters 1 through {chapter.id} together.</p>}
 
     <ol class="mt-10 space-y-1.5">
       {chapter.lessons.map((l) => (

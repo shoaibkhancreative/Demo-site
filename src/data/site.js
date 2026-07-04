@@ -3,6 +3,27 @@ export const INSTRUCTOR = "NLT";
 export const TELEGRAM = "https://t.me/YOUR_TELEGRAM";
 export const YOUTUBE_ID = "dQw4w9WgXcQ"; // <-- replace with your intro video ID
 
+// Your Telegram BOT's username (no @, no https://) — the bot the payment page deep-links into.
+// Create it with @BotFather first, then put its username here.
+export const TELEGRAM_BOT = "YOUR_BOT_USERNAME";
+
+// Manual crypto payment details shown on /payment. Replace every placeholder below.
+export const PAYMENT_METHODS = {
+  binanceUID: "YOUR_BINANCE_UID",
+  bybitUID: "YOUR_BYBIT_UID",
+  crypto: [
+    { label: "USDT", network: "TRC20 (Tron)", address: "YOUR_USDT_TRC20_ADDRESS" },
+    { label: "USDT", network: "BEP20 (BSC)", address: "YOUR_USDT_BEP20_ADDRESS" },
+    { label: "BTC", network: "Bitcoin", address: "YOUR_BTC_ADDRESS" },
+    { label: "ETH", network: "ERC20", address: "YOUR_ETH_ADDRESS" },
+  ],
+};
+
+// Short codes used to keep the Telegram deep-link payload inside Telegram's 64-character,
+// letters/digits/underscore/hyphen-only limit. Add a one-letter code here for every new addon
+// you add to ADDONS below, using a letter that isn't already taken.
+export const ADDON_CODES = { priority: "p", market_review: "m", consultation: "c" };
+
 function makeClasses(count) {
   return Array.from({ length: count }, (_, i) => ({
     n: i + 1,
@@ -22,6 +43,15 @@ export const CHAPTERS = [
 ];
 export const TOTAL_CLASSES = CHAPTERS.reduce((s, c) => s + c.classes, 0);
 export const PRICING = { tier1Total: 99, tier2Bundle: 79, save: 20, prioritySupport: 8, consultation: 149 };
+
+// Progressive discount for buying chapters chapter-by-chapter, always as chapters 1..N in order
+// (see the sequential-unlock rule in checkout.astro). Buying all 7 lands exactly on the bundle
+// price, $79. Edit these seven numbers directly to change the discount curve.
+export const CHAPTER_BUNDLE_PRICING = { 1: 5, 2: 13, 3: 23, 4: 35, 5: 48, 6: 62, 7: 79 };
+
+// From this many chapters onward (bought together in chapter-by-chapter mode), Priority Support
+// is included free — the same treatment it already gets with the full bundle.
+export const PRIORITY_FREE_AT = 5;
 
 export const ADDONS = [
   {
