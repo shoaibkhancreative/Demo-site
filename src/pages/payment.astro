@@ -2,38 +2,38 @@
 import Base from "../layouts/Base.astro";
 import { CHAPTERS, ADDONS, TELEGRAM, TELEGRAM_BOT, PAYMENT_METHODS, ADDON_CODES, CHAPTER_BUNDLE_PRICING } from "../data/site.js";
 ---
-<Base title="Payment · Exclusive Mentorship">
+<Base title="পেমেন্ট · Exclusive Mentorship">
   <section class="mx-auto max-w-2xl px-6 py-16">
     <div class="reveal text-center">
-      <p class="eyebrow">Payment</p>
-      <h1 class="mt-2 text-4xl font-semibold sm:text-5xl">Send your payment.</h1>
-      <p class="mt-3 muted">Pay with crypto below, then confirm to get access.</p>
+      <p class="eyebrow">পেমেন্ট</p>
+      <h1 class="mt-2 text-4xl font-semibold sm:text-5xl">আপনার পেমেন্ট পাঠান।</h1>
+      <p class="mt-3 muted">নিচে ক্রিপ্টো দিয়ে পেমেন্ট করুন, তারপর কনফার্ম করে অ্যাক্সেস নিন।</p>
     </div>
 
     <!-- Order summary -->
     <div class="reveal surface mt-10 p-6" data-order-summary>
-      <p class="eyebrow">Your order</p>
+      <p class="eyebrow">আপনার অর্ডার</p>
       <div class="mt-3 space-y-2 text-sm" data-order-lines>
-        <p class="muted">Loading your order…</p>
+        <p class="muted">আপনার অর্ডার লোড হচ্ছে…</p>
       </div>
       <div class="my-3 rule"></div>
       <div class="flex justify-between text-base">
-        <span class="font-semibold">Total due</span>
+        <span class="font-semibold">মোট পেমেন্ট</span>
         <span class="font-semibold" data-order-total>—</span>
       </div>
     </div>
 
     <!-- Shown only if someone lands here with no order in the URL -->
     <div class="reveal surface mt-4 hidden p-6 text-center" data-no-order>
-      <p class="text-sm muted">We couldn't find an order. Head back to checkout and choose a plan first.</p>
-      <a href="/checkout" class="btn btn-accent mt-4">Back to checkout</a>
+      <p class="text-sm muted">আমরা কোনো অর্ডার খুঁজে পাইনি। আগে চেকআউটে ফিরে গিয়ে একটি প্ল্যান বেছে নিন।</p>
+      <a href="/checkout" class="btn btn-accent mt-4">চেকআউটে ফিরে যান</a>
     </div>
 
     <div data-payment-block>
       <!-- Payment methods -->
       <div class="reveal surface mt-4 p-6">
-        <p class="eyebrow">Pay with crypto</p>
-        <p class="mt-1 text-[13px] muted">Send the exact total above using any one method below. Double-check the UID or address before sending — crypto payments can't be reversed.</p>
+        <p class="eyebrow">ক্রিপ্টো দিয়ে পেমেন্ট করুন</p>
+        <p class="mt-1 text-[13px] muted">উপরের সঠিক মোট পরিমাণ নিচের যেকোনো একটি মাধ্যমে পাঠান। পাঠানোর আগে UID অথবা address আরেকবার ভালো করে চেক করে নিন — ক্রিপ্টো পেমেন্ট একবার পাঠালে আর ফেরত বা বাতিল করা যায় না।</p>
 
         <div class="mt-5 space-y-2.5">
           <div class="flex items-center justify-between gap-3 rounded-lg border px-4 py-3">
@@ -41,7 +41,7 @@ import { CHAPTERS, ADDONS, TELEGRAM, TELEGRAM_BOT, PAYMENT_METHODS, ADDON_CODES,
               <p class="text-xs font-medium muted">Binance UID</p>
               <p class="truncate font-mono text-sm">{PAYMENT_METHODS.binanceUID}</p>
             </div>
-            <button type="button" class="btn btn-ghost btn-sm shrink-0" data-copy={PAYMENT_METHODS.binanceUID}>Copy</button>
+            <button type="button" class="btn btn-ghost btn-sm shrink-0" data-copy={PAYMENT_METHODS.binanceUID}>কপি করুন</button>
           </div>
 
           <div class="flex items-center justify-between gap-3 rounded-lg border px-4 py-3">
@@ -49,7 +49,7 @@ import { CHAPTERS, ADDONS, TELEGRAM, TELEGRAM_BOT, PAYMENT_METHODS, ADDON_CODES,
               <p class="text-xs font-medium muted">Bybit UID</p>
               <p class="truncate font-mono text-sm">{PAYMENT_METHODS.bybitUID}</p>
             </div>
-            <button type="button" class="btn btn-ghost btn-sm shrink-0" data-copy={PAYMENT_METHODS.bybitUID}>Copy</button>
+            <button type="button" class="btn btn-ghost btn-sm shrink-0" data-copy={PAYMENT_METHODS.bybitUID}>কপি করুন</button>
           </div>
 
           {PAYMENT_METHODS.crypto.map((c) => (
@@ -58,7 +58,7 @@ import { CHAPTERS, ADDONS, TELEGRAM, TELEGRAM_BOT, PAYMENT_METHODS, ADDON_CODES,
                 <p class="text-xs font-medium muted">{c.label} · {c.network}</p>
                 <p class="truncate font-mono text-sm">{c.address}</p>
               </div>
-              <button type="button" class="btn btn-ghost btn-sm shrink-0" data-copy={c.address}>Copy</button>
+              <button type="button" class="btn btn-ghost btn-sm shrink-0" data-copy={c.address}>কপি করুন</button>
             </div>
           ))}
         </div>
@@ -67,24 +67,24 @@ import { CHAPTERS, ADDONS, TELEGRAM, TELEGRAM_BOT, PAYMENT_METHODS, ADDON_CODES,
       <!-- Confirm -> Share screenshot on Telegram -->
       <div class="reveal surface mt-4 p-6 text-center">
         <div data-step-confirm>
-          <p class="text-sm font-medium">Already sent the payment?</p>
-          <p class="mt-1 text-[13px] muted">Tap confirm, then you'll share a screenshot so we can verify it.</p>
-          <button type="button" id="confirmBtn" class="btn btn-accent mt-4">Confirm payment</button>
+          <p class="text-sm font-medium">পেমেন্ট ইতিমধ্যে পাঠিয়েছেন?</p>
+          <p class="mt-1 text-[13px] muted">কনফার্ম-এ ট্যাপ করুন, তারপর একটি screenshot শেয়ার করবেন যাতে আমরা তা ভেরিফাই করতে পারি।</p>
+          <button type="button" id="confirmBtn" class="btn btn-accent mt-4">পেমেন্ট কনফার্ম করুন</button>
         </div>
         <div data-step-share class="hidden">
-          <p class="text-sm font-medium">One last step</p>
-          <p class="mt-1 text-[13px] muted">Tap below to open Telegram, then send a screenshot of your payment in the chat that opens. We'll confirm your access from there.</p>
-          <a id="shareBtn" href="#" target="_blank" rel="noopener" class="btn btn-accent mt-4">Share screenshot on Telegram</a>
-          <p class="mt-4 text-[11px] faint">Telegram didn't open? Message <span id="botHandle" class="font-medium"></span> directly and paste this order code:</p>
+          <p class="text-sm font-medium">শেষ একটি ধাপ</p>
+          <p class="mt-1 text-[13px] muted">নিচে ট্যাপ করে Telegram খুলুন, তারপর যে চ্যাটটি খুলবে সেখানে আপনার পেমেন্টের screenshot পাঠান। সেখান থেকেই আমরা আপনার অ্যাক্সেস কনফার্ম করে দেব।</p>
+          <a id="shareBtn" href="#" target="_blank" rel="noopener" class="btn btn-accent mt-4">Telegram-এ screenshot শেয়ার করুন</a>
+          <p class="mt-4 text-[11px] faint">Telegram খোলেনি? সরাসরি <span id="botHandle" class="font-medium"></span>-কে মেসেজ করে এই অর্ডার কোডটি পেস্ট করুন:</p>
           <div class="mt-2 flex items-center justify-center gap-2">
             <code class="rounded-md border px-2.5 py-1 text-[12px]" id="orderCode">—</code>
-            <button type="button" class="btn btn-ghost btn-sm" data-copy-code>Copy</button>
+            <button type="button" class="btn btn-ghost btn-sm" data-copy-code>কপি করুন</button>
           </div>
         </div>
       </div>
     </div>
 
-    <p class="reveal mt-6 text-center text-[12px] muted">Need help? <a href={TELEGRAM} class="text-[color:var(--color-accent)]">Message us on Telegram →</a></p>
+    <p class="reveal mt-6 text-center text-[12px] muted">সাহায্য দরকার? <a href={TELEGRAM} class="text-[color:var(--color-accent)]">Telegram-এ মেসেজ করুন →</a></p>
   </section>
 
   <script is:inline define:vars={{ CHAPTERS, ADDONS, ADDON_CODES, TELEGRAM_BOT, CHAPTER_BUNDLE_PRICING }}>
@@ -109,12 +109,12 @@ import { CHAPTERS, ADDONS, TELEGRAM, TELEGRAM_BOT, PAYMENT_METHODS, ADDON_CODES,
         // Build human-readable order lines from the query params.
         const lines = [];
         if (plan === 'bundle') {
-          lines.push(['Full bundle', null]);
+          lines.push(['ফুল বান্ডেল', null]);
         } else if (count > 0) {
           const lastName = CHAPTERS.find((c) => c.id === count)?.name;
-          lines.push([`Chapters 1–${count}${lastName ? ` (through "${lastName}")` : ''}`, '$' + CHAPTER_BUNDLE_PRICING[count]]);
+          lines.push([`চ্যাপ্টার 1–${count}${lastName ? ` ("${lastName}" পর্যন্ত)` : ''}`, '$' + CHAPTER_BUNDLE_PRICING[count]]);
         } else {
-          lines.push(['No chapters selected', null]);
+          lines.push(['কোনো চ্যাপ্টার বেছে নেওয়া হয়নি', null]);
         }
         addons.forEach((id) => {
           const a = ADDONS.find((x) => x.id === id);
@@ -144,7 +144,7 @@ import { CHAPTERS, ADDONS, TELEGRAM, TELEGRAM_BOT, PAYMENT_METHODS, ADDON_CODES,
           try {
             await navigator.clipboard.writeText(text);
             const old = btn.textContent;
-            btn.textContent = 'Copied';
+            btn.textContent = 'কপি হয়েছে';
             setTimeout(() => (btn.textContent = old), 1500);
           } catch (e) {
             /* clipboard unavailable — the value is still visible to select manually */

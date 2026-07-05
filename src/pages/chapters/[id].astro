@@ -7,23 +7,23 @@ export function getStaticPaths() {
 }
 const { chapter } = Astro.props;
 const unlockPrice = CHAPTER_BUNDLE_PRICING[chapter.id];
-const joinLabel = chapter.id > 1 ? `Unlock chapters 1–${chapter.id} · $${unlockPrice}` : `Join Chapter 1 · $${unlockPrice}`;
+const joinLabel = chapter.id > 1 ? `চ্যাপ্টার 1–${chapter.id} আনলক করুন · $${unlockPrice}` : `চ্যাপ্টার 1 নিন · $${unlockPrice}`;
 ---
 <Base title={`${chapter.name} · Exclusive Mentorship`}>
   <section class="mx-auto max-w-2xl px-6 py-16">
-    <a href="/#curriculum" class="text-sm muted transition hover:text-[color:var(--color-ink)]">← Back to curriculum</a>
+    <a href="/#curriculum" class="text-sm muted transition hover:text-[color:var(--color-ink)]">← কারিকুলামে ফিরে যান</a>
     <div class="reveal mt-6 relative">
-      <Thumb src={chapter.thumb} label={`Chapter ${chapter.id}`} />
+      <Thumb src={chapter.thumb} label={`চ্যাপ্টার ${chapter.id}`} />
       <span class="chip absolute right-3 top-3 !bg-white/90">${unlockPrice}</span>
     </div>
-    <p class="reveal mt-6 eyebrow">Chapter {chapter.id} · {chapter.classes} classes</p>
+    <p class="reveal mt-6 eyebrow">চ্যাপ্টার {chapter.id} · {chapter.classes}টি ক্লাস</p>
     <h1 class="reveal mt-2 text-3xl font-semibold sm:text-4xl">{chapter.name}</h1>
     <p class="reveal mt-3 text-[15px] leading-relaxed muted">{chapter.hook}</p>
     <div class="reveal mt-6 flex flex-wrap items-center gap-3">
       <a href={`/checkout?chapter=${chapter.id}`} class="btn btn-accent">{joinLabel}</a>
-      <a href="/checkout" class="text-sm font-medium text-[color:var(--color-accent)] transition hover:opacity-75">or get all {TOTAL_CLASSES} in the bundle →</a>
+      <a href="/checkout" class="text-sm font-medium text-[color:var(--color-accent)] transition hover:opacity-75">অথবা বান্ডেলে সবগুলো {TOTAL_CLASSES}টি নিন →</a>
     </div>
-    {chapter.id > 1 && <p class="reveal mt-2 text-[12px] faint">Chapters build on each other, so this unlocks chapters 1 through {chapter.id} together.</p>}
+    {chapter.id > 1 && <p class="reveal mt-2 text-[12px] faint">চ্যাপ্টারগুলো একটার উপর আরেকটা নির্ভর করে তৈরি, তাই এটি একসাথে চ্যাপ্টার 1 থেকে {chapter.id} পর্যন্ত আনলক করে দেয়।</p>}
 
     <ol class="mt-10 space-y-1.5">
       {chapter.lessons.map((l) => (
@@ -35,9 +35,9 @@ const joinLabel = chapter.id > 1 ? `Unlock chapters 1–${chapter.id} · $${unlo
     </ol>
 
     <div class="reveal surface mt-12 p-7 text-center">
-      <p class="text-lg font-semibold">Get all {TOTAL_CLASSES} classes.</p>
-      <p class="mt-1.5 text-sm muted">Unlock every chapter and save ${PRICING.save} with the full bundle.</p>
-      <a href="/checkout" class="btn btn-accent mt-5">Get the full bundle · ${PRICING.tier2Bundle}</a>
+      <p class="text-lg font-semibold">সবগুলো {TOTAL_CLASSES}টি ক্লাস নিন।</p>
+      <p class="mt-1.5 text-sm muted">ফুল বান্ডেলের মাধ্যমে প্রতিটা চ্যাপ্টার আনলক করুন এবং ${PRICING.save} সাশ্রয় করুন।</p>
+      <a href="/checkout" class="btn btn-accent mt-5">ফুল বান্ডেল নিন · ${PRICING.tier2Bundle}</a>
     </div>
   </section>
 </Base>

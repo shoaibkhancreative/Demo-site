@@ -2,12 +2,12 @@
 import Base from "../layouts/Base.astro";
 import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM, CHAPTER_BUNDLE_PRICING, PRIORITY_FREE_AT } from "../data/site.js";
 ---
-<Base title="Checkout · Exclusive Mentorship">
+<Base title="চেকআউট · Exclusive Mentorship">
   <section class="mx-auto max-w-3xl px-6 py-16">
     <div class="reveal text-center">
-      <p class="eyebrow">Checkout</p>
-      <h1 class="mt-2 text-4xl font-semibold sm:text-5xl">Get your access.</h1>
-      <p class="mt-3 muted">Choose the bundle, or pick chapters one by one.</p>
+      <p class="eyebrow">চেকআউট</p>
+      <h1 class="mt-2 text-4xl font-semibold sm:text-5xl">আপনার অ্যাক্সেস নিন।</h1>
+      <p class="mt-3 muted">বান্ডেল বেছে নিন, অথবা একটি একটি করে চ্যাপ্টার বেছে নিন।</p>
     </div>
 
     <div class="mt-12 grid gap-6 md:grid-cols-[1fr_360px] md:items-start">
@@ -16,8 +16,8 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM, CHAPTER_BUNDLE_PRIC
         <!-- Plan toggle -->
         <div class="surface p-1.5">
           <div class="grid grid-cols-2 gap-1.5" data-plan-toggle>
-            <button type="button" class="rounded-lg px-4 py-2.5 text-sm font-medium transition data-[active=true]:bg-[color:var(--color-ink)] data-[active=true]:text-white" data-plan="bundle" data-active="true">Full bundle</button>
-            <button type="button" class="rounded-lg px-4 py-2.5 text-sm font-medium transition data-[active=true]:bg-[color:var(--color-ink)] data-[active=true]:text-white" data-plan="chapters" data-active="false">Chapter by chapter</button>
+            <button type="button" class="rounded-lg px-4 py-2.5 text-sm font-medium transition data-[active=true]:bg-[color:var(--color-ink)] data-[active=true]:text-white" data-plan="bundle" data-active="true">ফুল বান্ডেল</button>
+            <button type="button" class="rounded-lg px-4 py-2.5 text-sm font-medium transition data-[active=true]:bg-[color:var(--color-ink)] data-[active=true]:text-white" data-plan="chapters" data-active="false">চ্যাপ্টার অনুযায়ী</button>
           </div>
         </div>
 
@@ -25,36 +25,36 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM, CHAPTER_BUNDLE_PRIC
         <div class="surface p-6" data-view="bundle">
           <div class="flex items-start justify-between">
             <div>
-              <p class="eyebrow">Full bundle · recommended</p>
-              <h2 class="mt-1 text-lg font-semibold">Everything, unlocked.</h2>
+              <p class="eyebrow">ফুল বান্ডেল · সেরা পছন্দ</p>
+              <h2 class="mt-1 text-lg font-semibold">সব কিছু, আনলক করা।</h2>
             </div>
-            <span class="chip">Save ${PRICING.save}</span>
+            <span class="chip">${PRICING.save} সাশ্রয়</span>
           </div>
           <ul class="mt-4 space-y-2 text-[13px] muted">
-            <li>✓ All {TOTAL_CLASSES} scripted classes across 7 chapters</li>
-            <li>✓ Main private channel access</li>
-            <li>✓ 7-day money-back guarantee</li>
-            <li>✓ Lifetime access to updates</li>
+            <li>✓ 7টি চ্যাপ্টার জুড়ে সবগুলো {TOTAL_CLASSES}টি scripted ক্লাস</li>
+            <li>✓ মূল প্রাইভেট চ্যানেলে অ্যাক্সেস</li>
+            <li>✓ 7 দিনের মানি-ব্যাক গ্যারান্টি</li>
+            <li>✓ আপডেটে Lifetime অ্যাক্সেস</li>
           </ul>
         </div>
 
         <!-- CHAPTERS view -->
         <div class="surface hidden p-6" data-view="chapters">
           <div class="flex items-center justify-between">
-            <h2 class="text-lg font-semibold">Select chapters</h2>
-            <button type="button" class="text-xs font-medium text-[color:var(--color-accent)]" data-select-all>Select all 7 · ${CHAPTER_BUNDLE_PRICING[7]}</button>
+            <h2 class="text-lg font-semibold">চ্যাপ্টার বেছে নিন</h2>
+            <button type="button" class="text-xs font-medium text-[color:var(--color-accent)]" data-select-all>সবগুলো 7টা বেছে নিন · ${CHAPTER_BUNDLE_PRICING[7]}</button>
           </div>
-          <p class="mt-1 text-xs muted">Chapters build on each other, so picking one includes every chapter before it. Each chapter you add unlocks a bigger discount — <span class="font-semibold text-[color:var(--color-ink)]">all 7 together is ${CHAPTER_BUNDLE_PRICING[7]}</span>, the same as the full bundle.</p>
+          <p class="mt-1 text-xs muted">চ্যাপ্টারগুলো একটার উপর আরেকটা নির্ভর করে তৈরি, তাই একটা বেছে নিলে তার আগের সবগুলো চ্যাপ্টারও চলে আসে। যত বেশি চ্যাপ্টার নেবেন, তত বড় ছাড় পাবেন — <span class="font-semibold text-[color:var(--color-ink)]">সবগুলো 7টা একসাথে নিলে দাম ${CHAPTER_BUNDLE_PRICING[7]}</span>, ঠিক ফুল বান্ডেলের সমান।</p>
           <div class="mt-4 space-y-1.5">
             {CHAPTERS.map((c) => (
               <label class="flex cursor-pointer items-center justify-between rounded-lg border px-3.5 py-2.5 text-sm transition hover:border-[color:var(--color-accent)]">
                 <span class="flex items-center gap-3">
                   <input type="checkbox" data-chapter data-chapter-id={c.id} class="h-4 w-4 accent-[color:var(--color-accent)]" />
-                  <span>{String(c.id).padStart(2,'0')} · {c.name} <span class="faint">({c.classes})</span></span>
+                  <span>{String(c.id).padStart(2,'0')} · {c.name} <span class="faint">({c.classes}টি)</span></span>
                 </span>
                 <span class="text-right leading-tight">
                   <span class="block font-semibold text-[color:var(--color-accent)]">${CHAPTER_BUNDLE_PRICING[c.id]}</span>
-                  <span class="block text-[10px] faint">{c.id > 1 ? `for chapters 1–${c.id}` : "chapter 1 only"}</span>
+                  <span class="block text-[10px] faint">{c.id > 1 ? `চ্যাপ্টার 1–${c.id}-এর জন্য` : "শুধু চ্যাপ্টার 1"}</span>
                 </span>
               </label>
             ))}
@@ -63,7 +63,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM, CHAPTER_BUNDLE_PRIC
 
         <!-- Add-ons (data-driven) -->
         <div class="space-y-2.5">
-          <p class="px-1 text-xs font-medium muted">Add-ons</p>
+          <p class="px-1 text-xs font-medium muted">অ্যাড-অন</p>
           {ADDONS.map((a) => (
             <label class="surface flex cursor-pointer items-start justify-between gap-4 p-5"
                    data-addon-item data-id={a.id} data-price={a.price} data-free-bundle={a.freeWithBundle ? "1" : "0"}>
@@ -77,7 +77,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM, CHAPTER_BUNDLE_PRIC
                   <span class="mt-0.5 block text-[13px] muted" data-addon-note>{a.desc}</span>
                 </span>
               </span>
-              <span class="whitespace-nowrap text-sm font-semibold" data-addon-tag>{a.freeWithBundle ? "Free" : `+$${a.price}`}</span>
+              <span class="whitespace-nowrap text-sm font-semibold" data-addon-tag>{a.freeWithBundle ? "ফ্রি" : `+$${a.price}`}</span>
             </label>
           ))}
         </div>
@@ -85,31 +85,31 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM, CHAPTER_BUNDLE_PRIC
 
       <!-- RIGHT: summary -->
       <div class="surface sticky top-20 p-6">
-        <p class="eyebrow">Order summary</p>
+        <p class="eyebrow">অর্ডার সামারি</p>
         <div class="mt-4 space-y-2.5 text-sm">
-          <div class="flex justify-between"><span class="muted" data-sum-label>Full bundle</span><span class="font-medium" data-sum-base>${PRICING.tier2Bundle}</span></div>
+          <div class="flex justify-between"><span class="muted" data-sum-label>ফুল বান্ডেল</span><span class="font-medium" data-sum-base>${PRICING.tier2Bundle}</span></div>
           <div data-sum-addons class="space-y-2.5"></div>
           <div class="my-3 rule"></div>
-          <div class="flex justify-between text-base"><span class="font-semibold">Total</span><span class="font-semibold" data-sum-total>${PRICING.tier2Bundle}</span></div>
+          <div class="flex justify-between text-base"><span class="font-semibold">মোট</span><span class="font-semibold" data-sum-total>${PRICING.tier2Bundle}</span></div>
         </div>
-        <p class="mt-3 text-[12px] faint" data-sum-hint>You save ${PRICING.save} vs buying every chapter.</p>
-        <a href="/payment" id="continueLink" class="btn btn-accent mt-5 w-full">Continue to payment</a>
+        <p class="mt-3 text-[12px] faint" data-sum-hint>প্রতিটা চ্যাপ্টার আলাদা কেনার চেয়ে আপনি ${PRICING.save} সাশ্রয় করছেন।</p>
+        <a href="/payment" id="continueLink" class="btn btn-accent mt-5 w-full">পেমেন্টে যান</a>
         <div class="mt-4 flex items-center justify-center gap-2 text-[11px] faint">
           <span class="chip !py-0.5 !px-2">₿ BTC</span><span class="chip !py-0.5 !px-2">₮ USDT</span><span class="chip !py-0.5 !px-2">Ξ ETH</span>
         </div>
-        <p class="mt-3 text-center text-[12px] muted">New to crypto? <a href={TELEGRAM} class="text-[color:var(--color-accent)]">Telegram support →</a></p>
+        <p class="mt-3 text-center text-[12px] muted">ক্রিপ্টোতে নতুন? <a href={TELEGRAM} class="text-[color:var(--color-accent)]">Telegram সাপোর্ট →</a></p>
       </div>
     </div>
 
     <!-- Payment methods + support (compact, effective) -->
     <div class="reveal mt-8 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center surface p-5">
       <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
-        <span class="text-[13px] font-medium">Pay securely with crypto</span>
+        <span class="text-[13px] font-medium">নিরাপদে ক্রিপ্টো দিয়ে পেমেন্ট করুন</span>
         <div class="flex items-center gap-4 text-[13px] muted">
           <span>₿ Bitcoin</span><span>₮ USDT</span><span>Ξ Ethereum</span>
         </div>
       </div>
-      <p class="text-[12px] muted sm:text-right">New to crypto? <a href={TELEGRAM} class="font-medium text-[color:var(--color-accent)]">Request support on Telegram →</a></p>
+      <p class="text-[12px] muted sm:text-right">ক্রিপ্টোতে নতুন? <a href={TELEGRAM} class="font-medium text-[color:var(--color-accent)]">Telegram-এ সাপোর্ট চান →</a></p>
     </div>
   </section>
 
@@ -121,7 +121,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM, CHAPTER_BUNDLE_PRIC
         if (!$('[data-plan-toggle]')) return;
 
         let plan = 'bundle';
-        const money = (n) => (n === 0 ? 'Free' : '$' + n);
+        const money = (n) => (n === 0 ? 'ফ্রি' : '$' + n);
         const chapters = () => $$('[data-chapter]');
         const addonItems = () => $$('[data-addon-item]');
         const selectedCount = () => chapters().filter(c => c.checked).length;
@@ -155,16 +155,16 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM, CHAPTER_BUNDLE_PRIC
           let base = 0;
           if (plan === 'bundle') {
             base = BUNDLE;
-            els.sumLabel.textContent = 'Full bundle';
-            els.sumHint.textContent = 'You save $' + SAVE + ' vs buying every chapter.';
+            els.sumLabel.textContent = 'ফুল বান্ডেল';
+            els.sumHint.textContent = 'প্রতিটা চ্যাপ্টার আলাদা কেনার চেয়ে আপনি $' + SAVE + ' সাশ্রয় করছেন।';
           } else {
             base = chaptersCount ? PRICE_BY_COUNT[chaptersCount] : 0;
-            els.sumLabel.textContent = chaptersCount ? ('Chapters 1–' + chaptersCount) : 'No chapters selected';
+            els.sumLabel.textContent = chaptersCount ? ('চ্যাপ্টার 1–' + chaptersCount) : 'কোনো চ্যাপ্টার বেছে নেওয়া হয়নি';
             els.sumHint.textContent = chaptersCount === 7
-              ? 'All 7 chapters — same price as the full bundle.'
+              ? 'সবগুলো 7টা চ্যাপ্টার — ফুল বান্ডেলের সমান দাম।'
               : chaptersCount
-                ? ('Add chapter ' + (chaptersCount + 1) + ' to unlock a bigger discount.')
-                : 'Start with Chapter 1 — each chapter you add unlocks a bigger discount.';
+                ? ('চ্যাপ্টার ' + (chaptersCount + 1) + ' যোগ করলে আরও বড় ছাড় পাবেন।')
+                : 'চ্যাপ্টার 1 দিয়ে শুরু করুন — প্রতিটা নতুন চ্যাপ্টারে আরও বড় ছাড়।';
           }
 
           let addonsCost = 0;
@@ -181,7 +181,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM, CHAPTER_BUNDLE_PRIC
             let included, cost, tagText;
             if (freeNow) {
               check.checked = true; check.disabled = true;
-              included = true; cost = 0; tagText = 'Free';
+              included = true; cost = 0; tagText = 'ফ্রি';
             } else {
               check.disabled = false;
               included = check.checked;
@@ -191,7 +191,7 @@ import { CHAPTERS, TOTAL_CLASSES, PRICING, ADDONS, TELEGRAM, CHAPTER_BUNDLE_PRIC
             tag.textContent = tagText;
 
             if (freeNow) {
-              lines.push('<div class="flex justify-between"><span class="muted">'+name+'</span><span class="font-medium">Free</span></div>');
+              lines.push('<div class="flex justify-between"><span class="muted">'+name+'</span><span class="font-medium">ফ্রি</span></div>');
             } else if (included) {
               lines.push('<div class="flex justify-between"><span class="muted">'+name+'</span><span class="font-medium">$'+price+'</span></div>');
             }

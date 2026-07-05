@@ -3,7 +3,7 @@ import Thumb from "./Thumb.astro";
 import { CHAPTER_BUNDLE_PRICING } from "../data/site.js";
 const { chapter, open = false } = Astro.props;
 const unlockPrice = CHAPTER_BUNDLE_PRICING[chapter.id];
-const joinLabel = chapter.id > 1 ? `Unlock 1–${chapter.id} · $${unlockPrice}` : `Join Chapter 1 · $${unlockPrice}`;
+const joinLabel = chapter.id > 1 ? `1–${chapter.id} আনলক করুন · $${unlockPrice}` : `চ্যাপ্টার 1 নিন · $${unlockPrice}`;
 ---
 <article
   class:list={["reveal card chapter rounded-2xl bg-ink-2 p-5 sm:p-6", { open }]}
@@ -14,7 +14,7 @@ const joinLabel = chapter.id > 1 ? `Unlock 1–${chapter.id} · $${unlockPrice}`
   <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-7">
     <!-- Thumbnail (left) -->
     <div class="relative w-full shrink-0 sm:w-64 lg:w-72">
-      <Thumb src={chapter.thumb} label={`Chapter ${chapter.id}`} />
+      <Thumb src={chapter.thumb} label={`চ্যাপ্টার ${chapter.id}`} />
       <span class="price-badge absolute right-3 top-3 backdrop-blur"><span class="text-xs opacity-70">$</span>{unlockPrice}</span>
     </div>
 
@@ -22,15 +22,15 @@ const joinLabel = chapter.id > 1 ? `Unlock 1–${chapter.id} · $${unlockPrice}`
     <div class="min-w-0 flex-1">
       <div class="flex items-center gap-3 text-xs uppercase tracking-widest text-neutral-500">
         <span class="display text-2xl normal-case tracking-normal text-gold/70">{String(chapter.id).padStart(2,'0')}</span>
-        <span>Chapter {chapter.id}</span>
+        <span>চ্যাপ্টার {chapter.id}</span>
         <span class="text-neutral-700">·</span>
-        <span>{chapter.classes} classes</span>
+        <span>{chapter.classes}টি ক্লাস</span>
       </div>
       <h3 class="display mt-2 text-2xl leading-tight sm:text-3xl">{chapter.name}</h3>
       <p class="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-400">{chapter.hook}</p>
       <div class="mt-4 flex items-center gap-4">
         <a href={`/checkout?chapter=${chapter.id}`} data-stop class="rounded-full bg-gold px-6 py-2 text-sm font-semibold text-black transition hover:bg-gold-soft">{joinLabel}</a>
-        <a href={`/chapters/${chapter.id}`} data-stop class="text-sm font-medium text-neutral-300 transition hover:text-gold">Read more →</a>
+        <a href={`/chapters/${chapter.id}`} data-stop class="text-sm font-medium text-neutral-300 transition hover:text-gold">আরও পড়ুন →</a>
         <span class="ml-auto chev hidden text-lg sm:block" aria-hidden="true">▾</span>
       </div>
     </div>
@@ -40,7 +40,7 @@ const joinLabel = chapter.id > 1 ? `Unlock 1–${chapter.id} · $${unlockPrice}`
   <div class="panel">
     <div class="panel-inner">
       <div class="rule mb-5"></div>
-      <p class="mb-4 text-xs uppercase tracking-[0.25em] text-gold">What's inside</p>
+      <p class="mb-4 text-xs uppercase tracking-[0.25em] text-gold">এতে যা যা আছে</p>
       <ol class="space-y-1">
         {chapter.lessons.map((l) => (
           <li class="group flex items-baseline gap-4 rounded-lg px-3 py-2.5 transition hover:bg-ink-3">

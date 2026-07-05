@@ -13,8 +13,8 @@ import { CHAPTERS } from "../data/site.js";
         <h3 class="mt-3 text-[15px] font-semibold leading-snug">{c.name}</h3>
         <p class="mt-1.5 line-clamp-2 text-[13px] leading-relaxed muted">{c.hook}</p>
         <div class="mt-3 flex items-center justify-between text-[12px]">
-          <span class="faint">{c.classes} classes</span>
-          <span class="font-medium text-[color:var(--color-accent)]">View lessons →</span>
+          <span class="faint">{c.classes}টি ক্লাস</span>
+          <span class="font-medium text-[color:var(--color-accent)]">লেসন দেখুন →</span>
         </div>
       </button>
     ))}
@@ -27,7 +27,7 @@ import { CHAPTERS } from "../data/site.js";
       <div class="modal-panel">
         <div class="flex items-start justify-between gap-4 border-b p-5">
           <div>
-            <p class="text-xs font-medium faint">Chapter {c.id} · {c.classes} classes · ${c.price}</p>
+            <p class="text-xs font-medium faint">চ্যাপ্টার {c.id} · {c.classes}টি ক্লাস · ${c.price}</p>
             <h3 class="mt-1 text-lg font-semibold">{c.name}</h3>
           </div>
           <button type="button" data-close class="grid h-8 w-8 place-items-center rounded-lg border text-muted transition hover:bg-[color:var(--color-bg)]">✕</button>
@@ -43,8 +43,8 @@ import { CHAPTERS } from "../data/site.js";
           </ol>
         </div>
         <div class="flex items-center gap-3 border-t p-5">
-          <a href={`/chapters/${c.id}`} class="btn btn-accent flex-1">Join this chapter · ${c.price}</a>
-          <a href="/checkout" class="btn btn-ghost">Full bundle</a>
+          <a href={`/chapters/${c.id}`} class="btn btn-accent flex-1">এই চ্যাপ্টার নিন · ${c.price}</a>
+          <a href="/checkout" class="btn btn-ghost">ফুল বান্ডেল</a>
         </div>
       </div>
     </div>

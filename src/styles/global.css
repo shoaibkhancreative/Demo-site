@@ -10,14 +10,16 @@
   --color-line-2: #e2e2e6;
   --color-accent: #4f5bd5;
   --color-accent-ink: #3b45b5;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
 }
 
 * { border-color: var(--color-line); }
 html { scroll-behavior: smooth; background: var(--color-bg); color: var(--color-ink); }
-body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; letter-spacing: -0.014em; }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; letter-spacing: normal; }
 
-h1,h2,h3,h4 { letter-spacing: -0.03em; }
+/* Bangla conjuncts/matras need normal tracking — negative letter-spacing (the Latin-only
+   tightening this template shipped with) clips and misaligns Bengali glyphs. */
+h1,h2,h3,h4 { letter-spacing: normal; }
 .muted { color: var(--color-muted); }
 .faint { color: var(--color-faint); }
 .eyebrow { font-size: .75rem; font-weight: 600; letter-spacing: -0.01em; color: var(--color-accent); }

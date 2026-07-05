@@ -6,28 +6,28 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
 <Base>
   <!-- HERO -->
   <section class="mx-auto max-w-3xl px-6 pt-24 pb-16 text-center">
-    <span class="reveal chip mx-auto">By {INSTRUCTOR} · {TOTAL_CLASSES} scripted classes</span>
-    <h1 class="reveal mt-6 text-[2.7rem] font-semibold leading-[1.05] sm:text-6xl">Trade like the institutions.</h1>
-    <p class="reveal mx-auto mt-5 max-w-lg text-[17px] leading-relaxed muted">A complete, step-by-step mentorship. No noise, no filler. Only the framework, mindset, and plan used to trade the markets professionally.</p>
+    <span class="reveal chip mx-auto">NLT-এর {TOTAL_CLASSES}টি scripted ক্লাস</span>
+    <h1 class="reveal mt-6 text-[2.7rem] font-semibold leading-[1.05] sm:text-6xl">Institutions-দের মতো ট্রেড করুন।</h1>
+    <p class="reveal mx-auto mt-5 max-w-lg text-[17px] leading-relaxed muted">সম্পূর্ণ, ধাপে ধাপে সাজানো একটি মেন্টরশিপ। কোনো noise নেই, কোনো filler নেই। শুধু সেই framework, mindset আর plan, যা দিয়ে মার্কেটে প্রফেশনালি ট্রেড করা হয়।</p>
     <div class="reveal mt-8 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
-      <a href="/checkout" class="btn btn-accent">Get full access · ${PRICING.tier2Bundle}</a>
-      <a href="#intro" class="btn btn-ghost">Watch the intro</a>
+      <a href="/checkout" class="btn btn-accent">সম্পূর্ণ অ্যাক্সেস নিন · ${PRICING.tier2Bundle}</a>
+      <a href="#intro" class="btn btn-ghost">পরিচিতি ভিডিও দেখুন</a>
     </div>
   </section>
 
   <!-- INTRO VIDEO -->
   <section id="intro" class="mx-auto max-w-3xl px-6 pb-16">
     <div class="reveal video-frame">
-      <iframe src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}`} title="Introduction" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}`} title="পরিচিতি" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </section>
 
   <!-- CURRICULUM -->
   <section id="curriculum" class="mx-auto max-w-5xl px-6 pb-16">
     <div class="reveal mb-8 text-center">
-      <p class="eyebrow">Curriculum</p>
-      <h2 class="mt-2 text-3xl font-semibold sm:text-4xl">Seven chapters. One clear path.</h2>
-      <p class="mx-auto mt-3 max-w-md text-sm muted">Click any chapter to see all its lessons.</p>
+      <p class="eyebrow">কারিকুলাম</p>
+      <h2 class="mt-2 text-3xl font-semibold sm:text-4xl">সাতটি চ্যাপ্টার। একটাই পরিষ্কার পথ।</h2>
+      <p class="mx-auto mt-3 max-w-md text-sm muted">যেকোনো চ্যাপ্টারে ক্লিক করে সব লেসন দেখুন।</p>
     </div>
     <div class="reveal"><Journey /></div>
   </section>
@@ -35,37 +35,37 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
   <!-- PRICING -->
   <section id="pricing" class="mx-auto max-w-5xl px-6 pb-16">
     <div class="reveal mb-8 text-center">
-      <p class="eyebrow">Pricing</p>
-      <h2 class="mt-2 text-3xl font-semibold sm:text-4xl">One price. Everything included.</h2>
-      <p class="mx-auto mt-3 max-w-md text-sm muted">Buying all 7 chapters separately costs ${PRICING.tier1Total}. The bundle gives you everything for ${PRICING.tier2Bundle}.</p>
+      <p class="eyebrow">মূল্য</p>
+      <h2 class="mt-2 text-3xl font-semibold sm:text-4xl">একটাই মূল্য। সব কিছু অন্তর্ভুক্ত।</h2>
+      <p class="mx-auto mt-3 max-w-md text-sm muted">আলাদাভাবে সবগুলো 7 চ্যাপ্টার কিনলে খরচ হবে ${PRICING.tier1Total}। বান্ডেলে সব কিছু পাবেন মাত্র ${PRICING.tier2Bundle}-এ।</p>
     </div>
 
     <div class="mx-auto grid max-w-3xl gap-4 sm:grid-cols-[1.35fr_1fr]">
       <div class="reveal surface relative overflow-hidden p-7 ring-1 ring-[color:var(--color-accent)]">
-        <span class="absolute right-4 top-4 chip !border-[color:var(--color-accent)] !text-[color:var(--color-accent)]">Save ${PRICING.save}</span>
-        <p class="eyebrow">Full bundle</p>
+        <span class="absolute right-4 top-4 chip !border-[color:var(--color-accent)] !text-[color:var(--color-accent)]">${PRICING.save} সাশ্রয়</span>
+        <p class="eyebrow">ফুল বান্ডেল</p>
         <div class="mt-2 flex items-end gap-2">
           <span class="text-5xl font-semibold">${PRICING.tier2Bundle}</span>
           <span class="mb-1.5 text-sm muted line-through">${PRICING.tier1Total}</span>
         </div>
         <ul class="mt-5 space-y-2 text-[13px] muted">
-          <li>✓ All {TOTAL_CLASSES} scripted classes</li>
-          <li>✓ Priority support included <span class="font-medium text-[color:var(--color-ink)]">free</span></li>
-          <li>✓ Main private channel access</li>
-          <li>✓ 7-day money-back guarantee</li>
-          <li>✓ Lifetime updates</li>
+          <li>✓ সবগুলো {TOTAL_CLASSES}টি scripted ক্লাস</li>
+          <li>✓ Priority সাপোর্ট একদম <span class="font-medium text-[color:var(--color-ink)]">ফ্রি</span></li>
+          <li>✓ মূল প্রাইভেট চ্যানেলে অ্যাক্সেস</li>
+          <li>✓ 7 দিনের মানি-ব্যাক গ্যারান্টি</li>
+          <li>✓ Lifetime আপডেট</li>
         </ul>
-        <a href="/checkout" class="btn btn-accent mt-6 w-full">Get full access</a>
+        <a href="/checkout" class="btn btn-accent mt-6 w-full">সম্পূর্ণ অ্যাক্সেস নিন</a>
       </div>
 
       <div class="reveal surface p-7">
-        <p class="eyebrow">Chapter by chapter</p>
+        <p class="eyebrow">চ্যাপ্টার অনুযায়ী</p>
         <div class="mt-2 flex items-end gap-1.5">
-          <span class="text-3xl font-semibold">${CHAPTERS[0].price}</span><span class="mb-1 text-sm muted">/ starting</span>
+          <span class="text-3xl font-semibold">${CHAPTERS[0].price}</span><span class="mb-1 text-sm muted">থেকে শুরু</span>
         </div>
-        <p class="mt-4 text-[13px] muted">Prefer to start small? Buy any chapter individually. All 7 separately total <span class="font-semibold text-[color:var(--color-ink)]">${PRICING.tier1Total}</span>.</p>
-        <p class="mt-3 text-[13px] muted">Optional Priority Support add-on: <span class="font-medium text-[color:var(--color-ink)]">+${PRICING.prioritySupport}</span>.</p>
-        <a href="/checkout" class="btn btn-ghost mt-6 w-full">Choose chapters</a>
+        <p class="mt-4 text-[13px] muted">ছোট থেকে শুরু করতে চান? যেকোনো চ্যাপ্টার আলাদাভাবে কিনুন। সবগুলো 7টা আলাদাভাবে কিনলে মোট <span class="font-semibold text-[color:var(--color-ink)]">${PRICING.tier1Total}</span>।</p>
+        <p class="mt-3 text-[13px] muted">ঐচ্ছিক Priority সাপোর্ট অ্যাড-অন: <span class="font-medium text-[color:var(--color-ink)]">+${PRICING.prioritySupport}</span>।</p>
+        <a href="/checkout" class="btn btn-ghost mt-6 w-full">চ্যাপ্টার বেছে নিন</a>
       </div>
     </div>
 
@@ -73,8 +73,8 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
     <div class="reveal mx-auto mt-4 flex max-w-3xl items-center gap-4 rounded-xl border border-[color:var(--color-accent)]/30 bg-[color:var(--color-accent)]/[.04] px-6 py-4">
       <div class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[color:var(--color-accent)]/10 text-lg">🛡</div>
       <div>
-        <p class="text-sm font-semibold">7-day money-back guarantee</p>
-        <p class="text-[13px] muted">Try the full bundle risk-free. Not for you within 7 days? Get a full refund, no hassle.</p>
+        <p class="text-sm font-semibold">7 দিনের মানি-ব্যাক গ্যারান্টি</p>
+        <p class="text-[13px] muted">ফুল বান্ডেল ঝুঁকিহীনভাবে ব্যবহার করে দেখুন। 7 দিনের মধ্যে যদি মনে হয় এটা আপনার জন্য না, তাহলে কোনো ঝামেলা ছাড়াই সম্পূর্ণ রিফান্ড পাবেন।</p>
       </div>
     </div>
   </section>
@@ -89,17 +89,17 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
           <span class="grid h-14 w-14 place-items-center rounded-2xl bg-[color:var(--color-ink)] text-lg font-semibold text-white">NLT</span>
           <div>
             <p class="text-sm font-semibold leading-tight">{INSTRUCTOR}</p>
-            <p class="text-[12px] muted">Trader · Mentor</p>
+            <p class="text-[12px] muted">ট্রেডার · মেন্টর</p>
           </div>
         </div>
         <!-- message -->
         <div class="sm:flex-1">
-          <p class="eyebrow">A note from your instructor</p>
-          <h2 class="mt-1.5 text-2xl font-semibold leading-tight sm:text-[1.7rem]">Stop guessing. Start trading with a plan.</h2>
-          <p class="mt-3 text-[14px] leading-relaxed muted">Most traders don't lose because they aren't smart, but because no one gave them a real system. This is the exact framework, mindset, and plan I use, distilled into {TOTAL_CLASSES} scripted classes. You don't need luck. You need structure, and I'll walk it with you.</p>
+          <p class="eyebrow">আপনার মেন্টরের পক্ষ থেকে একটি বার্তা</p>
+          <h2 class="mt-1.5 text-2xl font-semibold leading-tight sm:text-[1.7rem]">আন্দাজ করা বন্ধ করুন। একটি plan নিয়ে ট্রেড শুরু করুন।</h2>
+          <p class="mt-3 text-[14px] leading-relaxed muted">বেশিরভাগ ট্রেডার লস করে এই কারণে না যে তারা স্মার্ট না, বরং এই কারণে যে তাদের কেউ কখনো একটা আসল system দেয়নি। এটাই ঠিক সেই framework, mindset আর plan যা আমি নিজে ব্যবহার করি, {TOTAL_CLASSES}টি scripted ক্লাসে সাজিয়ে দেওয়া হয়েছে। আপনার ভাগ্যের দরকার নেই, দরকার structure — আর সেটা আমি আপনার সাথে থেকেই শেখাবো।</p>
           <div class="mt-5 flex flex-wrap gap-2.5">
-            <a href="/checkout" class="btn btn-accent btn-sm">Begin your journey · ${PRICING.tier2Bundle}</a>
-            <a href="#curriculum" class="btn btn-ghost btn-sm">See what you'll learn</a>
+            <a href="/checkout" class="btn btn-accent btn-sm">আপনার journey শুরু করুন · ${PRICING.tier2Bundle}</a>
+            <a href="#curriculum" class="btn btn-ghost btn-sm">কী কী শিখবেন দেখুন</a>
           </div>
         </div>
       </div>
@@ -109,9 +109,9 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
   <!-- TESTIMONIALS (compact two-row wall) -->
   <section class="pb-16">
     <div class="reveal mx-auto mb-8 max-w-5xl px-6 text-center">
-      <p class="eyebrow">Results</p>
-      <h2 class="mt-2 text-3xl font-semibold sm:text-4xl">Trusted by real traders.</h2>
-      <p class="mx-auto mt-3 max-w-md text-sm muted">Members who followed the path and changed how they trade.</p>
+      <p class="eyebrow">ফলাফল</p>
+      <h2 class="mt-2 text-3xl font-semibold sm:text-4xl">আসল ট্রেডারদের আস্থা।</h2>
+      <p class="mx-auto mt-3 max-w-md text-sm muted">যারা এই পথ অনুসরণ করে তাদের ট্রেড করার ধরন বদলে ফেলেছেন।</p>
     </div>
 
     <div class="reveal marquee space-y-3">
@@ -155,9 +155,9 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
     </div>
 
     <div class="reveal mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] muted">
-      <span>✓ Real members</span>
-      <span>✓ Verified on Telegram</span>
-      <span>✓ 7-day money-back guarantee</span>
+      <span>✓ প্রকৃত সদস্য</span>
+      <span>✓ Telegram-এ ভেরিফায়েড</span>
+      <span>✓ 7 দিনের মানি-ব্যাক গ্যারান্টি</span>
     </div>
   </section>
 </Base>

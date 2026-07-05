@@ -27,19 +27,19 @@ export const ADDON_CODES = { priority: "p", market_review: "m", consultation: "c
 function makeClasses(count) {
   return Array.from({ length: count }, (_, i) => ({
     n: i + 1,
-    title: `Class ${i + 1}`,
-    tagline: "A short lesson tagline goes here — replace me in src/data/site.js",
+    title: `ক্লাস ${i + 1}`,
+    tagline: "এখানে একটি সংক্ষিপ্ত লেসন ট্যাগলাইন বসবে — src/data/site.js ফাইলে গিয়ে এটি পরিবর্তন করুন।",
   }));
 }
 
 export const CHAPTERS = [
-  { id: 1, name: "The Architecture of Markets", classes: 5, price: 5, thumb: "/thumbnails/chapter-1.jpg", hook: "Markets aren't random. Learn the hidden order behind every move.", lessons: makeClasses(5) },
-  { id: 2, name: "Smart Money Basics", classes: 9, price: 9, thumb: "/thumbnails/chapter-2.jpg", hook: "See what institutions do before price even reacts.", lessons: makeClasses(9) },
-  { id: 3, name: "Structure & Time Based Concepts", classes: 12, price: 12, thumb: "/thumbnails/chapter-3.jpg", hook: "Read structure and time like a professional desk trader.", lessons: makeClasses(12) },
-  { id: 4, name: "Institutional Framework", classes: 15, price: 15, thumb: "/thumbnails/chapter-4.jpg", hook: "The framework that separates retail guesses from institutional logic.", lessons: makeClasses(15) },
-  { id: 5, name: "Professional Trader Mindset", classes: 17, price: 17, thumb: "/thumbnails/chapter-5.jpg", hook: "The mental edge that keeps professionals profitable.", lessons: makeClasses(17) },
-  { id: 6, name: "High-Probability Strategies", classes: 19, price: 19, thumb: "/thumbnails/chapter-6.jpg", hook: "Precise, repeatable setups with defined risk.", lessons: makeClasses(19) },
-  { id: 7, name: "Our Personal Trading Plan (Inc. Prop)", classes: 22, price: 22, thumb: "/thumbnails/chapter-7.jpg", hook: "The exact plan we trade, including prop firm execution.", lessons: makeClasses(22) },
+  { id: 1, name: "মার্কেটের আর্কিটেকচার", classes: 5, price: 5, thumb: "/thumbnails/chapter-1.jpg", hook: "মার্কেট কখনো র‍্যান্ডম নয়। প্রতিটি মুভের পেছনে থাকা লুকানো নিয়মটা শিখে নিন।", lessons: makeClasses(5) },
+  { id: 2, name: "Smart Money বেসিকস", classes: 9, price: 9, thumb: "/thumbnails/chapter-2.jpg", hook: "প্রাইস রিঅ্যাক্ট করার আগেই institutions কী করে, তা দেখে নিন।", lessons: makeClasses(9) },
+  { id: 3, name: "Structure ও Time-ভিত্তিক ধারণা", classes: 12, price: 12, thumb: "/thumbnails/chapter-3.jpg", hook: "একজন প্রফেশনাল desk ট্রেডারের মতো structure আর সময় পড়তে শিখুন।", lessons: makeClasses(12) },
+  { id: 4, name: "Institutional ফ্রেমওয়ার্ক", classes: 15, price: 15, thumb: "/thumbnails/chapter-4.jpg", hook: "যে framework retail ট্রেডারদের আন্দাজ-নির্ভর সিদ্ধান্ত থেকে institutional যুক্তিকে আলাদা করে।", lessons: makeClasses(15) },
+  { id: 5, name: "প্রফেশনাল ট্রেডার Mindset", classes: 17, price: 17, thumb: "/thumbnails/chapter-5.jpg", hook: "যে mental edge প্রফেশনালদের লাভজনক রাখে।", lessons: makeClasses(17) },
+  { id: 6, name: "High-Probability স্ট্র্যাটেজি", classes: 19, price: 19, thumb: "/thumbnails/chapter-6.jpg", hook: "একদম নির্ভুল আর repeatable setup, সুনির্দিষ্ট risk সহ।", lessons: makeClasses(19) },
+  { id: 7, name: "আমাদের ব্যক্তিগত Trading Plan (Prop সহ)", classes: 22, price: 22, thumb: "/thumbnails/chapter-7.jpg", hook: "আমরা নিজেরা এই plan অনুসরণ করেই ট্রেড করি — prop firm execution-সহ।", lessons: makeClasses(22) },
 ];
 export const TOTAL_CLASSES = CHAPTERS.reduce((s, c) => s + c.classes, 0);
 export const PRICING = { tier1Total: 99, tier2Bundle: 79, save: 20, prioritySupport: 8, consultation: 149 };
@@ -56,40 +56,40 @@ export const PRIORITY_FREE_AT = 5;
 export const ADDONS = [
   {
     id: "priority",
-    name: "Priority Support",
+    name: "Priority সাপোর্ট",
     price: 8,
     freeWithBundle: true,
     badge: null,
-    desc: "Faster, front-of-line support for all your questions.",
+    desc: "আপনার সব প্রশ্নের জন্য দ্রুত, সবার আগে সাপোর্ট।",
   },
   {
     id: "market_review",
-    name: "Weekly Market Review",
+    name: "সাপ্তাহিক Market Review",
     price: 29,
     freeWithBundle: false,
-    badge: "Popular",
-    desc: "Weekly forecasts across major markets, shared in a private group.",
+    badge: "জনপ্রিয়",
+    desc: "প্রধান সব market নিয়ে সাপ্তাহিক forecast, শেয়ার করা হয় একটি প্রাইভেট গ্রুপে।",
   },
   {
     id: "consultation",
-    name: "Weekly 1-on-1 Consultation",
+    name: "সাপ্তাহিক 1-on-1 Consultation",
     price: 149,
     freeWithBundle: false,
-    badge: "Premium",
-    desc: "A private weekly call with NLT to review your trades, plan, and progress. Limited seats.",
+    badge: "প্রিমিয়াম",
+    desc: "NLT-এর সাথে সাপ্তাহিক একটি প্রাইভেট কল, যেখানে আপনার trade, plan আর progress রিভিউ করা হবে। সিট সীমিত।",
   },
 ];
 export const TESTIMONIALS = [
-  { name: "Rakib Hasan", role: "Full-time trader", result: "Finally consistent", text: "The institutional framework chapter alone rewired how I see every chart. For the first time, my results are consistent." },
-  { name: "Sadia Karim", role: "Swing trader", result: "Zero fluff", text: "Finally a mentorship with zero fluff. Every class is pure signal, nothing wasted." },
-  { name: "Tanvir Ahmed", role: "Prop firm funded", result: "Passed my challenge", text: "The trading plan chapter is worth the whole bundle. I followed the prop section and passed my funded challenge." },
-  { name: "Nabil Rahman", role: "New trader", result: "Lost to structured", text: "I started knowing nothing. The step-by-step path gave me structure and discipline I never had." },
-  { name: "Farhan Iqbal", role: "Part-time trader", result: "Stopped overtrading", text: "The mindset chapter fixed my biggest problem, overtrading. My account finally stopped bleeding." },
-  { name: "Mahira Chowdhury", role: "Forex trader", result: "Clear entries", text: "Structure and time based concepts made my entries so much cleaner. No more guessing." },
-  { name: "Ashiq Uddin", role: "Crypto trader", result: "Real edge", text: "Smart money basics gave me a real edge. I finally understand what moves price." },
-  { name: "Rifat Jahan", role: "Student trader", result: "Confident now", text: "Scripted classes mean I can rewatch and actually learn. I trade with confidence now." },
-  { name: "Sabbir Alam", role: "Day trader", result: "Disciplined", text: "This is the discipline I was missing. The plan is something I can actually follow every day." },
-  { name: "Tasnim Hoque", role: "Swing trader", result: "Fewer, better trades", text: "High-probability strategies taught me to wait. Fewer trades, far better results." },
-  { name: "Imran Kabir", role: "Prop trader", result: "Consistent payouts", text: "The personal trading plan section is gold. Consistent payouts since I applied it." },
-  { name: "Nusrat Amin", role: "New trader", result: "Finally understand markets", text: "The architecture of markets chapter made everything click. I finally understand the why." },
+  { name: "রাকিব হাসান", role: "ফুল-টাইম ট্রেডার", result: "অবশেষে ধারাবাহিক", text: "শুধু institutional framework চ্যাপ্টারটাই আমার চার্ট দেখার পুরো ধরন বদলে দিয়েছে। জীবনে প্রথমবার আমার রেজাল্ট এখন ধারাবাহিক।" },
+  { name: "সাদিয়া করিম", role: "সুইং ট্রেডার", result: "কোনো ফালতু কথা নেই", text: "অবশেষে এমন একটা মেন্টরশিপ পেলাম যেখানে কোনো ফালতু কথা নেই। প্রতিটা ক্লাসই খাঁটি signal, একটুও সময় নষ্ট হয় না।" },
+  { name: "তানভীর আহমেদ", role: "Prop Firm ফান্ডেড", result: "চ্যালেঞ্জ পাস করেছি", text: "Trading Plan চ্যাপ্টারটাই পুরো বান্ডেলের দাম উশুল করে দেয়। আমি Prop সেকশনটা ফলো করেই আমার ফান্ডেড চ্যালেঞ্জ পাস করেছি।" },
+  { name: "নাবিল রহমান", role: "নতুন ট্রেডার", result: "এখন সংগঠিত", text: "কিছুই না জেনে শুরু করেছিলাম। ধাপে ধাপে সাজানো এই পথ আমাকে এমন structure আর discipline দিয়েছে, যা আগে কখনো ছিল না।" },
+  { name: "ফারহান ইকবাল", role: "পার্ট-টাইম ট্রেডার", result: "Overtrading বন্ধ হয়েছে", text: "Mindset চ্যাপ্টারটা আমার সবচেয়ে বড় সমস্যা — overtrading — ঠিক করে দিয়েছে। আমার অ্যাকাউন্ট থেকে টাকা ক্ষয় হওয়া অবশেষে থেমেছে।" },
+  { name: "মাহিরা চৌধুরী", role: "ফরেক্স ট্রেডার", result: "পরিষ্কার Entry", text: "Structure ও Time-ভিত্তিক concept গুলো আমার entry অনেক পরিষ্কার করে দিয়েছে। আর আন্দাজে ট্রেড করতে হয় না।" },
+  { name: "আশিক উদ্দিন", role: "ক্রিপ্টো ট্রেডার", result: "আসল Edge", text: "Smart Money বেসিকস আমাকে একটা আসল edge দিয়েছে। এখন বুঝি আসলে price কেন move করে।" },
+  { name: "রিফাত জাহান", role: "স্টুডেন্ট ট্রেডার", result: "এখন আত্মবিশ্বাসী", text: "Scripted ক্লাস মানেই বারবার দেখে সত্যিই শেখা যায়। এখন আত্মবিশ্বাসের সাথে ট্রেড করি।" },
+  { name: "সাব্বির আলম", role: "ডে ট্রেডার", result: "Discipline পেয়েছি", text: "এই discipline-টাই আমার মধ্যে ছিল না। এই plan টা এমন, যা আমি সত্যিই প্রতিদিন ফলো করতে পারি।" },
+  { name: "তাসনিম হক", role: "সুইং ট্রেডার", result: "কম, কিন্তু ভালো Trade", text: "High-Probability স্ট্র্যাটেজি আমাকে অপেক্ষা করতে শিখিয়েছে। কম ট্রেড, কিন্তু রেজাল্ট অনেক ভালো।" },
+  { name: "ইমরান কবির", role: "Prop ট্রেডার", result: "নিয়মিত পেআউট", text: "Personal Trading Plan সেকশনটা একদম gold। এটা apply করার পর থেকে নিয়মিত পেআউট পাচ্ছি।" },
+  { name: "নুসরাত আমিন", role: "নতুন ট্রেডার", result: "মার্কেট বুঝি এখন", text: "মার্কেটের আর্কিটেকচার চ্যাপ্টারটা পড়ার পর সব একদম মাথায় ক্লিক করে গেছে। কেন এমন হয়, সেটা এখন বুঝি।" },
 ];
