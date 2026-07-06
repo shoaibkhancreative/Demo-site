@@ -3,13 +3,14 @@ import Base from "../layouts/Base.astro";
 ---
 <Base title="লগ ইন · Exclusive Mentorship">
   <section class="mx-auto flex max-w-sm flex-col px-6 py-16">
-    <h1 class="text-2xl font-semibold">আবার স্বাগতম</h1>
+    <p class="eyebrow">সদস্য এলাকা</p>
+    <h1 class="mt-3 text-2xl text-ivory">আবার স্বাগতম</h1>
     <p class="mt-1.5 text-sm muted">আপনার ড্যাশবোর্ড অ্যাক্সেস করতে লগ ইন করুন।</p>
     <form class="mt-7 space-y-2.5" onsubmit="event.preventDefault()">
-      <input type="email" placeholder="ইমেইল" required class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--color-accent)]" />
-      <input type="password" placeholder="পাসওয়ার্ড" required class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--color-accent)]" />
+      <input type="email" placeholder="ইমেইল" required class="input" />
+      <input type="password" placeholder="পাসওয়ার্ড" required class="input" />
       <button class="btn btn-accent w-full">লগ ইন করুন</button>
     </form>
-    <p class="mt-5 text-center text-sm muted">অ্যাকাউন্ট নেই? <a href="/signup" class="text-[color:var(--color-accent)]">সাইন আপ করুন</a></p>
+    <p class="mt-5 text-center text-sm muted">অ্যাকাউন্ট নেই? <a href="/signup" class="text-gold">সাইন আপ করুন</a></p>
   </section>
 </Base>
