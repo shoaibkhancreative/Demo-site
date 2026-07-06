@@ -3,15 +3,14 @@ import Base from "../layouts/Base.astro";
 ---
 <Base title="সাইন আপ · Exclusive Mentorship">
   <section class="mx-auto flex max-w-sm flex-col px-6 py-16">
-    <p class="eyebrow">সদস্য এলাকা</p>
-    <h1 class="mt-3 text-2xl text-ivory">আপনার অ্যাকাউন্ট তৈরি করুন</h1>
+    <h1 class="text-2xl font-semibold">আপনার অ্যাকাউন্ট তৈরি করুন</h1>
     <p class="mt-1.5 text-sm muted">ক্লাস কেনা আর অ্যাক্সেস করতে সাইন আপ করুন।</p>
     <form class="mt-7 space-y-2.5" onsubmit="event.preventDefault()">
-      <input type="text" placeholder="পূর্ণ নাম" required class="input" />
-      <input type="email" placeholder="ইমেইল" required class="input" />
-      <input type="password" placeholder="পাসওয়ার্ড" required class="input" />
+      <input type="text" placeholder="পূর্ণ নাম" required class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--color-accent)]" />
+      <input type="email" placeholder="ইমেইল" required class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--color-accent)]" />
+      <input type="password" placeholder="পাসওয়ার্ড" required class="w-full rounded-lg border bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[color:var(--color-accent)]" />
       <button class="btn btn-accent w-full">অ্যাকাউন্ট তৈরি করুন</button>
     </form>
-    <p class="mt-5 text-center text-sm muted">আগে থেকেই সদস্য? <a href="/login" class="text-gold">লগ ইন করুন</a></p>
+    <p class="mt-5 text-center text-sm muted">আগে থেকেই সদস্য? <a href="/login" class="text-[color:var(--color-accent)]">লগ ইন করুন</a></p>
   </section>
 </Base>

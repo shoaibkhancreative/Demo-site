@@ -1,33 +1,7 @@
 ---
-// No photography is needed for this to look finished: each chapter gets a
-// tiny deterministic sparkline (seeded by its id) plus its number set large
-// in the display serif. If a real photo is later dropped into
-// /public/thumbnails/chapter-N.jpg, it layers on top and picks up the same
-// warm duotone treatment via the .thumb img filter in global.css.
-interface Props {
-  src?: string;
-  label?: string;
-  id?: number;
-}
-const { src, label = "Exclusive Mentorship", id = 1 } = Astro.props;
-
-function sparkline(seed: number, w = 220, h = 100, points = 10) {
-  let s = seed * 9301 + 49297;
-  const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
-  let d = "";
-  for (let i = 0; i < points; i++) {
-    const x = (w / (points - 1)) * i;
-    const y = 16 + rnd() * (h - 32);
-    d += (i === 0 ? "M" : "L") + x.toFixed(1) + "," + y.toFixed(1) + " ";
-  }
-  return d.trim();
-}
-const path = sparkline(id);
+const { src, label = "Exclusive Mentorship" } = Astro.props;
 ---
 <div class="thumb">
-  <svg class="absolute inset-0 h-full w-full" viewBox="0 0 220 100" preserveAspectRatio="none" aria-hidden="true">
-    <path d={path} fill="none" stroke="var(--color-gold)" stroke-width="1.1" opacity="0.16" vector-effect="non-scaling-stroke" />
-  </svg>
-  <span class="ph"><span class="num">{String(id).padStart(2,'0')}</span></span>
-  {src && <img src={src} alt={label} loading="lazy" onerror="this.remove()" />}
+  <span class="ph">{label}</span>
+  <img src={src} alt={label} loading="lazy" onerror="this.remove()" />
 </div>

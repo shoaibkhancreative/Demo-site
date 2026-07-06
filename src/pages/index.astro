@@ -1,125 +1,145 @@
 ---
 import Base from "../layouts/Base.astro";
 import Journey from "../components/Journey.astro";
-import ChartArt from "../components/ChartArt.astro";
 import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID, CHAPTERS } from "../data/site.js";
 ---
 <Base>
+  <!-- icon sprite (referenced via <use> throughout the page) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-check" viewBox="0 0 14 14"><path d="M3 7.2l2.6 2.6L11 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.9 6.3 6.8.7-5.1 4.5 1.5 6.6-6.1-3.6-6.1 3.6 1.5-6.6-5.1-4.5 6.8-.7z" fill="currentColor"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.6l7.4 3v5.9c0 5.1-3.3 8.8-7.4 9.9-4.1-1.1-7.4-4.8-7.4-9.9V5.6l7.4-3z" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8.6 12.1l2.4 2.4 4.4-4.7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
   <!-- HERO -->
-  <section class="mx-auto max-w-3xl px-6 pt-20 pb-6 text-center">
-    <span class="reveal eyebrow mx-auto w-fit">NLT-এর {TOTAL_CLASSES}টি scripted ক্লাস</span>
-    <h1 class="reveal mt-6 text-[2.6rem] leading-[1.1] text-ivory sm:text-6xl sm:leading-[1.08]">Institutions-দের মতো ট্রেড করুন।</h1>
-    <p class="reveal mx-auto mt-5 max-w-lg text-[17px] leading-relaxed muted">সম্পূর্ণ, ধাপে ধাপে সাজানো একটি মেন্টরশিপ। কোনো noise নেই, কোনো filler নেই। শুধু সেই framework, mindset আর plan, যা দিয়ে মার্কেটে প্রফেশনালি ট্রেড করা হয়।</p>
-    <div class="reveal mt-8 flex flex-col items-center justify-center gap-2.5 sm:flex-row">
-      <a href="/checkout" class="btn btn-accent">সম্পূর্ণ অ্যাক্সেস নিন · ${PRICING.tier2Bundle}</a>
-      <a href="#intro" class="btn btn-ghost">পরিচিতি ভিডিও দেখুন</a>
-    </div>
-  </section>
+  <section class="relative overflow-hidden">
+    <svg class="hero-motif pointer-events-none absolute inset-0 h-full w-full opacity-70" viewBox="0 0 1000 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <line class="ln" x1="190" y1="245" x2="500" y2="245" stroke-width="1" stroke-dasharray="4 5" opacity="0.3"/>
+      <rect class="zone" x="452" y="260" width="95" height="40" opacity="0.08"/>
+      <path class="price-line ln" d="M0,300 L110,190 L190,245 L330,95 L430,265 L470,295 L630,55 L710,130 L860,35 L1000,85" fill="none" stroke-width="1.4" opacity="0.6" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle class="dot" cx="110" cy="190" r="3.5" stroke-width="1.2" opacity="0.65"/>
+      <circle class="dot" cx="330" cy="95" r="4" stroke-width="1.3" opacity="0.8"/>
+      <circle class="dot" cx="470" cy="295" r="4" stroke-width="1.3" opacity="0.8"/>
+      <circle class="dot" cx="860" cy="35" r="3.5" stroke-width="1.2" opacity="0.65"/>
+      <text x="345" y="80" font-size="10" letter-spacing="2" opacity="0.6">BOS</text>
+      <text x="195" y="333" font-size="10" letter-spacing="2" opacity="0.55">LIQUIDITY SWEEP</text>
+      <text x="558" y="250" font-size="10" letter-spacing="2" opacity="0.55">ORDER BLOCK</text>
+    </svg>
 
-  <!-- SIGNATURE CHART -->
-  <section class="mx-auto max-w-5xl px-6 pb-10">
-    <div class="reveal relative overflow-hidden rounded-2xl border border-ink-4 bg-ink-2 px-4 pb-5 pt-9 sm:px-10 sm:pt-11">
-      <ChartArt variant="hero" class="mx-auto block max-w-3xl" />
-      <p class="mt-5 text-center font-mono text-[10.5px] uppercase tracking-[0.16em] faint">liquidity sweep → order block → break of structure → target — Chapter 02 ও 03-এ যা শেখানো হয়</p>
-    </div>
-  </section>
+    <div class="relative mx-auto max-w-3xl px-6 pt-28 pb-20 text-center sm:pt-36 sm:pb-24">
+      <span class="reveal chip mx-auto">NLT-এর {TOTAL_CLASSES}টি scripted ক্লাস</span>
+      <h1 class="reveal mt-7 font-[family-name:var(--font-serif)] text-[2.75rem] font-medium leading-[1.1] sm:text-[4rem] sm:leading-[1.06]">Institutions-দের মতো<br/>ট্রেড করুন।</h1>
+      <p class="reveal mx-auto mt-6 max-w-lg text-[17px] leading-relaxed muted">সম্পূর্ণ, ধাপে ধাপে সাজানো একটি মেন্টরশিপ। কোনো noise নেই, কোনো filler নেই। শুধু সেই framework, mindset আর plan, যা দিয়ে মার্কেটে প্রফেশনালি ট্রেড করা হয়।</p>
+      <div class="reveal mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href="/checkout" class="btn btn-accent">সম্পূর্ণ অ্যাক্সেস নিন · ${PRICING.tier2Bundle}</a>
+        <a href="#intro" class="btn btn-ghost">পরিচিতি ভিডিও দেখুন</a>
+      </div>
 
-  <!-- LEDGER STAT STRIP -->
-  <section class="mx-auto max-w-4xl px-6 pb-16">
-    <div class="reveal ledger grid grid-cols-1 divide-y divide-ink-4 text-center sm:grid-cols-4 sm:divide-y-0 sm:divide-x">
-      <div><p class="n">{TOTAL_CLASSES}</p><p class="mt-1 text-[11px] uppercase tracking-wider faint">scripted ক্লাস</p></div>
-      <div><p class="n">{CHAPTERS.length}</p><p class="mt-1 text-[11px] uppercase tracking-wider faint">অনুক্রমিক চ্যাপ্টার</p></div>
-      <div><p class="n">{TESTIMONIALS.length}</p><p class="mt-1 text-[11px] uppercase tracking-wider faint">ভেরিফায়েড রেজাল্ট</p></div>
-      <div><p class="n">7</p><p class="mt-1 text-[11px] uppercase tracking-wider faint">দিনের গ্যারান্টি</p></div>
+      <div class="reveal mt-14 flex items-center justify-center gap-7 sm:gap-11">
+        <div class="text-center">
+          <p class="font-mono text-xl text-[color:var(--color-accent)]">{TOTAL_CLASSES}</p>
+          <p class="mt-1 text-[11px] muted">স্ক্রিপ্টেড ক্লাস</p>
+        </div>
+        <span class="h-9 w-px bg-[color:var(--color-line-2)]"></span>
+        <div class="text-center">
+          <p class="font-mono text-xl text-[color:var(--color-accent)]">{CHAPTERS.length}</p>
+          <p class="mt-1 text-[11px] muted">চ্যাপ্টার</p>
+        </div>
+        <span class="h-9 w-px bg-[color:var(--color-line-2)]"></span>
+        <div class="text-center">
+          <p class="font-mono text-xl text-[color:var(--color-accent)]">1</p>
+          <p class="mt-1 text-[11px] muted">ফ্রেমওয়ার্ক</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- INTRO VIDEO -->
-  <section id="intro" class="mx-auto max-w-3xl px-6 pb-20">
-    <p class="reveal eyebrow mx-auto mb-5 w-fit">পরিচিতি</p>
+  <section id="intro" class="mx-auto max-w-3xl px-6 pb-20 sm:pb-24">
+    <p class="reveal eyebrow mx-auto mb-4 justify-center">ভিডিও ভূমিকা</p>
     <div class="reveal video-frame">
       <iframe src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}`} title="পরিচিতি" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </section>
 
   <!-- CURRICULUM -->
-  <section id="curriculum" class="mx-auto max-w-5xl px-6 pb-20">
+  <section id="curriculum" class="mx-auto max-w-3xl px-6 pb-20 sm:pb-24">
     <div class="reveal mb-10 text-center">
-      <p class="eyebrow mx-auto w-fit">কারিকুলাম</p>
-      <h2 class="mt-3 text-3xl text-ivory sm:text-4xl">সাতটি চ্যাপ্টার। একটাই অনুক্রম।</h2>
-      <p class="mx-auto mt-3 max-w-md text-sm muted">প্রতিটা চ্যাপ্টার আগেরটার উপর নির্ভর করে তৈরি — যেকোনোটায় ক্লিক করে পুরো লেসন লিস্ট দেখুন।</p>
+      <p class="eyebrow mx-auto justify-center">কারিকুলাম</p>
+      <h2 class="mt-3 font-[family-name:var(--font-serif)] text-3xl font-medium sm:text-4xl">সাতটি চ্যাপ্টার। একটাই পরিষ্কার পথ।</h2>
+      <p class="mx-auto mt-3 max-w-md text-sm muted">যেকোনো চ্যাপ্টারে ক্লিক করে সব লেসন দেখুন।</p>
     </div>
     <div class="reveal"><Journey /></div>
   </section>
 
   <!-- PRICING -->
-  <section id="pricing" class="mx-auto max-w-5xl px-6 pb-20">
+  <section id="pricing" class="mx-auto max-w-4xl px-6 pb-20 sm:pb-24">
     <div class="reveal mb-10 text-center">
-      <p class="eyebrow mx-auto w-fit">মূল্য</p>
-      <h2 class="mt-3 text-3xl text-ivory sm:text-4xl">একটাই মূল্য। সব কিছু অন্তর্ভুক্ত।</h2>
+      <p class="eyebrow mx-auto justify-center">মূল্য</p>
+      <h2 class="mt-3 font-[family-name:var(--font-serif)] text-3xl font-medium sm:text-4xl">একটাই মূল্য। সব কিছু অন্তর্ভুক্ত।</h2>
       <p class="mx-auto mt-3 max-w-md text-sm muted">আলাদাভাবে সবগুলো 7 চ্যাপ্টার কিনলে খরচ হবে ${PRICING.tier1Total}। বান্ডেলে সব কিছু পাবেন মাত্র ${PRICING.tier2Bundle}-এ।</p>
     </div>
 
-    <div class="mx-auto grid max-w-3xl gap-4 sm:grid-cols-[1.35fr_1fr]">
-      <div class="reveal relative overflow-hidden rounded-2xl border border-gold-dim bg-ink-2 p-7 shadow-[0_30px_70px_-40px_rgba(201,162,76,.35)]">
-        <div class="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-gold/[.08] blur-3xl"></div>
-        <span class="absolute right-4 top-4 chip-gold chip">${PRICING.save} সাশ্রয়</span>
+    <div class="mx-auto grid gap-4 sm:grid-cols-[1.35fr_1fr]">
+      <div class="reveal surface relative overflow-hidden p-7 ring-1 ring-[color:var(--color-accent)] sm:p-9">
+        <span class="absolute right-5 top-5 chip !border-[color:var(--color-accent)] !text-[color:var(--color-accent)]">${PRICING.save} সাশ্রয়</span>
         <p class="eyebrow">ফুল বান্ডেল</p>
-        <div class="mt-3 flex items-end gap-2">
-          <span class="num-serif text-5xl text-ivory">${PRICING.tier2Bundle}</span>
+        <div class="mt-3 flex items-end gap-2.5">
+          <span class="font-[family-name:var(--font-serif)] text-5xl font-medium">${PRICING.tier2Bundle}</span>
           <span class="mb-1.5 text-sm muted line-through">${PRICING.tier1Total}</span>
         </div>
-        <ul class="mt-5 space-y-2.5 text-[13px] muted">
-          <li class="flex items-center gap-2"><span class="tick"></span>সবগুলো {TOTAL_CLASSES}টি scripted ক্লাস</li>
-          <li class="flex items-center gap-2"><span class="tick"></span>Priority সাপোর্ট একদম <span class="font-medium text-ivory">ফ্রি</span></li>
-          <li class="flex items-center gap-2"><span class="tick"></span>মূল প্রাইভেট চ্যানেলে অ্যাক্সেস</li>
-          <li class="flex items-center gap-2"><span class="tick"></span>7 দিনের মানি-ব্যাক গ্যারান্টি</li>
-          <li class="flex items-center gap-2"><span class="tick"></span>Lifetime আপডেট</li>
+        <ul class="mt-6 space-y-2.5 text-[13px] muted">
+          <li class="flex items-start gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[color:var(--color-accent)]"><use href="#i-check"/></svg>সবগুলো {TOTAL_CLASSES}টি scripted ক্লাস</li>
+          <li class="flex items-start gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[color:var(--color-accent)]"><use href="#i-check"/></svg>Priority সাপোর্ট একদম <span class="font-medium text-[color:var(--color-ink)]">ফ্রি</span></li>
+          <li class="flex items-start gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[color:var(--color-accent)]"><use href="#i-check"/></svg>মূল প্রাইভেট চ্যানেলে অ্যাক্সেস</li>
+          <li class="flex items-start gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[color:var(--color-accent)]"><use href="#i-check"/></svg>7 দিনের মানি-ব্যাক গ্যারান্টি</li>
+          <li class="flex items-start gap-2.5"><svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-[color:var(--color-accent)]"><use href="#i-check"/></svg>Lifetime আপডেট</li>
         </ul>
-        <a href="/checkout" class="btn btn-accent mt-6 w-full">সম্পূর্ণ অ্যাক্সেস নিন</a>
+        <a href="/checkout" class="btn btn-accent mt-7 w-full">সম্পূর্ণ অ্যাক্সেস নিন</a>
       </div>
 
-      <div class="reveal surface p-7">
+      <div class="reveal surface p-7 sm:p-9">
         <p class="eyebrow">চ্যাপ্টার অনুযায়ী</p>
-        <div class="mt-3 flex items-end gap-1.5">
-          <span class="num-serif text-3xl text-ivory">${CHAPTERS[0].price}</span><span class="mb-1 text-sm muted">থেকে শুরু</span>
+        <div class="mt-3 flex items-end gap-2">
+          <span class="font-[family-name:var(--font-serif)] text-3xl font-medium">${CHAPTERS[0].price}</span><span class="mb-1 text-sm muted">থেকে শুরু</span>
         </div>
-        <p class="mt-4 text-[13px] muted">ছোট থেকে শুরু করতে চান? যেকোনো চ্যাপ্টার আলাদাভাবে কিনুন। সবগুলো 7টা আলাদাভাবে কিনলে মোট <span class="font-semibold text-ivory">${PRICING.tier1Total}</span>।</p>
-        <p class="mt-3 text-[13px] muted">ঐচ্ছিক Priority সাপোর্ট অ্যাড-অন: <span class="font-medium text-ivory">+${PRICING.prioritySupport}</span>।</p>
-        <a href="/checkout" class="btn btn-ghost mt-6 w-full">চ্যাপ্টার বেছে নিন</a>
+        <p class="mt-5 text-[13px] muted">ছোট থেকে শুরু করতে চান? যেকোনো চ্যাপ্টার আলাদাভাবে কিনুন। সবগুলো 7টা আলাদাভাবে কিনলে মোট <span class="font-semibold text-[color:var(--color-ink)]">${PRICING.tier1Total}</span>।</p>
+        <p class="mt-3 text-[13px] muted">ঐচ্ছিক Priority সাপোর্ট অ্যাড-অন: <span class="font-medium text-[color:var(--color-ink)]">+${PRICING.prioritySupport}</span>।</p>
+        <a href="/checkout" class="btn btn-ghost mt-7 w-full">চ্যাপ্টার বেছে নিন</a>
       </div>
     </div>
 
     <!-- Effective guarantee strip -->
-    <div class="reveal mx-auto mt-4 flex max-w-3xl items-center gap-4 rounded-xl border border-gold-dim/40 bg-gold/[.05] px-6 py-4">
-      <div class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold/10 text-lg">🛡</div>
+    <div class="reveal mt-4 flex items-center gap-4 rounded-xl border border-[color:var(--color-accent)]/25 bg-[color:var(--color-accent)]/[.05] px-6 py-5">
+      <div class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[color:var(--color-accent)]/10 text-[color:var(--color-accent)]"><svg class="h-5 w-5"><use href="#i-shield"/></svg></div>
       <div>
-        <p class="text-sm font-semibold text-ivory">7 দিনের মানি-ব্যাক গ্যারান্টি</p>
+        <p class="text-sm font-semibold">7 দিনের মানি-ব্যাক গ্যারান্টি</p>
         <p class="text-[13px] muted">ফুল বান্ডেল ঝুঁকিহীনভাবে ব্যবহার করে দেখুন। 7 দিনের মধ্যে যদি মনে হয় এটা আপনার জন্য না, তাহলে কোনো ঝামেলা ছাড়াই সম্পূর্ণ রিফান্ড পাবেন।</p>
       </div>
     </div>
   </section>
 
-  <!-- INSTRUCTOR — the one paper insert in an otherwise dark page -->
-  <section id="instructor" class="mx-auto max-w-4xl px-6 pb-20">
-    <div class="reveal on-paper surface relative overflow-hidden p-8 sm:p-10">
-      <div class="relative flex flex-col gap-6 sm:flex-row sm:items-start">
+  <!-- INSTRUCTOR -->
+  <section id="instructor" class="mx-auto max-w-4xl px-6 pb-20 sm:pb-24">
+    <div class="reveal surface relative overflow-hidden p-8 sm:p-11">
+      <div class="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-[color:var(--color-accent)]/[.08] blur-3xl"></div>
+      <div class="relative flex flex-col gap-7 sm:flex-row sm:items-center">
         <!-- identity -->
-        <div class="flex items-center gap-4 sm:w-40 sm:shrink-0 sm:flex-col sm:items-start sm:gap-3 sm:border-r sm:border-paper-2 sm:pr-8">
-          <span class="grid h-14 w-14 place-items-center rounded-2xl bg-paper-ink text-lg font-semibold text-paper font-display">NLT</span>
+        <div class="flex items-center gap-4 sm:flex-col sm:items-start sm:gap-3 sm:border-r sm:border-[color:var(--color-line-2)] sm:pr-9">
+          <span class="avatar-seal h-14 w-14 text-lg">NLT</span>
           <div>
-            <p class="text-sm font-semibold leading-tight text-paper-ink">{INSTRUCTOR}</p>
-            <p class="text-[12px] text-paper-muted">ট্রেডার · মেন্টর</p>
+            <p class="text-sm font-semibold leading-tight">{INSTRUCTOR}</p>
+            <p class="text-[12px] muted">ট্রেডার · মেন্টর</p>
           </div>
         </div>
         <!-- message -->
         <div class="sm:flex-1">
-          <p class="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-paper-muted">আপনার মেন্টরের পক্ষ থেকে একটি বার্তা</p>
-          <h2 class="mt-2 text-2xl leading-tight text-paper-ink sm:text-[1.7rem]">আন্দাজ করা বন্ধ করুন। একটি plan নিয়ে ট্রেড শুরু করুন।</h2>
-          <p class="mt-3 text-[14px] leading-relaxed text-paper-muted">বেশিরভাগ ট্রেডার লস করে এই কারণে না যে তারা স্মার্ট না, বরং এই কারণে যে তাদের কেউ কখনো একটা আসল system দেয়নি। এটাই ঠিক সেই framework, mindset আর plan যা আমি নিজে ব্যবহার করি, {TOTAL_CLASSES}টি scripted ক্লাসে সাজিয়ে দেওয়া হয়েছে। আপনার ভাগ্যের দরকার নেই, দরকার structure — আর সেটা আমি আপনার সাথে থেকেই শেখাবো।</p>
-          <div class="mt-5 flex flex-wrap gap-2.5">
+          <p class="eyebrow">আপনার মেন্টরের পক্ষ থেকে একটি বার্তা</p>
+          <h2 class="mt-2 font-[family-name:var(--font-serif)] text-2xl font-medium leading-tight sm:text-[1.85rem]">আন্দাজ করা বন্ধ করুন। একটি plan নিয়ে ট্রেড শুরু করুন।</h2>
+          <p class="mt-3.5 text-[14px] leading-relaxed muted">বেশিরভাগ ট্রেডার লস করে এই কারণে না যে তারা স্মার্ট না, বরং এই কারণে যে তাদের কেউ কখনো একটা আসল system দেয়নি। এটাই ঠিক সেই framework, mindset আর plan যা আমি নিজে ব্যবহার করি, {TOTAL_CLASSES}টি scripted ক্লাসে সাজিয়ে দেওয়া হয়েছে। আপনার ভাগ্যের দরকার নেই, দরকার structure — আর সেটা আমি আপনার সাথে থেকেই শেখাবো।</p>
+          <div class="mt-6 flex flex-wrap gap-2.5">
             <a href="/checkout" class="btn btn-accent btn-sm">আপনার journey শুরু করুন · ${PRICING.tier2Bundle}</a>
-            <a href="#curriculum" class="btn btn-sm border border-paper-2 text-paper-ink transition hover:bg-paper-2/60">কী কী শিখবেন দেখুন</a>
+            <a href="#curriculum" class="btn btn-ghost btn-sm">কী কী শিখবেন দেখুন</a>
           </div>
         </div>
       </div>
@@ -127,10 +147,10 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="pb-20">
-    <div class="reveal mx-auto mb-10 max-w-5xl px-6 text-center">
-      <p class="eyebrow mx-auto w-fit">ফলাফল</p>
-      <h2 class="mt-3 text-3xl text-ivory sm:text-4xl">আসল ট্রেডারদের আস্থা।</h2>
+  <section class="pb-20 sm:pb-24">
+    <div class="reveal mx-auto mb-10 max-w-3xl px-6 text-center">
+      <p class="eyebrow mx-auto justify-center">ফলাফল</p>
+      <h2 class="mt-3 font-[family-name:var(--font-serif)] text-3xl font-medium sm:text-4xl">আসল ট্রেডারদের আস্থা।</h2>
       <p class="mx-auto mt-3 max-w-md text-sm muted">যারা এই পথ অনুসরণ করে তাদের ট্রেড করার ধরন বদলে ফেলেছেন।</p>
     </div>
 
@@ -140,16 +160,18 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
           <figure class="t-card surface p-5">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2.5">
-                <span class="grid h-8 w-8 place-items-center rounded-full border border-gold-dim/50 text-[11px] font-semibold text-gold">{t.name.split(" ").map(w=>w[0]).join("").slice(0,2)}</span>
+                <span class="avatar-seal h-8 w-8 text-[11px]">{t.name.split(" ").map(w=>w[0]).join("").slice(0,2)}</span>
                 <span>
-                  <span class="block text-[13px] font-semibold leading-tight text-ivory">{t.name}</span>
+                  <span class="block text-[13px] font-semibold leading-tight">{t.name}</span>
                   <span class="block text-[11px] muted">{t.role}</span>
                 </span>
               </div>
-              <span class="text-[11px] text-gold">★★★★★</span>
+              <div class="flex items-center gap-0.5 text-[color:var(--color-accent)]">
+                {Array.from({length:5}).map(() => (<svg class="h-2.5 w-2.5"><use href="#i-star"/></svg>))}
+              </div>
             </div>
             <blockquote class="mt-3 text-[13px] leading-relaxed muted">"{t.text}"</blockquote>
-            <p class="mt-3 inline-block rounded-full bg-up/10 px-2.5 py-0.5 text-[11px] font-medium text-up">{t.result}</p>
+            <p class="mt-3 inline-block rounded-full bg-[color:var(--color-accent)]/[.1] px-2.5 py-0.5 text-[11px] font-medium text-[color:var(--color-accent)]">{t.result}</p>
           </figure>
         ))}
       </div>
@@ -159,25 +181,27 @@ import { TOTAL_CLASSES, PRICING, TESTIMONIALS, INSTRUCTOR, TELEGRAM, YOUTUBE_ID,
           <figure class="t-card surface p-5">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2.5">
-                <span class="grid h-8 w-8 place-items-center rounded-full border border-gold-dim/50 text-[11px] font-semibold text-gold">{t.name.split(" ").map(w=>w[0]).join("").slice(0,2)}</span>
+                <span class="avatar-seal h-8 w-8 text-[11px]">{t.name.split(" ").map(w=>w[0]).join("").slice(0,2)}</span>
                 <span>
-                  <span class="block text-[13px] font-semibold leading-tight text-ivory">{t.name}</span>
+                  <span class="block text-[13px] font-semibold leading-tight">{t.name}</span>
                   <span class="block text-[11px] muted">{t.role}</span>
                 </span>
               </div>
-              <span class="text-[11px] text-gold">★★★★★</span>
+              <div class="flex items-center gap-0.5 text-[color:var(--color-accent)]">
+                {Array.from({length:5}).map(() => (<svg class="h-2.5 w-2.5"><use href="#i-star"/></svg>))}
+              </div>
             </div>
             <blockquote class="mt-3 text-[13px] leading-relaxed muted">"{t.text}"</blockquote>
-            <p class="mt-3 inline-block rounded-full bg-up/10 px-2.5 py-0.5 text-[11px] font-medium text-up">{t.result}</p>
+            <p class="mt-3 inline-block rounded-full bg-[color:var(--color-accent)]/[.1] px-2.5 py-0.5 text-[11px] font-medium text-[color:var(--color-accent)]">{t.result}</p>
           </figure>
         ))}
       </div>
     </div>
 
-    <div class="reveal mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px] muted">
-      <span>✓ প্রকৃত সদস্য</span>
-      <span>✓ Telegram-এ ভেরিফায়েড</span>
-      <span>✓ 7 দিনের মানি-ব্যাক গ্যারান্টি</span>
+    <div class="reveal mt-9 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-[12px] muted">
+      <span class="flex items-center gap-1.5"><svg class="h-3 w-3 text-[color:var(--color-accent)]"><use href="#i-check"/></svg>প্রকৃত সদস্য</span>
+      <span class="flex items-center gap-1.5"><svg class="h-3 w-3 text-[color:var(--color-accent)]"><use href="#i-check"/></svg>Telegram-এ ভেরিফায়েড</span>
+      <span class="flex items-center gap-1.5"><svg class="h-3 w-3 text-[color:var(--color-accent)]"><use href="#i-check"/></svg>7 দিনের মানি-ব্যাক গ্যারান্টি</span>
     </div>
   </section>
 </Base>
