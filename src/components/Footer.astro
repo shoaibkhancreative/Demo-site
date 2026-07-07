@@ -1,69 +1,64 @@
 ---
 import { BRAND, TELEGRAM, TOTAL_CLASSES, PRICING } from "../data/site.js";
-import Mark from "./Mark.astro";
 const year = new Date().getFullYear();
 ---
-<footer class="border-t">
+<footer class="mt-24 border-t border-[color:var(--color-line)]">
   <!-- CTA band -->
-  <div class="relative overflow-hidden bg-[color:var(--color-bg-soft)]">
-    <div class="pointer-events-none absolute left-1/2 top-0 h-[26rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[color:var(--color-accent)]/[.07] blur-3xl"></div>
-    <div class="relative mx-auto max-w-5xl px-6 py-16 text-center sm:py-20">
-      <p class="eyebrow mx-auto justify-center">আপনি প্রস্তুত হলেই</p>
-      <h2 class="mt-3 font-[family-name:var(--font-serif)] text-3xl font-medium leading-tight sm:text-4xl">আজই শুরু করুন চ্যাপ্টার 1 থেকে।</h2>
-      <p class="mx-auto mt-3 max-w-md text-[13px] leading-relaxed muted">7টি চ্যাপ্টার জুড়ে {TOTAL_CLASSES}টি scripted ক্লাস, যা Telegram-এ ব্যক্তিগতভাবে পৌঁছে দেওয়া হয়।</p>
+  <div class="band-navy">
+    <div class="wrap mx-auto max-w-5xl px-6 py-16 text-center sm:py-20">
+      <p class="eyebrow justify-center !text-[color:var(--color-gold-bright)]">আপনি প্রস্তুত হলেই</p>
+      <h2 class="mt-3 text-[1.9rem] font-semibold leading-[1.15] sm:text-4xl">আজই শুরু করুন, চ্যাপ্টার ০১ থেকে।</h2>
+      <p class="muted-on-navy mx-auto mt-3 max-w-md text-[13.5px] leading-relaxed">৭টি চ্যাপ্টার জুড়ে {TOTAL_CLASSES}টি scripted ক্লাস — Telegram-এ সরাসরি, ব্যক্তিগতভাবে পৌঁছে দেওয়া হয়।</p>
       <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
-        <a href="/checkout" class="btn btn-accent">অ্যাক্সেস নিন · ${PRICING.tier2Bundle}</a>
-        <a href={TELEGRAM} class="btn btn-ghost">Telegram-এ মেসেজ করুন</a>
+        <a href="/checkout" class="btn btn-gold">সম্পূর্ণ অ্যাক্সেস নিন · ${PRICING.tier2Bundle}</a>
+        <a href={TELEGRAM} class="btn btn-on-navy">Telegram-এ মেসেজ করুন</a>
       </div>
     </div>
   </div>
 
   <!-- Links -->
-  <div class="bg-[color:var(--color-surface)]">
-    <div class="mx-auto max-w-6xl px-6 py-14">
+  <div class="bg-[color:var(--color-paper)]">
+    <div class="wrap mx-auto max-w-5xl px-6 py-14">
       <div class="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
-        <!-- Brand -->
         <div class="sm:col-span-2">
           <div class="flex items-center gap-2.5 text-[15px] font-semibold">
-            <Mark size={28} />
-            <span class="font-[family-name:var(--font-serif)]">{BRAND}</span>
+            <span class="nav-mark">EM</span>
+            <span class="font-display">{BRAND}</span>
           </div>
-          <p class="mt-3 max-w-xs text-[13px] leading-relaxed muted">NLT-এর institutional-grade ট্রেডিং মেন্টরশিপ। 7টি চ্যাপ্টার জুড়ে {TOTAL_CLASSES}টি scripted ক্লাস, Telegram-এ ব্যক্তিগতভাবে পৌঁছে দেওয়া হয়।</p>
-          <div class="mt-4 flex items-center gap-2 text-[11px] faint">
-            <span class="chip !py-0.5 !px-2.5">₿ BTC</span><span class="chip !py-0.5 !px-2.5">₮ USDT</span><span class="chip !py-0.5 !px-2.5">Ξ ETH</span>
+          <p class="mt-3.5 max-w-xs text-[13px] leading-relaxed muted">NLT-এর institutional-grade ট্রেডিং মেন্টরশিপ। ৭টি চ্যাপ্টার জুড়ে {TOTAL_CLASSES}টি scripted ক্লাস, Telegram-এ ব্যক্তিগতভাবে পৌঁছে দেওয়া হয়।</p>
+          <div class="mt-5 flex items-center gap-2 text-[11px] faint">
+            <span class="chip !py-1">₿ BTC</span><span class="chip !py-1">₮ USDT</span><span class="chip !py-1">Ξ ETH</span>
           </div>
         </div>
 
-        <!-- Learn -->
-        <div class="text-[13px]">
-          <p class="mb-3 font-medium">শিখুন</p>
+        <div class="text-[13px] footer-links">
+          <p class="mb-3 font-semibold">শিখুন</p>
           <ul class="space-y-2.5 muted">
-            <li><a href="/#curriculum" class="transition hover:text-[color:var(--color-accent)]">কারিকুলাম</a></li>
-            <li><a href="/#instructor" class="transition hover:text-[color:var(--color-accent)]">মেন্টর</a></li>
-            <li><a href="/#intro" class="transition hover:text-[color:var(--color-accent)]">পরিচিতি</a></li>
+            <li><a href="/#curriculum" class="hover:text-[color:var(--color-gold-deep)]">কারিকুলাম</a></li>
+            <li><a href="/#instructor" class="hover:text-[color:var(--color-gold-deep)]">মেন্টর</a></li>
+            <li><a href="/#intro" class="hover:text-[color:var(--color-gold-deep)]">পরিচিতি ভিডিও</a></li>
           </ul>
         </div>
 
-        <!-- Buy -->
-        <div class="text-[13px]">
-          <p class="mb-3 font-medium">কিনুন</p>
+        <div class="text-[13px] footer-links">
+          <p class="mb-3 font-semibold">কিনুন</p>
           <ul class="space-y-2.5 muted">
-            <li><a href="/#pricing" class="transition hover:text-[color:var(--color-accent)]">মূল্য</a></li>
-            <li><a href="/checkout" class="transition hover:text-[color:var(--color-accent)]">অ্যাক্সেস নিন</a></li>
-            <li><a href="/checkout" class="transition hover:text-[color:var(--color-accent)]">অ্যাড-অন</a></li>
-            <li><a href={TELEGRAM} class="text-[color:var(--color-accent)] transition hover:opacity-80">Telegram সাপোর্ট</a></li>
+            <li><a href="/#pricing" class="hover:text-[color:var(--color-gold-deep)]">মূল্য</a></li>
+            <li><a href="/checkout" class="hover:text-[color:var(--color-gold-deep)]">অ্যাক্সেস নিন</a></li>
+            <li><a href="/checkout" class="hover:text-[color:var(--color-gold-deep)]">অ্যাড-অন</a></li>
+            <li><a href={TELEGRAM} class="font-medium text-[color:var(--color-gold-deep)]">Telegram সাপোর্ট</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="my-9 rule-ornate"></div>
+      <div class="my-10 rule"></div>
 
       <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <p class="max-w-2xl text-[11px] leading-relaxed faint"><span class="font-medium text-[color:var(--color-muted)]">রিস্ক ডিসক্লেইমার।</span> ট্রেডিং-এ উল্লেখযোগ্য ক্ষতির ঝুঁকি থাকে এবং এটি প্রত্যেক বিনিয়োগকারীর জন্য উপযুক্ত নয়। এখানকার সব কনটেন্ট শুধুমাত্র শিক্ষামূলক উদ্দেশ্যে তৈরি, এটি কোনো আর্থিক পরামর্শ নয়। অতীতের ফলাফল ভবিষ্যতের ফলাফলের নিশ্চয়তা দেয় না।</p>
-        <div class="flex shrink-0 gap-4 text-[11px] faint">
-          <a href="/privacy" class="transition hover:text-[color:var(--color-accent)]">গোপনীয়তা</a>
-          <a href="/terms" class="transition hover:text-[color:var(--color-accent)]">শর্তাবলী</a>
-          <a href="/refund" class="transition hover:text-[color:var(--color-accent)]">রিফান্ড</a>
+        <p class="max-w-2xl text-[11px] leading-relaxed faint"><span class="font-medium text-[color:var(--color-ink-soft)]">রিস্ক ডিসক্লেইমার।</span> ট্রেডিং-এ উল্লেখযোগ্য ক্ষতির ঝুঁকি থাকে এবং এটি প্রত্যেক বিনিয়োগকারীর জন্য উপযুক্ত নয়। এখানকার সব কনটেন্ট শুধুমাত্র শিক্ষামূলক উদ্দেশ্যে তৈরি, এটি কোনো আর্থিক পরামর্শ নয়। অতীতের ফলাফল ভবিষ্যতের ফলাফলের নিশ্চয়তা দেয় না।</p>
+        <div class="flex shrink-0 gap-4 text-[11px] faint footer-links">
+          <a href="/privacy" class="hover:text-[color:var(--color-ink)]">গোপনীয়তা</a>
+          <a href="/terms" class="hover:text-[color:var(--color-ink)]">শর্তাবলী</a>
+          <a href="/refund" class="hover:text-[color:var(--color-ink)]">রিফান্ড</a>
           <span>© {year} {BRAND}</span>
         </div>
       </div>

@@ -162,19 +162,21 @@ export const ADDONS = [
   },
   {
     id: "market_review",
-    name: "সাপ্তাহিক Market Review",
+    name: "Market Insight Daily",
     price: 29,
     freeWithBundle: false,
     badge: "জনপ্রিয়",
-    desc: "প্রধান সব market নিয়ে সাপ্তাহিক forecast, শেয়ার করা হয় একটি প্রাইভেট গ্রুপে।",
+    validity: "১ মাস",
+    desc: "প্রতিদিন প্রধান সব market-এর key level, bias আর trade idea নিয়ে বিস্তারিত insight, শেয়ার করা হয় একটি প্রাইভেট গ্রুপে।",
   },
   {
     id: "consultation",
-    name: "সাপ্তাহিক 1-on-1 Consultation",
+    name: "Elite 1-on-1 Consultation",
     price: 149,
     freeWithBundle: false,
     badge: "প্রিমিয়াম",
-    desc: "NLT-এর সাথে সাপ্তাহিক একটি প্রাইভেট কল, যেখানে আপনার trade, plan আর progress রিভিউ করা হবে। সিট সীমিত।",
+    validity: "৩ মাস",
+    desc: "NLT-এর সাথে সরাসরি personal call — আপনার trade, plan আর progress ব্যক্তিগতভাবে রিভিউ করা হবে। direct, extreme-level সাপোর্ট। সিট সীমিত।",
   },
 ];
 export const TESTIMONIALS = [
